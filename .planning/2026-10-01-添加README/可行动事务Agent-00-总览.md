@@ -28,8 +28,7 @@ status: 文档导航；9月30日按原始愿景重整，旧方案已归档
 ## 2. 目录
 
 ```text
-FileAction/
-├── README.md                      ← 仓库首页（GitHub 展示）
+doagent/
 ├── 可行动事务Agent-00-总览.md     ← 从这里开始
 ├── AGENTS.md                      ← 文档维护规范
 ├── 01-产品方案/                   ← 参赛主线方案，1份

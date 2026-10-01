@@ -159,63 +159,6 @@ button,.breadcrumb .current,.preview-toolbar,.tree-root,.eligibility-head,.eligi
 .side-card.warning-card,.eligibility-row.warning,.session-unknown,.modal .notice{background:var(--accent-soft);border-color:var(--line)}
 .side-card.warning-card h3,.side-card.warning-card h3 svg,.eligibility-row.warning .state,.eligibility-row.warning svg{color:var(--ink)}
 .toast{background:var(--ink);color:var(--white);border-color:var(--ink)}
-/* 文件信息卡片：默认展示可读信息，原文通过独立入口按需打开。 */
-#file-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-#file-grid .file-card{display:flex;flex-direction:column;position:relative;min-width:0;padding:20px;text-align:left;background:var(--white);border-radius:11px}
-#file-grid .file-card:hover{transform:none}
-#file-grid .file-card:has(.file-card-open:focus-visible){outline:2px solid var(--ink);outline-offset:3px}
-#file-grid .file-card-heading{display:flex;align-items:flex-start;gap:12px;min-width:0}
-#file-grid .file-format-icon{width:42px;height:48px;flex-shrink:0;display:grid;place-items:center;background:var(--accent-soft);border:1px solid var(--line);border-radius:7px;color:var(--ink)}
-#file-grid .file-format-icon .icon{width:21px;height:21px}
-#file-grid .file-card-name{flex:1;min-width:0}
-#file-grid .file-card-title{font-size:14px;line-height:1.6;font-weight:550;min-height:44px;margin:0;overflow-wrap:anywhere}
-#file-grid .file-card-open{display:block;width:100%;text-align:left;padding:0;color:var(--ink);font:inherit}
-#file-grid .file-card-open:after{content:'';position:absolute;inset:0;z-index:1;border-radius:11px}
-#file-grid .file-card-open:focus-visible{outline:none}
-#file-grid .file-card-meta{display:flex;align-items:center;gap:4px 7px;flex-wrap:wrap;margin-top:5px;font-size:10px;line-height:1.6;color:var(--muted)}
-#file-grid .file-card-meta span{white-space:nowrap}
-#file-grid .file-card-meta span+span:before{content:'·';margin-right:7px}
-#file-grid .file-card-description{font-size:12px;line-height:1.8;min-height:44px;margin:15px 0 12px;color:var(--muted);overflow-wrap:anywhere}
-#file-grid .file-card-relations{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-height:27px;margin-top:auto}
-#file-grid .file-card-relations-label{font-size:10px;color:var(--muted);margin-right:2px}
-#file-grid .file-relation{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;max-width:100%;font-size:10px;line-height:1.6;background:var(--accent-soft);color:var(--ink);border-radius:5px;overflow-wrap:anywhere}
-#file-grid .file-relation .icon{width:12px;height:12px}
-#file-grid .file-unlinked{font-size:11px;color:var(--muted)}
-#file-grid .file-card-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
-#file-grid .file-card-preview{position:relative;z-index:2;display:inline-flex;align-items:center;gap:5px;min-height:30px;padding:4px 7px;margin-left:-7px;border:1px solid transparent;border-radius:5px;color:var(--muted);font-size:11px;white-space:nowrap}
-#file-grid .file-card-preview .icon{width:13px;height:13px}
-#file-grid .file-card-preview:hover{background:var(--accent-soft);border-color:var(--line);color:var(--ink)}
-#file-grid .file-card-entry{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--ink);white-space:nowrap}
-#file-grid .file-card-entry .icon{width:13px;height:13px}
-#file-grid.list-view{grid-template-columns:minmax(0,1fr);gap:10px}
-#file-grid.list-view .file-card{display:grid;grid-template-columns:minmax(240px,1.3fr) minmax(160px,1fr) minmax(120px,.7fr) 108px;align-items:center;gap:20px;padding:17px 20px}
-#file-grid.list-view .file-card-title{min-height:0}
-#file-grid.list-view .file-card-description{min-height:0;margin:0}
-#file-grid.list-view .file-card-relations{margin:0}
-#file-grid.list-view .file-card-relations-label{display:none}
-#file-grid.list-view .file-card-footer{flex-direction:column;align-items:flex-end;border:0;padding:0;margin:0;gap:4px}
-.reference-choice-list:empty{display:none}
-@media(max-width:1050px){#file-grid:not(.list-view){grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:900px){
-  #file-grid.list-view .file-card{grid-template-columns:minmax(0,1fr) auto;gap:10px 20px}
-  #file-grid.list-view .file-card-heading{grid-column:1;grid-row:1}
-  #file-grid.list-view .file-card-description{grid-column:1;grid-row:2}
-  #file-grid.list-view .file-card-relations{grid-column:1;grid-row:3}
-  #file-grid.list-view .file-card-footer{grid-column:2;grid-row:1/4}
-}
-@media(max-width:600px){
-  #file-grid:not(.list-view){grid-template-columns:minmax(0,1fr);gap:13px}
-  #file-grid .file-card{padding:18px}
-  #file-grid .file-card-title{min-height:0;font-size:14px}
-  #file-grid .file-card-meta{font-size:11px}
-  #file-grid .file-card-description{min-height:0;font-size:12px;margin:14px 0}
-  #file-grid .file-card-relations-label,#file-grid .file-relation{font-size:11px}
-  #file-grid .file-card-preview{min-height:36px}
-  #file-grid.list-view .file-card{grid-template-columns:minmax(0,1fr);gap:12px;padding:16px}
-  #file-grid.list-view .file-card-footer{grid-column:1;grid-row:4;flex-direction:row;align-items:center;border-top:1px solid var(--line);padding-top:10px}
-}
-@media(pointer:coarse){#file-grid .file-card-preview{min-height:44px}}
-
 </style>
 </head>
 <body>
@@ -226,7 +169,7 @@ button,.breadcrumb .current,.preview-toolbar,.tree-root,.eligibility-head,.eligi
 <section class="page active" id="page-files">
 <div class="content"><div class="page-heading"><div><h1>文件空间</h1><p>每一份文件，都可能是下一个机会的开始。</p></div><div class="heading-actions"><button class="btn primary" data-modal="upload"><i data-icon="plus"></i>上传文件</button></div></div>
 <div class="hero"><div class="hero-copy"><div class="eyebrow">LESS READING. MORE DOING.</div><h2>从一份文件，<em>到你的下一步。</em></h2><p>不止读懂内容，更帮你看见机会、连接材料、开始行动。</p><div class="hero-step"><span><i data-icon="file"></i>带着文件来</span><i data-icon="arrow-right"></i><span><i data-icon="spark"></i>找到与你的关联</span><i data-icon="arrow-right"></i><span><i data-icon="check-circle"></i>带着行动走</span></div></div><div class="hero-art" aria-hidden="true"><div class="orbit large"></div><div class="orbit"></div><div class="orbit small"></div><svg class="art-path" viewBox="0 0 380 215"><path d="M133 91 C180 91 175 115 216 115 S261 145 313 151" stroke="var(--accent-deep)" stroke-width="1.5" stroke-dasharray="3 4" fill="none"/></svg><div class="float-card doc"><div class="paper-icon"><i data-icon="file"></i></div><div><strong>一份新的通知</strong><small>新的可能，正在发生</small></div></div><div class="spark-node"><i data-icon="spark"></i></div><div class="float-card action"><div class="check-disc"><i data-icon="check"></i></div><div><strong>属于你的行动，已就绪</strong><small>YOUR NEXT MOVE</small></div></div><div class="hero-label">CONTEXT → CLARITY → ACTION</div></div></div>
-<div class="section-row"><div class="tabs" role="tablist" aria-label="文件筛选"><button class="tab active" data-filter="all" role="tab" aria-selected="true">全部文件<small>6</small></button><button class="tab" data-filter="opportunity" role="tab" aria-selected="false">机会与通知</button><button class="tab" data-filter="material" role="tab" aria-selected="false">我的材料</button></div><div class="tools"><label class="search"><i data-icon="search"></i><input id="file-search" type="search" placeholder="搜索文件、标签…" aria-label="搜索文件或标签"></label><div class="view-toggle" aria-label="显示方式"><button class="selected" data-view="grid" aria-label="卡片视图" aria-pressed="true"><i data-icon="grid"></i></button><button data-view="list" aria-label="列表视图" aria-pressed="false"><i data-icon="list"></i></button></div></div></div>
+<div class="section-row"><div class="tabs" role="tablist" aria-label="文件筛选"><button class="tab active" data-filter="all" role="tab" aria-selected="true">全部文件<small>6</small></button><button class="tab" data-filter="opportunity" role="tab" aria-selected="false">机会与通知</button><button class="tab" data-filter="material" role="tab" aria-selected="false">我的材料</button></div><div class="tools"><label class="search"><i data-icon="search"></i><input id="file-search" type="search" placeholder="搜索文件、标签…" aria-label="搜索文件或标签"></label><div class="view-toggle" aria-label="显示方式"><button class="selected" data-view="grid" aria-label="矩阵视图" aria-pressed="true"><i data-icon="grid"></i></button><button data-view="list" aria-label="列表视图" aria-pressed="false"><i data-icon="list"></i></button></div></div></div>
 <div class="file-grid" id="file-grid"></div>
 <div class="footer-note"><span><i data-icon="shield"></i>文件与个人背景，只为属于你的下一步服务。</span><span>6 份文件 · 所有人物、文件与日期均为合成示例</span></div></div>
 </section>
@@ -249,39 +192,11 @@ button,.breadcrumb .current,.preview-toolbar,.tree-root,.eligibility-head,.eligi
 const icons={grid:'<rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/>',spark:'<path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/><path d="m20 2 .5 1.5L22 4l-1.5.5L20 6l-.5-1.5L18 4l1.5-.5L20 2Z"/>',layers:'<path d="m12 3 10 5-10 5L2 8l10-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/>',package:'<path d="m12 3 9 5v9l-9 5-9-5V8l9-5Z"/><path d="m3 8 9 5 9-5M12 13v9M7.5 5.5l9 5v5"/>',leaf:'<path d="M20 3C9 2 3 6 4 13c1 6 7 8 11 4 4-3 5-8 5-14Z"/><path d="M4 21 15 9"/>',home:'<path d="m3 10 9-7 9 7v10H3V10Z"/><path d="M9 20v-7h6v7"/>',chevrons:'<path d="m8 8 4-4 4 4m-8 8 4 4 4-4"/>','chevron-right':'<path d="m9 5 7 7-7 7"/>','chevron-down':'<path d="m5 9 7 7 7-7"/>','arrow-right':'<path d="M4 12h16m-6-6 6 6-6 6"/>','arrow-left':'<path d="M20 12H4m6-6-6 6 6 6"/>','arrow-up-right':'<path d="M6 18 18 6H7m11 0v11"/>','arrow-up':'<path d="M12 20V4m-6 6 6-6 6 6"/>',play:'<path d="m8 4 12 8-12 8V4Z"/>',bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/>',plus:'<path d="M12 5v14M5 12h14"/>',file:'<path d="M14 3H5v18h14V8l-5-5Z"/><path d="M14 3v5h5M8 12h8M8 16h6"/>','check-circle':'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',check:'<path d="m5 12 5 5L20 7"/>',search:'<circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/>',list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',shield:'<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/>',panel:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/>','folder-open':'<path d="M3 8V5h6l3 3h8v3M3 9v11h16l3-9H7l-4 9"/>',award:'<circle cx="12" cy="8" r="5"/><path d="m8 12-2 9 6-3 6 3-2-9"/>','alert-circle':'<circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 17h.01"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>',link:'<path d="m10 13 4-4m-7 6-2 2a4 4 0 0 0 6 5l4-4a4 4 0 0 0 0-6M17 9l2-2a4 4 0 0 0-6-5L9 6a4 4 0 0 0 0 6" transform="translate(0 -1)"/>',expand:'<path d="M8 3H3v5m13-5h5v5M3 16v5h5m8 0h5v-5"/>',pen:'<path d="m15 5 4 4M4 20l5-1L21 7a3 3 0 0 0-4-4L5 15l-1 5Z"/>','thumb-up':'<path d="M7 21H3V10h4m0 11h10a2 2 0 0 0 2-2l2-8a2 2 0 0 0-2-2h-5l1-4a2 2 0 0 0-4-1l-4 6v11Z"/>',copy:'<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V3H3v13h5"/>',refresh:'<path d="M20 7a9 9 0 1 0 1 8M20 3v5h-5"/>',sliders:'<path d="M4 7h4m4 0h8M4 17h8m4 0h4"/><circle cx="10" cy="7" r="2"/><circle cx="14" cy="17" r="2"/>',more:'<circle cx="5" cy="12" r=".7"/><circle cx="12" cy="12" r=".7"/><circle cx="19" cy="12" r=".7"/>',user:'<circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',circle:'<circle cx="12" cy="12" r="8"/>',download:'<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',upload:'<path d="M12 16V3m-5 5 5-5 5 5M4 16v5h16v-5"/>',x:'<path d="m6 6 12 12M6 18 18 6"/>'};
 function icon(name){return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${icons[name]||icons.file}</svg>`}
 function renderIcons(root=document){root.querySelectorAll('[data-icon]').forEach(element=>{element.outerHTML=icon(element.dataset.icon)})}
-const files=[{id:'notice',summary:'包含申请条件、材料要求与截止时间。',title:'2026 国家奖学金申报通知',kind:'PDF',date:'今天 09:42',size:'1.2 MB',type:'opportunity',thumb:'notice',state:'已发现与你有关的机会',tags:[['奖学金申请','green'],['10 月 12 日截止','orange']]},{id:'grades',summary:'记录学年课程成绩与专业排名。',title:'2025–2026 学年成绩单',kind:'PDF',date:'昨天 14:28',size:'842 KB',type:'material',thumb:'grade',state:'已提取成绩与排名',tags:[['学业证明','blue'],['专业前 5%','green']]},{id:'certificate',summary:'创新创业大赛省级二等奖的获奖证明。',title:'创新创业大赛获奖证书',kind:'JPG',date:'9 月 28 日',size:'2.4 MB',type:'material',thumb:'certificate',state:'已关联 1 个事务',tags:[['竞赛获奖','orange'],['省级二等奖','']]},{id:'resume',summary:'介绍学业经历、项目想法与当前意向。',title:'个人简历 · 2026 秋',kind:'DOCX',date:'9 月 26 日',size:'368 KB',type:'material',thumb:'resume',state:'个人背景已就绪',tags:[['个人背景','blue'],['可复用材料','']]},{id:'innovation',summary:'说明开放交流的参与条件、时间与准备事项。',title:'校园创新周参与通知',kind:'PDF',date:'9 月 25 日',size:'1.8 MB',type:'opportunity',thumb:'poster',state:'开放交流更适合你',tags:[['创新活动','green'],['找合作者','']]},{id:'project',summary:'记录校园无障碍地图的初步想法与待探索问题。',title:'校园无障碍地图 · 项目构想',kind:'DOCX',date:'9 月 24 日',size:'526 KB',type:'material',thumb:'plan',state:'已记住你的项目阶段',tags:[['个人项目','blue'],['想法阶段','']]}];
+const files=[{id:'notice',title:'2026 国家奖学金申报通知',kind:'PDF',date:'今天 09:42',size:'1.2 MB',type:'opportunity',thumb:'notice',state:'已发现与你有关的机会',tags:[['奖学金申请','green'],['10 月 12 日截止','orange']]},{id:'grades',title:'2025–2026 学年成绩单',kind:'PDF',date:'昨天 14:28',size:'842 KB',type:'material',thumb:'grade',state:'已提取成绩与排名',tags:[['学业证明','blue'],['专业前 5%','green']]},{id:'certificate',title:'创新创业大赛获奖证书',kind:'JPG',date:'9 月 28 日',size:'2.4 MB',type:'material',thumb:'certificate',state:'已关联 1 个事务',tags:[['竞赛获奖','orange'],['省级二等奖','']]},{id:'resume',title:'个人简历 · 2026 秋',kind:'DOCX',date:'9 月 26 日',size:'368 KB',type:'material',thumb:'resume',state:'个人背景已就绪',tags:[['个人背景','blue'],['可复用材料','']]},{id:'innovation',title:'校园创新周参与通知',kind:'PDF',date:'9 月 25 日',size:'1.8 MB',type:'opportunity',thumb:'poster',state:'开放交流更适合你',tags:[['创新活动','green'],['找合作者','']]},{id:'project',title:'校园无障碍地图 · 项目构想',kind:'DOCX',date:'9 月 24 日',size:'526 KB',type:'material',thumb:'plan',state:'已记住你的项目阶段',tags:[['个人项目','blue'],['想法阶段','']]}];
+function paperLines(){return '<div class="mini-line"></div><div class="mini-line medium"></div><div class="mini-highlight"></div><div class="mini-line"></div><div class="mini-line short"></div>'}
+function thumbnail(file){if(file.thumb==='certificate')return '<div class="certificate-sheet"><div class="medal">✧</div><h4>荣誉证书</h4><p>CERTIFICATE OF ACHIEVEMENT</p><p>大学生创新创业大赛 · 省级二等奖</p><div class="stamp">合成示例</div></div>';if(file.thumb==='poster')return '<div class="poster-sheet"><small>CAMPUS INNOVATION WEEK 2026</small><h4>让想法<br>遇见同路人。</h4><div class="poster-circle"></div></div>';if(file.thumb==='grade')return '<div class="preview-paper"><div class="paper-overline">本科生成绩档案 · 示例</div><h4>2025—2026 学年成绩单</h4><div class="mini-table">'+['课程名称','学分','成绩','数据结构','4.0','96','计算机网络','3.0','93','操作系统','3.0','95','专业排名','6 / 120','前 5%'].map(text=>`<span>${text}</span>`).join('')+'</div></div>';if(file.thumb==='resume')return '<div class="preview-paper"><div class="resume-avatar"></div><h4 style="text-align:left;font-size:14px">林同学</h4><div class="paper-overline" style="text-align:left">计算机科学与技术 · 本科在读</div>'+paperLines()+'</div>';if(file.thumb==='plan')return '<div class="preview-paper"><div class="paper-overline">PROJECT NOTES / 001</div><h4 style="text-align:left">校园无障碍地图</h4><div style="font-size:6px;color:var(--muted)">让每一段路，都更容易抵达。</div>'+paperLines()+'</div>';return '<div class="preview-paper"><div class="paper-overline">明川大学 · 学生工作处</div><h4>关于开展 2026 年<br>国家奖学金评审工作的通知</h4>'+paperLines()+'<div class="stamp">合成示例</div></div>'}
 let activeFilter='all';
-function fileTransactions(file){
-  return Object.values(transactions).filter(transaction=>transaction.files.includes(file.id));
-}
-function fileCardMarkup(file){
-  const escape=escapePickerText;
-  const related=fileTransactions(file);
-  const summary=typeof file.summary==='string'?file.summary.trim():'';
-  const id=escape(file.id);
-  return `<article class="file-card ${file.id==='notice'?'featured':''}" aria-labelledby="file-title-${id}">
-    <div class="file-card-heading">
-      <span class="file-format-icon" aria-hidden="true">${icon(file.kind==='JPG'?'award':'file')}</span>
-      <div class="file-card-name">
-        <h3 class="file-card-title" id="file-title-${id}"><button type="button" class="file-card-open" data-file="${id}" aria-label="进入${escape(file.title)}的事务对话">${escape(file.title)}</button></h3>
-        <div class="file-card-meta"><span>${escape(file.kind)}</span><span>${escape(file.size)}</span><span>${escape(file.date)} 上传</span></div>
-      </div>
-    </div>
-    ${summary?`<p class="file-card-description">${escape(summary)}</p>`:''}
-    <div class="file-card-relations" aria-label="关联事务">
-      ${related.length?`<span class="file-card-relations-label">关联事务</span>${related.map(transaction=>`<span class="file-relation">${icon('link')}${escape(transaction.shortTitle)}</span>`).join('')}`:'<span class="file-unlinked">未关联事务</span>'}
-    </div>
-    <div class="file-card-footer">
-      <button type="button" class="file-card-preview" data-preview-document="${id}" aria-label="预览原文：${escape(file.title)}">${icon('expand')}预览原文</button>
-      <span class="file-card-entry" aria-hidden="true">进入事务对话 ${icon('arrow-up-right')}</span>
-    </div>
-  </article>`;
-}
-function renderFiles(){
-  const query=document.querySelector('#file-search').value.trim().toLowerCase();
-  const visible=files.filter(file=>(activeFilter==='all'||file.type===activeFilter)&&(file.title+file.tags.flat().join('')).toLowerCase().includes(query));
-  document.querySelector('#file-grid').innerHTML=visible.length?visible.map(fileCardMarkup).join(''):'<div class="empty-state">没有找到匹配的文件，试试“奖学金”或“成绩”。</div>';
-}
+function renderFiles(){const query=document.querySelector('#file-search').value.trim().toLowerCase();const visible=files.filter(file=>(activeFilter==='all'||file.type===activeFilter)&&(file.title+file.tags.flat().join('')).toLowerCase().includes(query));document.querySelector('#file-grid').innerHTML=visible.length?visible.map(file=>`<button class="file-card ${file.id==='notice'?'featured':''}" data-file="${file.id}" aria-label="打开${file.title}"><div class="thumb ${file.thumb}"><span class="type">${file.kind}</span>${thumbnail(file)}<span class="file-state">${icon('spark')}${file.state}</span></div><div class="file-info"><div class="file-title">${icon('file')}<span>${file.title}</span></div><div class="file-meta">${file.date} 上传<span style="margin:0 7px">·</span>${file.size}</div><div class="tags">${file.tags.map(([text,tone])=>`<span class="tag ${tone}">${text}</span>`).join('')}</div><div class="file-entry-note">进入事务对话 ${icon('arrow-up-right')}</div></div></button>`).join(''):'<div class="empty-state">没有找到匹配的文件，试试“奖学金”或“成绩”。</div>'}
 const noticeDocument=`<div class="doc-school">明川大学 · 学生工作处</div><div class="doc-code">明大学工〔2026〕12 号 · 合成示例</div><h2>关于开展 2026 年<br>国家奖学金评审工作的通知</h2><p>各学院：</p><p>为做好本年度国家奖学金评审工作，现将申请有关事项通知如下。</p><h3>一、申请对象</h3><p>本校全日制本科二年级及以上在校学生，具体资格由学院审核。</p><h3>二、学业与综合表现</h3><p>申请人应勤奋学习，积极进取。<mark class="doc-highlight" id="highlight-rank">学习成绩排名与综合测评成绩排名原则上均应位于专业前 10%。</mark></p><p>获奖证书等可作为综合表现支撑材料，具体认定范围须向学院确认。</p><h3>三、申请材料</h3><p>申请表、学年成绩单、综合测评排名证明及相关获奖证明材料。</p><h3>四、材料提交时间</h3><p>请有意申请的同学于 <mark class="doc-highlight orange" id="highlight-deadline">2026 年 10 月 12 日 18:00 前</mark>向所在学院提交相关材料。</p><div class="doc-stamp">明川大学<br>合成示例</div><div class="doc-footnote">仅供产品演示，不代表任何真实学校的政策与通知。</div>`;
 const relatedDocuments={grades:`<div class="doc-school">明川大学 · 本科成绩档案</div><div class="doc-code">合成示例 · 非真实个人信息</div><h2>2025—2026 学年<br>学业成绩单</h2><p>姓名：林同学<br>专业：计算机科学与技术</p><h3>学业表现</h3><p><mark class="doc-highlight" id="highlight-grades">专业排名：6 / 120（前 5%）</mark><br>数据结构：96<br>计算机网络：93<br>操作系统：95</p><h3>本次关联依据</h3><p>用于核对通知中的成绩排名要求，不代表全部申报条件已满足。</p><h3>尚未提供</h3><p>综合测评排名未包含在本成绩单中，应另行确认。</p><div class="doc-footnote">示例文件 · Agent 已关联到奖学金事务</div>`,certificate:`<div class="doc-school">大学生创新创业大赛</div><div class="doc-code">合成示例 · 不是真实证书</div><h2 style="font-size:25px;margin-top:65px;color:var(--muted)">荣 誉 证 书</h2><p style="text-align:center;margin-top:35px">林同学：<br>在大学生创新创业大赛中<br>获得 <mark class="doc-highlight" id="highlight-certificate">省级二等奖</mark>。</p><h3 style="margin-top:65px">关联说明</h3><p>可以作为相关支撑材料。该证书是否符合学院认定范围，仍需向学院确认。</p><div class="doc-footnote">不据此推断申请人已符合全部条件。</div>`,resume:`<div class="doc-school">个人简历 · 示例</div><div class="doc-code">2026 秋季</div><h2 style="text-align:left">林同学</h2><p>计算机科学与技术 · 本科在读</p><h3>学业经历</h3><p>明川大学 · 计算机科学与技术专业。<br>具体年级及身份以本人确认为准。</p><h3>项目探索</h3><p><mark class="doc-highlight" id="highlight-resume">校园无障碍地图：目前处于想法阶段，尚无可演示原型。</mark></p><h3>当前意向</h3><p>了解校园活动与申请机会；对校园无障碍问题感兴趣。</p><div class="doc-footnote">示例背景，不自动等同于本次行动目标。</div>`};
 function setDocument(id){if(id!=='notice'&&!relatedDocuments[id])return;document.querySelector('#document-preview').innerHTML=id==='notice'?noticeDocument:relatedDocuments[id];document.querySelectorAll('#document-preview .doc-highlight').forEach(mark=>mark.classList.remove('active'));document.querySelector('#preview-name').textContent={notice:'申报通知.pdf',grades:'学年成绩单.pdf',certificate:'获奖证书.jpg',resume:'个人简历.docx',innovation:'校园创新周参与通知.pdf',project:'校园无障碍地图-项目构想.docx'}[id];document.querySelectorAll('[data-document]').forEach(button=>button.classList.toggle('selected',button.dataset.document===id));document.querySelector('.preview-scroll').scrollTop=0}
@@ -682,7 +597,7 @@ function openReference(keys){
 function previewDocument(id){
   if(!files.some(file=>file.id===id))return;
   referenceChoices=[];closeReferenceMenu(false);
-  document.querySelector('#reference-description').textContent='文件原文预览 · 合成示例';
+  document.querySelector('#reference-description').textContent='关联文件预览 · 合成示例';
   document.querySelector('#reference-choices').innerHTML='';
   document.querySelector('#reference-location').textContent='查看文件全文';
   setDocument(id);showReferenceDialog();

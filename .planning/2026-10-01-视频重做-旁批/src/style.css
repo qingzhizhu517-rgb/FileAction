@@ -1,0 +1,96 @@
+/* DoAgent 讲解视频 · 1920×1080 画布样式 */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #060A14; }
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", sans-serif;
+  color: #E8EEFF; -webkit-font-smoothing: antialiased;
+}
+#stage { position: absolute; inset: 0; overflow: hidden; }
+
+/* 背景：渐变光斑 + 透视网格 + 漂浮粒子 */
+.bg { position: absolute; inset: 0; }
+.orb { position: absolute; border-radius: 50%; }
+.grid {
+  position: absolute; left: -50%; width: 200%; height: 62%; bottom: -10%;
+  background-image:
+    linear-gradient(rgba(110,150,255,.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110,150,255,.11) 1px, transparent 1px);
+  background-size: 90px 90px;
+  transform: perspective(760px) rotateX(64deg); transform-origin: center top;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 35%, #000 70%, transparent);
+}
+.dot { position: absolute; left: 0; top: 0; width: 3px; height: 3px; border-radius: 50%; background: #A8DCFF; }
+.vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%); }
+
+/* 场景容器与通用元素 */
+.scene { position: absolute; inset: 0; opacity: 0; display: none; transform-origin: 50% 50%; }
+.abs { position: absolute; }
+.card {
+  position: absolute;
+  background: linear-gradient(160deg, rgba(40,52,86,.92), rgba(18,24,44,.92));
+  border: 1px solid rgba(160,185,255,.20); border-radius: 22px;
+  box-shadow: 0 24px 70px rgba(0,0,0,.50), inset 0 1px 0 rgba(255,255,255,.10);
+}
+.glow { box-shadow: 0 0 0 1px rgba(56,225,255,.55), 0 0 40px rgba(56,225,255,.35), 0 24px 70px rgba(0,0,0,.5); }
+.title { position: absolute; left: 0; right: 0; text-align: center; font-weight: 600; letter-spacing: 2px; }
+.h1 { font-size: 78px; }
+.h2 { font-size: 56px; }
+.h3 { font-size: 40px; }
+.muted { color: #8E9CC2; }
+.grad {
+  background: linear-gradient(90deg, #38E1FF, #8B5CF6 55%, #F472B6);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px;
+  border-radius: 999px; font-size: 26px; white-space: nowrap;
+  border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.07);
+}
+.pill { display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: 22px; font-weight: 600; white-space: nowrap; }
+.ok { color: #34D399; } .warn { color: #FBBF24; } .no { color: #F87171; } .cy { color: #38E1FF; } .vi { color: #A78BFA; }
+.p-ok { background: rgba(52,211,153,.16); color: #34D399; border: 1px solid rgba(52,211,153,.45); }
+.p-warn { background: rgba(251,191,36,.14); color: #FBBF24; border: 1px solid rgba(251,191,36,.45); }
+.p-no { background: rgba(248,113,113,.15); color: #F87171; border: 1px solid rgba(248,113,113,.5); }
+.p-cy { background: rgba(56,225,255,.12); color: #38E1FF; border: 1px solid rgba(56,225,255,.45); }
+.p-vi { background: rgba(139,92,246,.16); color: #C4B5FD; border: 1px solid rgba(139,92,246,.5); }
+
+/* 文件卡与消息卡 */
+.fcard { display: flex; gap: 20px; align-items: center; padding: 20px 26px; width: 480px; }
+.fic {
+  flex: none; width: 62px; height: 76px; border-radius: 10px 22px 10px 10px;
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px;
+  font-weight: 700; font-size: 17px; color: #fff; letter-spacing: 1px;
+}
+.t-pdf { background: linear-gradient(160deg, #FB7185, #DC2626); }
+.t-doc { background: linear-gradient(160deg, #60A5FA, #2563EB); }
+.t-img { background: linear-gradient(160deg, #4ADE80, #059669); }
+.t-xls { background: linear-gradient(160deg, #2DD4BF, #0F766E); }
+.t-msg { background: linear-gradient(160deg, #A78BFA, #7C3AED); border-radius: 50%; width: 62px; height: 62px; align-items: center; padding: 0; font-size: 26px; }
+.fname { font-size: 25px; line-height: 1.35; }
+.fmeta { font-size: 19px; color: #8E9CC2; margin-top: 6px; }
+
+/* 对话气泡 */
+.bubble { position: absolute; padding: 24px 30px; border-radius: 22px; font-size: 29px; line-height: 1.6; }
+.b-ai { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); }
+.b-me { background: linear-gradient(135deg, rgba(56,225,255,.20), rgba(139,92,246,.24)); border: 1px solid rgba(139,160,255,.55); }
+.lab { font-size: 21px; letter-spacing: 2px; margin-bottom: 8px; font-weight: 600; }
+.caret::after { content: "▍"; color: #38E1FF; margin-left: 2px; }
+
+/* 头像、光标与连线层 */
+.avatar { width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.avatar svg { width: 64%; height: 64%; }
+.cursor { position: absolute; width: 46px; height: 46px; left: 0; top: 0; filter: drop-shadow(0 4px 10px rgba(0,0,0,.6)); }
+.ripple { position: absolute; width: 90px; height: 90px; border-radius: 50%; border: 3px solid #38E1FF; left: -45px; top: -45px; }
+svg.layer { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+
+/* 常驻界面：章节、品牌、字幕、进度条 */
+#chapter { position: absolute; left: 76px; top: 58px; font-size: 25px; letter-spacing: 5px; color: #9AA8CC; }
+#chapter b { color: #38E1FF; margin-right: 16px; font-family: "SF Mono", Menlo, monospace; letter-spacing: 1px; }
+#brand { position: absolute; right: 76px; top: 50px; display: flex; align-items: center; gap: 14px; font-size: 28px; font-weight: 600; color: #D5DEFA; }
+#brand svg { width: 46px; height: 46px; }
+#subs { position: absolute; left: 0; right: 0; bottom: 62px; text-align: center; }
+#subs span {
+  display: inline-block; padding: 12px 34px; font-size: 38px; letter-spacing: 1px;
+  background: rgba(4,7,16,.66); border-radius: 16px; color: #F4F7FF;
+}
+#bar { position: absolute; left: 0; bottom: 0; height: 5px; background: linear-gradient(90deg, #38E1FF, #8B5CF6, #F472B6); }

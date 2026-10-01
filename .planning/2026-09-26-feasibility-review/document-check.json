@@ -1,0 +1,79 @@
+{
+  "root_markdown_documents": 11,
+  "validated_wikilinks": 92,
+  "json_examples": 4,
+  "markdown_tables": 48,
+  "sample_total": 128,
+  "timeline_seconds": 180,
+  "errors": [],
+  "changes": [
+    {
+      "file": "AGENTS.md",
+      "status": "modified",
+      "before_lines": 46,
+      "after_lines": 48
+    },
+    {
+      "file": "可行动事务Agent-00-总览.md",
+      "status": "modified",
+      "before_lines": 74,
+      "after_lines": 65
+    },
+    {
+      "file": "可行动事务Agent-Demo状态表.md",
+      "status": "modified",
+      "before_lines": 277,
+      "after_lines": 209
+    },
+    {
+      "file": "可行动事务Agent-UI原型规格表.md",
+      "status": "modified",
+      "before_lines": 435,
+      "after_lines": 322
+    },
+    {
+      "file": "可行动事务Agent-产品定义.md",
+      "status": "modified",
+      "before_lines": 364,
+      "after_lines": 153
+    },
+    {
+      "file": "可行动事务Agent-内部筛选速览.md",
+      "status": "modified",
+      "before_lines": 219,
+      "after_lines": 99
+    },
+    {
+      "file": "可行动事务Agent-可行性分析.md",
+      "status": "modified",
+      "before_lines": 90,
+      "after_lines": 103
+    },
+    {
+      "file": "可行动事务Agent-学分认定Demo规格.md",
+      "status": "modified",
+      "before_lines": 254,
+      "after_lines": 126
+    },
+    {
+      "file": "可行动事务Agent-定位决策.md",
+      "status": "modified",
+      "before_lines": 205,
+      "after_lines": 125
+    },
+    {
+      "file": "可行动事务Agent-核查修订报告.md",
+      "status": "new",
+      "before_lines": 0,
+      "after_lines": 103
+    },
+    {
+      "file": "可行动事务Agent-路演答辩应答卡.md",
+      "status": "modified",
+      "before_lines": 138,
+      "after_lines": 135
+    }
+  ],
+  "scope": "Document structure and example consistency only; no application or real-user tests.",
+  "final_report_updated": true
+}

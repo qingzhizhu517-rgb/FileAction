@@ -1,0 +1,12 @@
+# 本机状态
+.DS_Store
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# 讲解视频渲染中间产物（帧序列，可重新生成）
+06-讲解视频/build/
+
+# 常见缓存
+__pycache__/
+node_modules/
+.env

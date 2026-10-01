@@ -1,0 +1,36 @@
+{
+  "date": "2026-09-30",
+  "scope": "文档静态核验；未执行应用测试或外部事实复核",
+  "status": "pass",
+  "counts": {
+    "original_files_preserved": 109,
+    "finder_metadata_files_excluded_from_content_comparison": 1,
+    "backup_files_verified": 22,
+    "original_files_byte_identical": 92,
+    "historical_planning_files_unchanged": 87,
+    "project_bodies_preserved": 13,
+    "drafts_byte_identical": 2,
+    "tables": 75,
+    "wiki_links_valid": 161,
+    "code_blocks": 12,
+    "relative_markdown_links_valid": 4,
+    "json_examples_valid": 4,
+    "visible_markdown_files": 17,
+    "root_markdown_files": 2,
+    "overview_documents_reachable": 16,
+    "editor_file_paths_valid": 20
+  },
+  "errors": [],
+  "known_existing_warnings": [
+    {
+      "file": "90-历史归档/原始草稿/可行动事务Agent-原始愿景与信息复用草稿.md",
+      "existing_missing_attachment": "file-20260923083638730.jpg"
+    },
+    {
+      "file": "90-历史归档/原始草稿/可行动事务Agent-行动事务与协作扩展草稿.md",
+      "existing_missing_attachment": "file-20260923225113539.png"
+    }
+  ],
+  "editor_ui_verification": "保存的布局与20处文件路径已核验；Obsidian重新打开的UI操作超时，未验证重新打开后的画面",
+  "metadata_note": ".DS_Store由访达自动更新，保留整理前备份，但不将其变动判为正文变化"
+}

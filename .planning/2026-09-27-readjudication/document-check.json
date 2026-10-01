@@ -1,0 +1,567 @@
+{
+  "checked_on": "2026-09-27",
+  "scope": "15 root Markdown documents; static/specification checks only",
+  "files": [
+    {
+      "name": "AGENTS.md",
+      "h1": 1,
+      "tables": 0,
+      "json_blocks": 0,
+      "metadata": {},
+      "sha256": "d412e8dc418ea2dfa1df567acdc70d5c115d0025c75d3572a65e06ee5f70b97a"
+    },
+    {
+      "name": "可行动事务Agent-00-总览.md",
+      "h1": 1,
+      "tables": 2,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-26",
+        "updated": "2026-09-27",
+        "status": "问题处置与限定设计审定入口"
+      },
+      "sha256": "a58e207f1d55c37be2e2cc91b7b0aa4ed22c621ef37262cb5046c89734054f28"
+    },
+    {
+      "name": "可行动事务Agent-Demo状态表.md",
+      "h1": 1,
+      "tables": 16,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-23",
+        "updated": "2026-09-26",
+        "status": "学时备选演示脚本，尚未实现或彩排"
+      },
+      "sha256": "998ffc33859482ca1959cae9737489c26920878130708d37cd2f127deea413c1"
+    },
+    {
+      "name": "可行动事务Agent-Idea完善方案.md",
+      "h1": 1,
+      "tables": 4,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-26",
+        "updated": "2026-09-27",
+        "status": "限定设计已审定；待赛中实现与真实任务验证"
+      },
+      "sha256": "d14dcd4a541a2c0db835107451a7d7dd982d45e1fbedbd7716179264f1455198"
+    },
+    {
+      "name": "可行动事务Agent-UI原型规格表.md",
+      "h1": 1,
+      "tables": 12,
+      "json_blocks": 4,
+      "metadata": {
+        "created": "2026-09-23",
+        "updated": "2026-09-26",
+        "status": "学时备选开发规格，尚未实现或实测"
+      },
+      "sha256": "0682f23eff79e507726eb83bfd1b8e9d0355f2b3d4954c7dadd13d5c09ff8739"
+    },
+    {
+      "name": "可行动事务Agent-产品定义.md",
+      "h1": 1,
+      "tables": 3,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-23",
+        "updated": "2026-09-27",
+        "status": "限定范围的设计审定稿，尚未实现或完成用户验证"
+      },
+      "sha256": "c0345ebbde357f0fa38029169ce9128a0e49464192835a7e256fe21884f7506b"
+    },
+    {
+      "name": "可行动事务Agent-内部筛选速览.md",
+      "h1": 1,
+      "tables": 4,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-23",
+        "updated": "2026-09-27",
+        "status": "限定设计审定通过；运行、用户价值与商业未验收"
+      },
+      "sha256": "3f7b059616e9d13460915f4a0c1a235e5d62388a8613e524ab180de2e13122c2"
+    },
+    {
+      "name": "可行动事务Agent-可行性分析.md",
+      "h1": 1,
+      "tables": 3,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-23",
+        "updated": "2026-09-27",
+        "status": "限定设计审定通过；原型运行、用户价值与商业未验收"
+      },
+      "sha256": "c205d0c15e329a4d8ab23b64b84d1c706a84abb47dc6343ff9ee4b3109fff789"
+    },
+    {
+      "name": "可行动事务Agent-学分认定Demo规格.md",
+      "h1": 1,
+      "tables": 5,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-23",
+        "updated": "2026-09-26",
+        "status": "学时备选技术演示，尚未实现或实测"
+      },
+      "sha256": "fa5cf6533f3b8b37528c93a38e321ee10c28ed0e30b04d0e9bdff67d89bd57a4"
+    },
+    {
+      "name": "可行动事务Agent-定位决策.md",
+      "h1": 1,
+      "tables": 3,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-23",
+        "updated": "2026-09-27",
+        "status": "限定原型的设计决策，运行与用户价值尚未验证"
+      },
+      "sha256": "f395ea7f3dc392d86ee8f83d5769907190d35ae722d11bacc9ef2d479c6f6aab"
+    },
+    {
+      "name": "可行动事务Agent-市场调研与验证.md",
+      "h1": 1,
+      "tables": 7,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-26",
+        "updated": "2026-09-27",
+        "status": "已完成公开资料调研与流程对照；未完成用户实验"
+      },
+      "sha256": "cf120ce11f2bd6d56c656b06a109e85dc4218c03e70034605a8f2c6f22df784c"
+    },
+    {
+      "name": "可行动事务Agent-核查修订报告.md",
+      "h1": 1,
+      "tables": 3,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-26",
+        "updated": "2026-09-27",
+        "status": "历史纠错记录；当前方案以9月27日审定篇为准"
+      },
+      "sha256": "ca705b6136e4744ee97557ac13f8f40be8dbe2c9b56a2098ad2561cf8051e8a9"
+    },
+    {
+      "name": "可行动事务Agent-西客松参赛对齐.md",
+      "h1": 1,
+      "tables": 3,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-26",
+        "updated": "2026-09-27",
+        "status": "XiHack 2026参赛idea初稿校准"
+      },
+      "sha256": "59aee02c3f8e02ef474bf4ff3c1d1ff3ac50c1c6e01c856afac21f59d153226d"
+    },
+    {
+      "name": "可行动事务Agent-路演答辩应答卡.md",
+      "h1": 1,
+      "tables": 2,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-23",
+        "updated": "2026-09-27",
+        "status": "限定设计审定后的答辩草稿；实现与用户验证未执行"
+      },
+      "sha256": "dbf2f9a26d0246f804e807d409d14079cb7e1cfcf279f17fc34a84a4fc0e9353"
+    },
+    {
+      "name": "可行动事务Agent-问题处理与方案审定.md",
+      "h1": 1,
+      "tables": 6,
+      "json_blocks": 0,
+      "metadata": {
+        "created": "2026-09-27",
+        "updated": "2026-09-27",
+        "status": "限定设计审定通过；运行、用户价值与商业尚未验收"
+      },
+      "sha256": "2071aa67a9d69e0a642bcc1f34c18df162e233802f0ffc3bb9c16b3c2ea30636"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "Archived drafts excluded from current-spec structural pass; two historical images remain unavailable."
+  ],
+  "application_tests": "not executed",
+  "user_experiments": "not executed",
+  "new_online_research": "not performed; external sources read 2026-09-26",
+  "mainline_timelines": {
+    "可行动事务Agent-Idea完善方案.md": {
+      "segments": [
+        [
+          0,
+          35
+        ],
+        [
+          35,
+          85
+        ],
+        [
+          85,
+          145
+        ],
+        [
+          145,
+          205
+        ],
+        [
+          205,
+          255
+        ],
+        [
+          255,
+          300
+        ]
+      ],
+      "continuous_0_to_300": true
+    },
+    "可行动事务Agent-问题处理与方案审定.md": {
+      "segments": [
+        [
+          0,
+          35
+        ],
+        [
+          35,
+          85
+        ],
+        [
+          85,
+          145
+        ],
+        [
+          145,
+          205
+        ],
+        [
+          205,
+          255
+        ],
+        [
+          255,
+          300
+        ]
+      ],
+      "continuous_0_to_300": true
+    },
+    "可行动事务Agent-内部筛选速览.md": {
+      "segments": [
+        [
+          0,
+          35
+        ],
+        [
+          35,
+          85
+        ],
+        [
+          85,
+          145
+        ],
+        [
+          145,
+          205
+        ],
+        [
+          205,
+          255
+        ],
+        [
+          255,
+          300
+        ]
+      ],
+      "continuous_0_to_300": true
+    },
+    "可行动事务Agent-可行性分析.md": {
+      "segments": [
+        [
+          0,
+          35
+        ],
+        [
+          35,
+          85
+        ],
+        [
+          85,
+          145
+        ],
+        [
+          145,
+          205
+        ],
+        [
+          205,
+          255
+        ],
+        [
+          255,
+          300
+        ]
+      ],
+      "continuous_0_to_300": true
+    },
+    "可行动事务Agent-西客松参赛对齐.md": {
+      "segments": [
+        [
+          0,
+          35
+        ],
+        [
+          35,
+          85
+        ],
+        [
+          85,
+          145
+        ],
+        [
+          145,
+          205
+        ],
+        [
+          205,
+          255
+        ],
+        [
+          255,
+          300
+        ]
+      ],
+      "continuous_0_to_300": true
+    },
+    "可行动事务Agent-路演答辩应答卡.md": {
+      "segments": [
+        [
+          0,
+          35
+        ],
+        [
+          35,
+          85
+        ],
+        [
+          85,
+          145
+        ],
+        [
+          145,
+          205
+        ],
+        [
+          205,
+          255
+        ],
+        [
+          255,
+          300
+        ]
+      ],
+      "continuous_0_to_300": true
+    }
+  },
+  "backup_demo": {
+    "states": [
+      [
+        0,
+        0,
+        8
+      ],
+      [
+        1,
+        8,
+        20
+      ],
+      [
+        2,
+        20,
+        42
+      ],
+      [
+        3,
+        42,
+        62
+      ],
+      [
+        4,
+        62,
+        82
+      ],
+      [
+        5,
+        82,
+        105
+      ],
+      [
+        6,
+        105,
+        125
+      ],
+      [
+        7,
+        125,
+        145
+      ],
+      [
+        8,
+        145,
+        162
+      ],
+      [
+        9,
+        162,
+        174
+      ],
+      [
+        10,
+        174,
+        180
+      ]
+    ],
+    "continuous_0_to_180": true
+  },
+  "development_hours": 67.0,
+  "backup_arithmetic": {
+    "categories": [
+      32,
+      18,
+      24,
+      12,
+      0,
+      42
+    ],
+    "sum": 128,
+    "innovation_gap": 8,
+    "arts_gap": 10,
+    "after_innovation_plus_10": {
+      "total": 138,
+      "innovation": 22,
+      "arts": 0,
+      "arts_gap": 10
+    },
+    "does_not_imply_complete_qualification": true
+  },
+  "material_status_tables": {
+    "可行动事务Agent-Idea完善方案.md": [
+      "未检查",
+      "可引用候选",
+      "需更新/确认",
+      "本次未找到",
+      "不可用于本次",
+      "无法判断"
+    ],
+    "可行动事务Agent-问题处理与方案审定.md": [
+      "未检查",
+      "可引用候选",
+      "需更新/确认",
+      "本次未找到",
+      "不可用于本次",
+      "无法判断"
+    ],
+    "可行动事务Agent-产品定义.md": [
+      "未检查",
+      "可引用候选",
+      "需更新/确认",
+      "本次未找到",
+      "不可用于本次",
+      "无法判断"
+    ],
+    "可行动事务Agent-定位决策.md": [
+      "未检查",
+      "可引用候选",
+      "需更新/确认",
+      "本次未找到",
+      "不可用于本次",
+      "无法判断"
+    ],
+    "可行动事务Agent-内部筛选速览.md": [
+      "未检查",
+      "可引用候选",
+      "需更新/确认",
+      "本次未找到",
+      "不可用于本次",
+      "无法判断"
+    ],
+    "可行动事务Agent-可行性分析.md": [
+      "未检查",
+      "可引用候选",
+      "需更新/确认",
+      "本次未找到",
+      "不可用于本次",
+      "无法判断"
+    ],
+    "可行动事务Agent-路演答辩应答卡.md": [
+      "未检查",
+      "可引用候选",
+      "需更新/确认",
+      "本次未找到",
+      "不可用于本次",
+      "无法判断"
+    ]
+  },
+  "source_records": {
+    "campus-sources.json": "valid JSON",
+    "consumer-sources.json": "valid JSON",
+    "team-enterprise-sources.json": "valid JSON",
+    "root-sources.json": "valid JSON"
+  },
+  "changed_root_files": [
+    "AGENTS.md",
+    "可行动事务Agent-00-总览.md",
+    "可行动事务Agent-Idea完善方案.md",
+    "可行动事务Agent-产品定义.md",
+    "可行动事务Agent-内部筛选速览.md",
+    "可行动事务Agent-可行性分析.md",
+    "可行动事务Agent-定位决策.md",
+    "可行动事务Agent-市场调研与验证.md",
+    "可行动事务Agent-核查修订报告.md",
+    "可行动事务Agent-西客松参赛对齐.md",
+    "可行动事务Agent-路演答辩应答卡.md"
+  ],
+  "added_root_files": [
+    "可行动事务Agent-问题处理与方案审定.md"
+  ],
+  "counts": {
+    "root_markdown": 15,
+    "project_documents": 14,
+    "wikilinks": 142,
+    "tables": 73,
+    "json_examples": 4
+  },
+  "manual_spec_review": {
+    "reviewers": [
+      "product_audit",
+      "technical_audit",
+      "check_git_conventions"
+    ],
+    "source_scenarios": 13,
+    "technical_counterexamples": 12,
+    "runtime_case_results": "none; expected behaviors only",
+    "key_boundaries": [
+      "notification first; optional personal inputs",
+      "six statuses; incomplete coverage not absence",
+      "known disallowed pair cannot be selected",
+      "review and selection distinct",
+      "opt-in saved text; original PDF not archived",
+      "revision invalidation and late-response barrier",
+      "draft != qualification/submission/approval",
+      "opportunity rate plus natural-return rate; failures retained",
+      "template/plugin or stop if substitutes equivalent"
+    ],
+    "external_unresolved": [
+      "competition score formula",
+      "full IP/commercialization agreement",
+      "final submission details"
+    ],
+    "known_missing_assets": "two archived draft images; unchanged historical limitation"
+  },
+  "result": "PASS",
+  "final_delta_recheck": {
+    "files": [],
+    "result": "PASS",
+    "explicit_selection_gate": "reviewed current candidate only; unknown/update stay pending",
+    "all_root_hashes_match": true
+  }
+}

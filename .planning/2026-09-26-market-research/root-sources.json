@@ -1,0 +1,57 @@
+[
+  {
+    "id": "R01",
+    "title": "Saner.AI 官网",
+    "url": "https://www.saner.ai/",
+    "accessed": "2026-09-26",
+    "kind": "vendor_product",
+    "observed": "官方列出自动标签、相关旧笔记、快速采集、自然语言任务规划、邮件转任务、日历/Slack/Drive/Gmail连接及主动提示。",
+    "supports": "原idea的通用记忆、低摩擦输入、意向相关提示与任务闭环已有直接功能竞争。",
+    "does_not_support": "没有实际使用，不确认中文校园文件表现；不采用官网自报用户数、用户证言或优于竞品断言。",
+    "capture": "saner-home.json"
+  },
+  {
+    "id": "R02",
+    "title": "Saner.AI Pricing",
+    "url": "https://www.saner.ai/pricing",
+    "accessed": "2026-09-26",
+    "kind": "vendor_pricing",
+    "observed": "Free显示$0/月、30 AI messages/月、100 Notes；页面同时有年/月开关；外部模型费用另算。",
+    "supports": "有低成本替代；对比总费用必须区分套餐与外部模型。",
+    "does_not_support": "未核实所选付费周期，不引用付费数字；不能将国外标价视为中国学生付费意愿。",
+    "capture": "saner-pricing.json"
+  },
+  {
+    "id": "R03",
+    "title": "remio 官网",
+    "url": "https://www.remio.ai/",
+    "accessed": "2026-09-26",
+    "kind": "vendor_product",
+    "observed": "官方将定位写为基于个人上下文的知识工作Agent，可由文件/会议/邮件/研究生成产物；保留来源，连接持续上下文。",
+    "supports": "仅把记忆与行动连接起来不足以构成差异。",
+    "does_not_support": "不采用其竞争对照表、节省50%tokens/2倍速度或用户节时宣称；未实测效果。",
+    "capture": "remio-home.json"
+  },
+  {
+    "id": "R04",
+    "title": "remio Info Capture",
+    "url": "https://www.remio.ai/info-capture",
+    "accessed": "2026-09-26",
+    "kind": "vendor_product",
+    "observed": "说明浏览器自动捕获、本地文件夹索引、录音转写、邮件与Slack资料接入；页面称采集信息在本地保存。",
+    "supports": "低摩擦输入已有直接竞争；首版全量自动捕获不宜用作唯一卖点。",
+    "does_not_support": "本地保存不等于所有云模型处理均在本机；隐私需按实际链路核实。",
+    "capture": "remio-capture.json"
+  },
+  {
+    "id": "R05",
+    "title": "r/scholarships：如何管理截止日与材料要求",
+    "url": "https://www.reddit.com/r/scholarships/comments/1p5fi86/how_do_you_guys_organize_all_your_scholarship/",
+    "accessed": "2026-09-26",
+    "kind": "public_anecdote",
+    "observed": "匿名发帖者自述跟踪多项奖学金时遗漏细节和混淆文书；评论给出主表+每月Google Doc清单、按截止排序、共享协作和申请状态跟踪，发帖者认可该建议。已读正文及可见评论。",
+    "supports": "有相邻场景线索，也提供低成本替代和按当前月份减负的设计启发。",
+    "does_not_support": "美国奖学金社群个案，身份经历未经验证；不是中国校园访谈，不代表比例、付费、实际使用效果；不推销也不联系。",
+    "capture": "reddit-scholarship.json"
+  }
+]

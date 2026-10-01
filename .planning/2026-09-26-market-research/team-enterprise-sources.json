@@ -1,0 +1,263 @@
+{
+  "checked_at": "2026-09-26",
+  "method": "公开网页只读核查，未登录、未上传、未产品实测",
+  "sources": [
+    {
+      "id": "N2",
+      "vendor": "Notion",
+      "title": "Get started with Notion Agent | Notion Help – Notion Help Center",
+      "url": "https://www.notion.com/help/notion-agent",
+      "checked_at": "2026-09-26",
+      "type": "official_help",
+      "precise_summary": "官方帮助明确可从页面提取 action items、处理多步骤任务、创建编辑数据库、从 PDF/CSV 建立结构化内容；Agent 与使用者权限相同。个人指令页可保存角色与偏好，默认新建私有 My Notion AI 页。",
+      "quotes": [
+        "It can help you create and edit pages and databases using context from your workspace and connected apps.",
+        "Notion Agent has the same permissions you do.",
+        "Build a launch plan with tasks and owners for our website redesign.",
+        "If you choose to create your own page, a private page called My Notion AI will open up."
+      ],
+      "supports": "支持已有“文档→任务/负责人→共享数据库”能力与个人上下文定制；不能把Notion概括成只做笔记。",
+      "does_not_support": "不证明对中文校园通知的抽取准确率，不证明会自动共享所有个人记忆；该帮助页对公式创建能力存在前后表述差异，本研究不据此给公式能力下确定结论。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "F1",
+      "vendor": "飞书",
+      "title": "飞书多维表格｜AI 驱动的表格与业务系统搭建平台 - 飞书官网",
+      "url": "https://www.feishu.cn/product/base",
+      "checked_at": "2026-09-26",
+      "type": "official_product_marketing",
+      "precise_summary": "官网列出 AI字段捷径、AI生成公式、工作流AI agent节点、AI生成工作流、仪表盘与行列级RBAC。",
+      "quotes": [
+        "将非结构化信息变为结构化标签",
+        "工作流 AI agent 节点",
+        "AI 生成工作流",
+        "通过精细的 RBAC（基于角色的权限控制），实现对每一行、每一列数据的精准读写控制。"
+      ],
+      "supports": "支持表格、协作数据、自动化及AI编排已有组合式替代。",
+      "does_not_support": "官网“零差错”“绝对安全”等是营销表达，本研究不采用为效果证据；不证明免费版包含所有这些能力。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "F2",
+      "vendor": "飞书",
+      "title": "版本对比 | 飞书",
+      "url": "https://www.feishu.cn/service",
+      "checked_at": "2026-09-26",
+      "type": "official_pricing",
+      "precise_summary": "主套件定价页说明付费版本按年付费，免费版0元且支持100用户；商业标准50、专业80、旗舰120元/人/月；企业旗舰联系销售。",
+      "quotes": [
+        "*所有版本需按年付费",
+        "支持 100 用户",
+        "50",
+        "80",
+        "120"
+      ],
+      "supports": "支持存在基础免费协作入口和公开主套件价格。",
+      "does_not_support": "不能将主套件免费等同于所有AI、自动化、高级权限免费；不能据100用户上限推断某社团一定满足配额。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "F3",
+      "vendor": "飞书/豆包工作伙伴",
+      "title": "豆包工作伙伴｜飞书旗下工作伙伴平台，AI 专属工作伙伴与工作伙伴定制 - 豆包工作伙伴官网",
+      "url": "https://aily.feishu.cn/universal/landing?from=feishu_home_nav",
+      "checked_at": "2026-09-26",
+      "type": "official_product_marketing",
+      "precise_summary": "Aily官方入口当前展示“豆包工作伙伴”：宣传定制风格/技能/记忆，从消息文档等主动识别内容，多Agent拆解派发与结果汇总，并支持团队统一助手。",
+      "quotes": [
+        "风格、技能、记忆为你定制，更懂业务，更懂你",
+        "从飞书消息、文档、会议、邮箱、审批、任务中识别重要内容",
+        "你定目标，Agent 团队自动拆解派发任务，成员自主协同推进",
+        "一个 Agent 服务整个团队，协作更顺畅"
+      ],
+      "supports": "支持团队Agent、个人记忆定制和工作结果汇总已有直接产品表述。",
+      "does_not_support": "不证明自动派发给人类员工的准确性，不证明实际节省时间，不证明共享个人记忆无需授权。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "F4",
+      "vendor": "飞书AI",
+      "title": "即刻获取 飞书 AI",
+      "url": "https://www.feishu.cn/service/ai?from=aily_home",
+      "checked_at": "2026-09-26",
+      "type": "official_pricing",
+      "context": "面向企业标签，页面可见年价",
+      "precise_summary": "飞书AI企业标签展示基础版9900元/年、18万点额度；企业版9.9万元/年、200万点；更高版本询价。",
+      "quotes": [
+        "18 万点 AI 额度",
+        "200 万点 AI 额度",
+        "联系销售获取报价"
+      ],
+      "supports": "支持AI能力单独存在套餐/额度成本。",
+      "does_not_support": "不是每个社团都必须买企业AI包；不能把该价格当小团队实际采购价或企业付费意愿证据。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "F5",
+      "vendor": "飞书AI",
+      "title": "即刻获取 飞书 AI",
+      "url": "https://www.feishu.cn/service/ai?from=aily_home",
+      "checked_at": "2026-09-26",
+      "type": "official_pricing",
+      "context": "切换面向个人标签后的默认价格显示，未购买",
+      "precise_summary": "面向个人标签默认显示AI会员69元/月、Plus138元/月；额度存在上限，知识问答需租户整体开通。",
+      "quotes": [
+        "每月 AI 个人额度存在使用上限",
+        "知识问答需租户整体开通后才可使用"
+      ],
+      "supports": "支持个人AI套餐价格与团队知识访问前置条件。",
+      "does_not_support": "未进入支付页核算税费/折扣；不能把个人会员视作无限AI或自动开通企业知识权限。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "M1",
+      "vendor": "Microsoft",
+      "title": "Microsoft Copilot Plans and Pricing—AI for Business | Microsoft 365",
+      "url": "https://www.microsoft.com/en-us/copilot/pricing/business",
+      "checked_at": "2026-09-26",
+      "type": "official_pricing",
+      "context": "美国美元商业页，Teams版年付；优惠有资格与首年限制，非中国本地报价",
+      "precise_summary": "美国官网Business页当前显示Business Standard with Copilot为23.50美元/用户/月（年付）；Copilot Business加购原标21、优惠18美元/用户/月（年付），须符合资格的既有Business订阅且首年优惠。",
+      "quotes": [
+        "Microsoft 365 Business Standard with Copilot",
+        "user/month, paid yearly",
+        "This discount offer is available between July 1, 2026, and December 31, 2026.",
+        "A separate license for a qualifying Microsoft 365 plan is required to purchase Microsoft 365 Copilot. For up to 300 users."
+      ],
+      "supports": "支持既有M365中的AI应用、团队数据、memory/personalization、agents和公开当前价格。",
+      "does_not_support": "不是中国本地报价，不保证所有Power Automate连接器或企业功能包含在此价内；优惠不能当永久标价。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "M2",
+      "vendor": "Microsoft",
+      "title": "Create and test an approval workflow with Power Automate - Power Automate | Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/power-automate/modern-approvals?tabs=new-designer",
+      "checked_at": "2026-09-26",
+      "type": "official_help_workflow",
+      "precise_summary": "微软官方教程给出SharePoint列表新增请假请求→发给指定审批者→邮件反馈→把审批意见写回列表的完整配置流程，并列出可审批文档/工单/差旅等场景。",
+      "quotes": [
+        "Starts when someone creates a vacation request in a SharePoint Online list.",
+        "Adds the vacation request to the approval center, and then emails it to the approver.",
+        "Updates the SharePoint Online list with the approver's decision comments.",
+        "In the Assigned to field, enter the email address of the person who will approve the request."
+      ],
+      "supports": "支持“请求→谁审批→材料/状态→回写汇总”不需新建通用Agent产品即可配置。",
+      "does_not_support": "这是官方教学流程，不是本研究完成的产品实测或真实客户节省数据；需相应账号、权限和许可。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "G1",
+      "vendor": "Glean",
+      "title": "Glean – Enterprise AI that Works | Agents, Assistant & Search",
+      "url": "https://www.glean.com/",
+      "checked_at": "2026-09-26",
+      "type": "official_product_marketing",
+      "precise_summary": "Glean官网把平台定位为企业上下文、搜索、助手和Agents，强调permission-aware及用户只看到获授权内容；页面引导Get a demo，本轮未见公开固定价。",
+      "quotes": [
+        "Users only see what they’re allowed to see.",
+        "Take action. Move work forward with automation and agents."
+      ],
+      "supports": "支持企业知识与行动结合是现有品类，权限是竞争基线。",
+      "does_not_support": "动态营销计数与节省时间数字未独立核验，不引用为实际效果；未见价格不代表免费或一定昂贵。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "G2",
+      "vendor": "Glean",
+      "title": "AI collaboration for teams | Glean Multiplayer",
+      "url": "https://www.glean.com/ai-assistant/multiplayer",
+      "checked_at": "2026-09-26",
+      "type": "official_product_marketing",
+      "precise_summary": "Glean Multiplayer官网描述邀请队友进入已有共享chat，交接上下文、各人补充信息、共同改同一产出；每个使用者的回答按其自己的权限取得。",
+      "quotes": [
+        "Hand off a shared chat without starting over.",
+        "Each person can prompt Glean, add their context, and build on what the group has already surfaced.",
+        "Each user can ask Glean questions and get responses based on their own permissions, right in the team chat."
+      ],
+      "supports": "支持“多人上下文接力、共享对话、共创产出”已有非常接近的替代。",
+      "does_not_support": "不证明私有记忆自动全量共享；未实测跨成员权限边界或实际准确率。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "G3",
+      "vendor": "Glean",
+      "title": "AI Agent Orchestration: How Glean Connects and Coordinates Agents",
+      "url": "https://www.glean.com/ai-agents/agent-orchestration",
+      "checked_at": "2026-09-26",
+      "type": "official_product_marketing",
+      "precise_summary": "Glean Agent Orchestration官网描述定时触发、路由到专门Agent、跨系统多步骤协作和上下文传递。",
+      "quotes": [
+        "With time-based triggers, agents can run automatically",
+        "Define routing rules in the builder so Glean Assistant sends requests to the right specialist agents.",
+        "Connect specialized agents across platforms so they can coordinate complex workflows without manual handoffs."
+      ],
+      "supports": "支持通用企业Agent编排不是市场空白。",
+      "does_not_support": "官网精确/可信等承诺未实测；不能推断本项目的小团队一定买得起或愿意迁移。",
+      "effectiveness_tested": false,
+      "claim_level": "官方公开功能/价格说明，不代表实测效果"
+    },
+    {
+      "id": "N1",
+      "vendor": "Notion",
+      "title": "Notion Pricing Plans: Free, Plus, Business, & Enterprise.",
+      "url": "https://www.notion.com/pricing",
+      "checked_at": "2026-09-26",
+      "type": "official_pricing",
+      "context": "本代理在p3将货币JPY切为USD；DOM确认billingInterval year.checked=true，month=false；未登录或购买。",
+      "quotes": [
+        "Plus — $10 — per member / month",
+        "Business — $20 — per member / month",
+        "Custom Agents: Free to try, then $10 per 1,000 monthly Notion credits.",
+        "The Plus Plan (with a 1-member limit) is free for students and educators."
+      ],
+      "precise_summary": "美元年付折算价格：Free 0、Plus 10、Business 20美元/成员/月；Enterprise询价。Business列出Notion Agent、AI Meeting Notes和Enterprise Search；Custom Agents另计credits。学生/教育Plus优惠有1-member限制。",
+      "supports": "支持小团队有现成共享数据库/表单/协作入口，AI套餐有明确费用；学生个人优惠不能直接视为整个社团免费AI。",
+      "does_not_support": "非中国本地报价或订单总价；付费计划不等于无限AI，未实测配额与校园任务准确率。",
+      "effectiveness_tested": false,
+      "quote_note": "前三项为公开报价字段的忠实合并转写，不是连续句子；币种和年付状态由本次DOM核验。"
+    },
+    {
+      "id": "C2",
+      "vendor": "高校公开业务流程",
+      "title": "共青团北京师范大学珠海校区委员会",
+      "url": "https://youth.bnuzh.edu.cn/tzgg/66ace4f5cc4841ba9f8b21d91f9c04b6.htm",
+      "checked_at": "2026-09-26",
+      "type": "university_official_notice",
+      "method": "本轮同任务代理通过浏览器读取；本代理复核其保存原文。",
+      "delegated_source_file": "campus-sources.json",
+      "precise_summary": "北京师范大学珠海校区2024-10-23通知：以月为周期提前一次性申请下月全部社团活动；每月17或27日交审批表和汇总表，纸件与邮件双轨；批准公示后开展；每月22日至月底提交活动总结与经费决算等。业务指导单位审核盖章，校区团委审核及报销。",
+      "supports": "支持确实存在从通知、负责人、材料、审批到汇总/报销的社团协作流程，且周期与材料命名明确。",
+      "does_not_support": "2024-2025学年历史通知，不证明2026仍原样执行，不证明所有学校相同，不证明新产品有人愿意付费。原文300–500元/社团/学期是该时段活动经费，不等于软件预算。",
+      "effectiveness_tested": false,
+      "published_at": "2024-10-23"
+    },
+    {
+      "id": "C3",
+      "vendor": "高校公开业务流程",
+      "title": "【社团】关于开展学生社团活动审批工作自查整改的通知",
+      "url": "https://qihang.hrbeu.edu.cn/2019/0409/c959a221130/page.htm",
+      "checked_at": "2026-09-26",
+      "type": "university_official_notice",
+      "method": "本轮同任务代理通过浏览器读取；本代理复核其保存原文。",
+      "delegated_source_file": "campus-sources.json",
+      "precise_summary": "哈尔滨工程大学团委2019-04-09通知：网上办事中心已开通学生社团活动申请，总体运行良好；少数社团/审批人未提前申报审批、未及时交总结，材料不规范或照片不符/重复。",
+      "supports": "反驳校园没有线上申请或审批替代的绝对说法；说明已有系统之外可能仍有材料准备和执行问题。",
+      "does_not_support": "2019历史管理记录，不证明2026现状或问题发生率；不能直接证明AI可解决。",
+      "effectiveness_tested": false,
+      "published_at": "2019-04-09"
+    }
+  ],
+  "scope": "4类团队/企业替代方案：飞书、Notion、Microsoft 365/Power Automate、Glean；公开资料，不登录、不上传、不购买、不实测。"
+}

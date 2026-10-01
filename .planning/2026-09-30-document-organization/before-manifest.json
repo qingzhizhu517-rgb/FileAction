@@ -1,0 +1,547 @@
+[
+  {
+    "path": ".DS_Store",
+    "size": 8196,
+    "sha256": "adffb03d26852f522a48e0d0de3a018320572285031c2301a7149526a918c352"
+  },
+  {
+    "path": ".obsidian/app.json",
+    "size": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "path": ".obsidian/appearance.json",
+    "size": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  {
+    "path": ".obsidian/core-plugins.json",
+    "size": 696,
+    "sha256": "763cf20a921fd9955735b278006820b90b207b2fc04d9e79ca648279c7c14276"
+  },
+  {
+    "path": ".obsidian/workspace.json",
+    "size": 5899,
+    "sha256": "e5e2ea864047380b54d8e247a15fe1300d495ea9a132cdd2efd5a5504fdde5a0"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/AGENTS.md",
+    "size": 2804,
+    "sha256": "ec7abb4e4c25ffb8870d3a5519d609510ceca202a2f98689711a40bf48f194ef"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/可行动事务Agent-00-总览.md",
+    "size": 4463,
+    "sha256": "5d044776dfcadeeecc1a39a1749af9276b1711c483a7658d0ea5bd93190145a8"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/可行动事务Agent-Demo状态表.md",
+    "size": 14584,
+    "sha256": "2b08bcefcd06ac5199f13677db9677c42f4856c0c99fc2270e211f007fbd3082"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/可行动事务Agent-UI原型规格表.md",
+    "size": 20779,
+    "sha256": "7047479942fd144856a8a20af3ca21e1e02809c7491902d70695314e07b37812"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/可行动事务Agent-产品定义.md",
+    "size": 19692,
+    "sha256": "fe24b9b8f40e341bdd0ea6d9d409a8e90fcb63a6a793261a75ce59408f3e8887"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/可行动事务Agent-内部筛选速览.md",
+    "size": 11504,
+    "sha256": "ca2782b6a20662fecfb98ca9bdc0f1a0b0d95736b1a31d6b8f087ba3dd0e109c"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/可行动事务Agent-可行性分析.md",
+    "size": 6671,
+    "sha256": "a11bf3d76b38a4fef05d68068f5151708fb14af248d14b7c33372c8a7ef692e2"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/可行动事务Agent-学分认定Demo规格.md",
+    "size": 12613,
+    "sha256": "395b64b9f2a146f30f87e7b73ad8f9884c1877ac93e82e9340581af5135596aa"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/可行动事务Agent-定位决策.md",
+    "size": 12152,
+    "sha256": "c5948828d829e37247a7604b7e7eee804f49102b471b960784f81c07746420f0"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/before/可行动事务Agent-路演答辩应答卡.md",
+    "size": 9198,
+    "sha256": "f14393e36ad7d90b25743b4524c2aef9e3b2f76aab0c672d50ab6710fc512c90"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/document-check.json",
+    "size": 1940,
+    "sha256": "b3928a432b39fda1fcc38f84d79a55bf8ad4dff9bcb178b75ebc1a3783052511"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/findings.md",
+    "size": 995,
+    "sha256": "632cc18f8a8bd31c83ba103d28aa24c3180e90f898b1a067a5ce971fbb47b58d"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/progress.md",
+    "size": 747,
+    "sha256": "7e2fe410fe318c700321f455d8c7ffb313e6450e43aa97f77424d25d2836bb5c"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/sources.json",
+    "size": 91082,
+    "sha256": "4b3aa637808797414f5c2b7e98669eb671c90c267d1b2216d209a44198996398"
+  },
+  {
+    "path": ".planning/2026-09-26-feasibility-review/task_plan.md",
+    "size": 960,
+    "sha256": "76fb5ab065cbe64c307ff4d810e803048f34e19be4404b5d7da9b04833f7b9fb"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/AGENTS.md",
+    "size": 3724,
+    "sha256": "1ade30343bb649add08b88a4e66ae901f31c932d9719d910cbeb9ea30a136a5b"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-00-总览.md",
+    "size": 5044,
+    "sha256": "bcd4ffc0075fdf00b86418028e172994b5ae5c308d2df3841044951ef67262aa"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-Demo状态表.md",
+    "size": 14191,
+    "sha256": "449a248d96adca9cdbecbd98a148835a5cc3a69514501eae41111f8c87b791a1"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-UI原型规格表.md",
+    "size": 29682,
+    "sha256": "4ec191f76065a6e8679c54c4bea1181727a2c136b0bd12af0c2433e804533752"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-产品定义.md",
+    "size": 14102,
+    "sha256": "c37b50ce8438524f3da5e088c9ed180acb697e322b3a749e35a881c51b2e3eb1"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-内部筛选速览.md",
+    "size": 8195,
+    "sha256": "e78a7c41b9612dead5663e3b136932953bb639e9e5d7a2ad7c6703cba2013f55"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-可行性分析.md",
+    "size": 11415,
+    "sha256": "8dc6cef893d9f8644f2d7ded31a9a2022012451bcc335c0da17e29c5ca41c1bb"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-学分认定Demo规格.md",
+    "size": 10314,
+    "sha256": "3b98705c446128f588e85062591423000a1db474085c098963755237c833febe"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-定位决策.md",
+    "size": 10169,
+    "sha256": "2437845e8ffe917450eaeb030523c62c76c13d50ee29a6f03d445cb30ca33379"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-核查修订报告.md",
+    "size": 12003,
+    "sha256": "b2542d1bc18a8161aadb3f06266024f980fb6bb35e880b956373359c5203ec22"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-西客松参赛对齐.md",
+    "size": 10393,
+    "sha256": "aa3f842fe793e30323ca8fae57a46d923d5ef0b96cc284599dd40700e7d182eb"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/before/可行动事务Agent-路演答辩应答卡.md",
+    "size": 11526,
+    "sha256": "1f73b08f203f5eab36dac30cfbeb60b973763992e11287112ba6d98ff9a3f3d6"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/campus-research.md",
+    "size": 16042,
+    "sha256": "846738e58072a38be243256af33c5683dc0284b4bf09a479ef6860c735d1c3e3"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/campus-sources.json",
+    "size": 44970,
+    "sha256": "aaf497ebe544629069bd3c8b15039de2832674f49a19957a57dc6a16e8310c5c"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/consumer-research.md",
+    "size": 16746,
+    "sha256": "68984dd7b19772b3285900437c88f799ce853b2967e53ffbeb3fdfe47f2b9e74"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/consumer-sources.json",
+    "size": 228356,
+    "sha256": "028624b0bdc580071d47922ef104ce4a24baf0c1197037cd51ee45e86b3c71b7"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/document-check.json",
+    "size": 5180,
+    "sha256": "9d8b0281203556037b9103a39a06269064b544f24dd4f217124621c3eef339e1"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/findings.md",
+    "size": 1193,
+    "sha256": "597d4ba94e985d4c391adc2bd96eb173210295e93bda515e0f48b8ef63a4c1e3"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/progress.md",
+    "size": 1213,
+    "sha256": "b7530e60b191a85be4e7346d569646d6653483a92499777a854f174e1d45d072"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/reddit-scholarship.json",
+    "size": 11381,
+    "sha256": "ced2384674157fb4cba81b826139e88afb99cd24e7c6eed9566c39bfce86fc15"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/remio-capture.json",
+    "size": 4258,
+    "sha256": "542428e3142bf459d30b68314e7fe07ba44551d6a052a7affcf7ae827b8378fb"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/remio-home.json",
+    "size": 9104,
+    "sha256": "14346d81d39adbd5c0445d497996ff15d9390757cdbc8bd07f11b552868c4713"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/root-research.md",
+    "size": 1485,
+    "sha256": "7c21bdf7a35fdb9c0a8937099d10751292f699c4d3e6e18a89615ddc3a18dab3"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/root-sources.json",
+    "size": 3200,
+    "sha256": "0cc046173895038b3f6e5c2beccb3863258199eb61c46c628f173eb874be7249"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/saner-home.json",
+    "size": 14544,
+    "sha256": "0e5ad35af9b12e87130f95469e69156829277c54854dbfeeda3675d47642a78d"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/saner-pricing.json",
+    "size": 8998,
+    "sha256": "97e84a7a8d62aa45dd23a0e82ea45fe4d41edc51a4ed9e5b0c760cf031e32f46"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/student-feedback-search.json",
+    "size": 7600,
+    "sha256": "7beb5dc19961227cc3941b8fcaa32bafa37946c5e1c0b88d3e5450343f9cbc6c"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/task_plan.md",
+    "size": 883,
+    "sha256": "dd1ab0ece491b88ba6b1d0f1ea113b78d492057a84865245a2f840962c4ba013"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/team-enterprise-research.md",
+    "size": 11612,
+    "sha256": "dd38d83e6e561cb20b3b810417a462fbd767bc93b3b11f8b757dcc59912726a6"
+  },
+  {
+    "path": ".planning/2026-09-26-market-research/team-enterprise-sources.json",
+    "size": 16701,
+    "sha256": "fa7ff35e3db38963b90878f7ab649d1a5c8624bf97a014cd491366144470f25c"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/AGENTS.md",
+    "size": 3241,
+    "sha256": "f619ab8e835af9069059617561d68fb2b2289204a87680a49ebe92815883d4e4"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-00-总览.md",
+    "size": 4313,
+    "sha256": "ee8274ce11f8a323c5dc7403ccbeb5fc859e3cdff6f5a179e085efbcfb065e89"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-Demo状态表.md",
+    "size": 11178,
+    "sha256": "8f6325543d8cdfa6947066b6bd10231a73789e0d3f8b181c0073a01b2ab41b6c"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-UI原型规格表.md",
+    "size": 24459,
+    "sha256": "a8d0530c158a1be2cbaf7d34bea59102803afb5bdc676a5fe2d9673aa637566f"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-产品定义.md",
+    "size": 11182,
+    "sha256": "7bf5fa698111011ae4ab36bb86fe44063fbdd6389cae9ce73e4d63388da5c2fc"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-内部筛选速览.md",
+    "size": 6859,
+    "sha256": "78207a41198afbb87854305c60274fea529affd1296bf673024ca75b0a235bbd"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-可行性分析.md",
+    "size": 10042,
+    "sha256": "671cc1e339ee3924c7f9afdf47dab7b0a6479baed17e57952283a970b382a145"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-学分认定Demo规格.md",
+    "size": 8790,
+    "sha256": "d8eeb75e9ab816d22afb096b6ba0ea541bbe0996b61268ee0a2c63ce75797a22"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-定位决策.md",
+    "size": 9224,
+    "sha256": "eb8d5c1d2dbf0a56bdd9ec444c69d125366971261d037eced353a080052fd9fb"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-核查修订报告.md",
+    "size": 10869,
+    "sha256": "3abaf0287e7ac80e382ed67e5095febc42450ffd786d1b18b0ffa77f8cd6105a"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/before/可行动事务Agent-路演答辩应答卡.md",
+    "size": 9898,
+    "sha256": "115f2726bf48bda341c6cd78c284087a2c0d5235ade111b2d5c9ebcf89eb6984"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/document-check.json",
+    "size": 4662,
+    "sha256": "960f0dcd3af81c15250d7b3de5f6beb48638600b88f25d30fb85fb4f851999ef"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/findings.md",
+    "size": 1617,
+    "sha256": "82e456846830c2bca45de55da5d9139a482f6f0c12d734d7c211ce759fbbdf7f"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/progress.md",
+    "size": 938,
+    "sha256": "e6ed42cd223e7f7152be616c63e22bd6a4d33bf5d628ec7f68ad0eb32d79e9f2"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/source-anchors.json",
+    "size": 903,
+    "sha256": "00ffb47828815c382a37eb2a6522a0d2328c11f02f8a4e3aff183b9ac499a7c5"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/source-part1.json",
+    "size": 22001,
+    "sha256": "8bb34857710e50be49756e70dd280673c9a4ceef77f7f06967dd246cbc679a63"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/source-part2.json",
+    "size": 27567,
+    "sha256": "8e7449fdb56853f981837fbe403b97396e931304684f8e202e3dca97e2d36896"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/source-part3.json",
+    "size": 29669,
+    "sha256": "f4436a0dcc88249b90280e1785ee2e7f456c70f06d08dd7ba739a1db912ac33d"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/source-reading.txt",
+    "size": 36473,
+    "sha256": "12fdb3a58a7489e1b2cb3de58c5e1631346d55077aa6d28f835a889f7fbcdb11"
+  },
+  {
+    "path": ".planning/2026-09-26-xihack-fit/task_plan.md",
+    "size": 720,
+    "sha256": "9cee42b6f9bc1310efba5b6989ffdb48ba1a665644c7f3cac78c570bf595424d"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/AGENTS.md",
+    "size": 3840,
+    "sha256": "8907ec6320683d8bca0f5ca521f2cdab01c30fa977a83f98dfb24707f6043475"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-00-总览.md",
+    "size": 5103,
+    "sha256": "6fe0e49b604d6d07c4de61376d35ccf338acddb5a9f4f5f2ca07d49dd39d8b90"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-Demo状态表.md",
+    "size": 14517,
+    "sha256": "998ffc33859482ca1959cae9737489c26920878130708d37cd2f127deea413c1"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-Idea完善方案.md",
+    "size": 13219,
+    "sha256": "3e8dabc35ae5d8bcf4059911e35fc25301179a7289089485984d86c2052797f9"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-UI原型规格表.md",
+    "size": 30148,
+    "sha256": "0682f23eff79e507726eb83bfd1b8e9d0355f2b3d4954c7dadd13d5c09ff8739"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-产品定义.md",
+    "size": 11826,
+    "sha256": "7a7223db6e05dd01c173ff0cf654fd8be98f41a3e5f8e288f8cbb85cee6e0195"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-内部筛选速览.md",
+    "size": 9115,
+    "sha256": "d60ae3ad2f65291896af98abaf8828208a1202082a86883e18c97e94cc55e044"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-可行性分析.md",
+    "size": 6905,
+    "sha256": "bdc8d58791b8eecf036fcb9e2da111ce906819b1f351ae3c6e7b424d978c4c9f"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-学分认定Demo规格.md",
+    "size": 10679,
+    "sha256": "fa5cf6533f3b8b37528c93a38e321ee10c28ed0e30b04d0e9bdff67d89bd57a4"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-定位决策.md",
+    "size": 10273,
+    "sha256": "c34d54c1a659f458bad0b0c5d2f3161bf522dc81f3cedb00ad41872e78d4e942"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-市场调研与验证.md",
+    "size": 18483,
+    "sha256": "f722615e07177708ba3f8cb3a09d4bb7a82286522287812c145b73a06a77fa3d"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-核查修订报告.md",
+    "size": 12375,
+    "sha256": "ffdab888f619c25294dc3fea775ff7776fc60a4a987cb14e2cc0af81a2e83c99"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-西客松参赛对齐.md",
+    "size": 10837,
+    "sha256": "510bfd17b154bab86254c23428ad50fcf677cd31def9b184f1abe00a41dbf023"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/before/可行动事务Agent-路演答辩应答卡.md",
+    "size": 12682,
+    "sha256": "fadbadaea21b83184163d9cba69b86a4c4ed4f240aa6547170956de38bff20b7"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/document-check.json",
+    "size": 13242,
+    "sha256": "eceb525b143da8014cc5c2bb896333a9a954f8d7cf5a9ba8a14304987fa6fac0"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/evidence-scenarios.md",
+    "size": 24558,
+    "sha256": "84635f84be0b89086c4b9741276ad78327ddc589fd874af9d2fc1a29e5547a73"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/findings.md",
+    "size": 1652,
+    "sha256": "710529a0c689ac951a914197b19f612d7853e3044128f2658874fc06bca66bfc"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/product-solutions.md",
+    "size": 17182,
+    "sha256": "8d6e9963278343038ccad1c34c160fe54d60dc6706870ab3ecd4ee0cc62a4cbd"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/progress.md",
+    "size": 1048,
+    "sha256": "026c0f2101010bef65718836a17377104ef70c73398f9cc14762d8d298401062"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/review-verdict.md",
+    "size": 1922,
+    "sha256": "a5df6c64b8de3b84b7c186c04b0c13491ecdbcab8343252c56eb7984145dce12"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/task_plan.md",
+    "size": 1351,
+    "sha256": "6db7e36ac13d5c901e9a0af0feeb3ad3770024e3df1c8ab4e333a003b5e98dcb"
+  },
+  {
+    "path": ".planning/2026-09-27-readjudication/technical-solutions.md",
+    "size": 24111,
+    "sha256": "ac97eff113e5a11ec1c03b2b7aef2b7b6de7d069401bd2839d9c6e8d5c0328c8"
+  },
+  {
+    "path": "AGENTS.md",
+    "size": 3013,
+    "sha256": "d412e8dc418ea2dfa1df567acdc70d5c115d0025c75d3572a65e06ee5f70b97a"
+  },
+  {
+    "path": "_归档草稿/未命名 1.md",
+    "size": 2100,
+    "sha256": "f633becc9f47e23845677b29beb2428025875db99cbe1fa6e5219614098e4fa1"
+  },
+  {
+    "path": "_归档草稿/未命名.md",
+    "size": 6481,
+    "sha256": "7cb1544bdf9b86ad6d849d9029164b4b17b0531900e638001e27eb87af93bcc4"
+  },
+  {
+    "path": "可行动事务Agent-00-总览.md",
+    "size": 5239,
+    "sha256": "a58e207f1d55c37be2e2cc91b7b0aa4ed22c621ef37262cb5046c89734054f28"
+  },
+  {
+    "path": "可行动事务Agent-Demo状态表.md",
+    "size": 14517,
+    "sha256": "998ffc33859482ca1959cae9737489c26920878130708d37cd2f127deea413c1"
+  },
+  {
+    "path": "可行动事务Agent-Idea完善方案.md",
+    "size": 9432,
+    "sha256": "d14dcd4a541a2c0db835107451a7d7dd982d45e1fbedbd7716179264f1455198"
+  },
+  {
+    "path": "可行动事务Agent-UI原型规格表.md",
+    "size": 30148,
+    "sha256": "0682f23eff79e507726eb83bfd1b8e9d0355f2b3d4954c7dadd13d5c09ff8739"
+  },
+  {
+    "path": "可行动事务Agent-产品定义.md",
+    "size": 14042,
+    "sha256": "c0345ebbde357f0fa38029169ce9128a0e49464192835a7e256fe21884f7506b"
+  },
+  {
+    "path": "可行动事务Agent-内部筛选速览.md",
+    "size": 9284,
+    "sha256": "3f7b059616e9d13460915f4a0c1a235e5d62388a8613e524ab180de2e13122c2"
+  },
+  {
+    "path": "可行动事务Agent-可行性分析.md",
+    "size": 8679,
+    "sha256": "c205d0c15e329a4d8ab23b64b84d1c706a84abb47dc6343ff9ee4b3109fff789"
+  },
+  {
+    "path": "可行动事务Agent-学分认定Demo规格.md",
+    "size": 10679,
+    "sha256": "fa5cf6533f3b8b37528c93a38e321ee10c28ed0e30b04d0e9bdff67d89bd57a4"
+  },
+  {
+    "path": "可行动事务Agent-定位决策.md",
+    "size": 11678,
+    "sha256": "f395ea7f3dc392d86ee8f83d5769907190d35ae722d11bacc9ef2d479c6f6aab"
+  },
+  {
+    "path": "可行动事务Agent-市场调研与验证.md",
+    "size": 19636,
+    "sha256": "cf120ce11f2bd6d56c656b06a109e85dc4218c03e70034605a8f2c6f22df784c"
+  },
+  {
+    "path": "可行动事务Agent-核查修订报告.md",
+    "size": 12881,
+    "sha256": "ca705b6136e4744ee97557ac13f8f40be8dbe2c9b56a2098ad2561cf8051e8a9"
+  },
+  {
+    "path": "可行动事务Agent-西客松参赛对齐.md",
+    "size": 11385,
+    "sha256": "59aee02c3f8e02ef474bf4ff3c1d1ff3ac50c1c6e01c856afac21f59d153226d"
+  },
+  {
+    "path": "可行动事务Agent-路演答辩应答卡.md",
+    "size": 15266,
+    "sha256": "dbf2f9a26d0246f804e807d409d14079cb7e1cfcf279f17fc34a84a4fc0e9353"
+  },
+  {
+    "path": "可行动事务Agent-问题处理与方案审定.md",
+    "size": 18804,
+    "sha256": "2071aa67a9d69e0a642bcc1f34c18df162e233802f0ffc3bb9c16b3c2ea30636"
+  }
+]

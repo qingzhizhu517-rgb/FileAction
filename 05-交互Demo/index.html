@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light">
+  <title>DoAgent · 选一种开始</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="studio.css">
+</head>
+<body>
+<main class="home">
+  <nav class="home-nav" aria-label="入口导航">
+    <a href="index.html" class="brand"><span class="brand-symbol"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5h9a2 2 0 0 1 2 2v10M5 8h9a2 2 0 0 1 2 2v9H7a2 2 0 0 1-2-2V8Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12h3M9 15h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span><span class="brand-name">DoAgent</span><span class="brand-en">事务记忆</span></span></a>
+    <div class="home-nav-links"><a href="可行动事务Agent-交互Demo使用说明.md">演示说明</a><span class="prototype-label">合成资料 · 规则模拟</span></div>
+  </nav>
+  <section class="home-hero">
+    <div><div class="eyebrow">A BETTER PLACE TO START</div><h1>一份通知，<br>开始这次准备。</h1></div>
+    <p>把要求和资料放在一起，找到能复用的内容，<br>看清还缺什么。选择一种起点，体验完整过程。</p>
+  </section>
+  <section class="demo-grid" aria-label="两份独立交互演示">
+    <article class="demo-card featured">
+      <div class="demo-card-top"><span class="demo-number">DEMO 01</span><span class="demo-type">带着记忆继续</span></div>
+      <div class="demo-art" aria-hidden="true"><div class="mini-file"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h4M10 12h5M10 16h5" stroke="currentColor" stroke-width="1.6"/></svg><span></span></div><div class="mini-file"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h4M10 12h5M10 16h5" stroke="currentColor" stroke-width="1.6"/></svg><span></span></div><div class="mini-file"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h4M10 12h5M10 16h5" stroke="currentColor" stroke-width="1.6"/></svg><span></span></div><div class="art-arrow"></div><div class="mini-result"><div><i></i><span></span></div><div><i></i><span></span></div><div><i></i><span></span></div></div><span class="art-caption">已有资料<br>重新核对</span></div>
+      <div class="demo-body">
+        <h2>这次，从上次继续。</h2>
+        <p>载入已有资料，加入第二期通知。看旧资料如何被复用、更新，或因本次规则被排除。</p>
+        <div class="demo-flow"><div class="demo-flow-step"><i>1</i>载入记忆</div><b>→</b><div class="demo-flow-step"><i>2</i>加入新通知</div><b>→</b><div class="demo-flow-step"><i>3</i>核对变化</div></div>
+        <div class="demo-start"><a class="button primary" id="open-demo-a" href="demo-with-memory.html">进入有记忆演示 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a><span>4份合成记忆 · 可重置</span></div>
+      </div>
+    </article>
+    <article class="demo-card">
+      <div class="demo-card-top"><span class="demo-number">DEMO 02</span><span class="demo-type">轻松从零开始</span></div>
+      <div class="demo-art" aria-hidden="true"><div class="art-zero">0</div><div class="art-arrow"></div><div class="mini-file"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h4M10 12h5M10 16h5" stroke="currentColor" stroke-width="1.6"/></svg><span></span></div><div class="art-arrow"></div><div class="mini-result"><div><i></i><span></span></div><div><i></i><span></span></div><div><i></i><span></span></div></div><span class="art-caption">一份通知<br>也能开始</span></div>
+      <div class="demo-body">
+        <h2>没有记忆，也有下一步。</h2>
+        <p>无需提前建档，先读懂通知。资料按需补充，先导出准备清单，再决定是否为下次保存。</p>
+        <div class="demo-flow"><div class="demo-flow-step"><i>1</i>加入通知</div><b>→</b><div class="demo-flow-step"><i>2</i>按需补资料</div><b>→</b><div class="demo-flow-step"><i>3</i>得到清单</div></div>
+        <div class="demo-start"><a class="button" id="open-demo-b" href="demo-no-memory.html">进入零记忆演示 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a><span>无预置资料 · 保存自愿</span></div>
+      </div>
+    </article>
+  </section>
+  <div class="home-footnote"><p>本机交互原型 · 支持演示格式 TXT · 未连接 AI · 未提交</p><div><a href="../90-历史归档/旧方案-2026-09-30/03-参赛与路演/可行动事务Agent-Demo一-已有记忆上传演示.md">有记忆脚本</a> &nbsp; / &nbsp; <a href="../90-历史归档/旧方案-2026-09-30/03-参赛与路演/可行动事务Agent-Demo二-零记忆首次使用演示.md">零记忆脚本</a></div></div>
+</main>
+</body></html>

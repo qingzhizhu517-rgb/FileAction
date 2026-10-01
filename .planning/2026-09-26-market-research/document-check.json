@@ -1,0 +1,255 @@
+{
+  "checked_on": "2026-09-26",
+  "counts": {
+    "root_markdown": 14,
+    "project_documents": 13,
+    "wiki_links": 128,
+    "tables": 63,
+    "json_examples": 4,
+    "updated_metadata": 13
+  },
+  "files": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "8907ec6320683d8bca0f5ca521f2cdab01c30fa977a83f98dfb24707f6043475",
+      "h1": 1,
+      "tables": 0,
+      "wiki_links": 0,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-00-总览.md",
+      "sha256": "6fe0e49b604d6d07c4de61376d35ccf338acddb5a9f4f5f2ca07d49dd39d8b90",
+      "h1": 1,
+      "tables": 2,
+      "wiki_links": 23,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-Demo状态表.md",
+      "sha256": "998ffc33859482ca1959cae9737489c26920878130708d37cd2f127deea413c1",
+      "h1": 1,
+      "tables": 16,
+      "wiki_links": 6,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-Idea完善方案.md",
+      "sha256": "3e8dabc35ae5d8bcf4059911e35fc25301179a7289089485984d86c2052797f9",
+      "h1": 1,
+      "tables": 4,
+      "wiki_links": 5,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-UI原型规格表.md",
+      "sha256": "0682f23eff79e507726eb83bfd1b8e9d0355f2b3d4954c7dadd13d5c09ff8739",
+      "h1": 1,
+      "tables": 12,
+      "wiki_links": 9,
+      "json_examples": 4
+    },
+    {
+      "file": "可行动事务Agent-产品定义.md",
+      "sha256": "7a7223db6e05dd01c173ff0cf654fd8be98f41a3e5f8e288f8cbb85cee6e0195",
+      "h1": 1,
+      "tables": 3,
+      "wiki_links": 13,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-内部筛选速览.md",
+      "sha256": "d60ae3ad2f65291896af98abaf8828208a1202082a86883e18c97e94cc55e044",
+      "h1": 1,
+      "tables": 3,
+      "wiki_links": 10,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-可行性分析.md",
+      "sha256": "bdc8d58791b8eecf036fcb9e2da111ce906819b1f351ae3c6e7b424d978c4c9f",
+      "h1": 1,
+      "tables": 2,
+      "wiki_links": 6,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-学分认定Demo规格.md",
+      "sha256": "fa5cf6533f3b8b37528c93a38e321ee10c28ed0e30b04d0e9bdff67d89bd57a4",
+      "h1": 1,
+      "tables": 5,
+      "wiki_links": 9,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-定位决策.md",
+      "sha256": "c34d54c1a659f458bad0b0c5d2f3161bf522dc81f3cedb00ad41872e78d4e942",
+      "h1": 1,
+      "tables": 3,
+      "wiki_links": 13,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-市场调研与验证.md",
+      "sha256": "f722615e07177708ba3f8cb3a09d4bb7a82286522287812c145b73a06a77fa3d",
+      "h1": 1,
+      "tables": 7,
+      "wiki_links": 5,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-核查修订报告.md",
+      "sha256": "ffdab888f619c25294dc3fea775ff7776fc60a4a987cb14e2cc0af81a2e83c99",
+      "h1": 1,
+      "tables": 3,
+      "wiki_links": 10,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-西客松参赛对齐.md",
+      "sha256": "510bfd17b154bab86254c23428ad50fcf677cd31def9b184f1abe00a41dbf023",
+      "h1": 1,
+      "tables": 3,
+      "wiki_links": 9,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-路演答辩应答卡.md",
+      "sha256": "fadbadaea21b83184163d9cba69b86a4c4ed4f240aa6547170956de38bff20b7",
+      "h1": 1,
+      "tables": 0,
+      "wiki_links": 10,
+      "json_examples": 0
+    }
+  ],
+  "market_citations": 32,
+  "unique_market_citations": 31,
+  "unique_recorded_urls": 42,
+  "unrecorded_urls": [],
+  "sample": {
+    "total": 128,
+    "category_sum": 128,
+    "deficits": {
+      "sc_innovation": 8,
+      "sc_arts_sports": 10
+    },
+    "hypothetical": [
+      138,
+      22,
+      0
+    ]
+  },
+  "recommended_timeline": [
+    [
+      0,
+      40
+    ],
+    [
+      40,
+      110
+    ],
+    [
+      110,
+      170
+    ],
+    [
+      170,
+      220
+    ],
+    [
+      220,
+      270
+    ],
+    [
+      270,
+      300
+    ]
+  ],
+  "alternative_states": [
+    [
+      0,
+      0,
+      8
+    ],
+    [
+      1,
+      8,
+      20
+    ],
+    [
+      2,
+      20,
+      42
+    ],
+    [
+      3,
+      42,
+      62
+    ],
+    [
+      4,
+      62,
+      82
+    ],
+    [
+      5,
+      82,
+      105
+    ],
+    [
+      6,
+      105,
+      125
+    ],
+    [
+      7,
+      125,
+      145
+    ],
+    [
+      8,
+      145,
+      162
+    ],
+    [
+      9,
+      162,
+      174
+    ],
+    [
+      10,
+      174,
+      180
+    ]
+  ],
+  "alternative_outer_timeline": [
+    [
+      0,
+      40
+    ],
+    [
+      40,
+      220
+    ],
+    [
+      220,
+      270
+    ],
+    [
+      270,
+      300
+    ]
+  ],
+  "official_development_hours": 67.0,
+  "independent_reviews": [
+    "Consumer/price/source attribution: passed",
+    "Campus claims: two overstatements narrowed",
+    "Feasibility: persistence, input scope, state distinction and reminder boundary added"
+  ],
+  "limitations": [
+    "Static document and source-record checks only",
+    "No product execution, user interviews, task comparison, retention or payment tests"
+  ],
+  "errors": [],
+  "passed": true
+}

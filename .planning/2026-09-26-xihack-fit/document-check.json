@@ -1,0 +1,210 @@
+{
+  "checked_on": "2026-09-26",
+  "scope": "Root Markdown documents; historical drafts and prior snapshots unchanged",
+  "counts": {
+    "markdown_files": 12,
+    "project_documents": 11,
+    "wiki_links": 117,
+    "tables": 56,
+    "json_examples": 4,
+    "updated_metadata": 11
+  },
+  "files": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "1ade30343bb649add08b88a4e66ae901f31c932d9719d910cbeb9ea30a136a5b",
+      "h1": 1,
+      "tables": 0,
+      "wiki_links": 0,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-00-总览.md",
+      "sha256": "bcd4ffc0075fdf00b86418028e172994b5ae5c308d2df3841044951ef67262aa",
+      "h1": 1,
+      "tables": 2,
+      "wiki_links": 21,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-Demo状态表.md",
+      "sha256": "449a248d96adca9cdbecbd98a148835a5cc3a69514501eae41111f8c87b791a1",
+      "h1": 1,
+      "tables": 16,
+      "wiki_links": 6,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-UI原型规格表.md",
+      "sha256": "4ec191f76065a6e8679c54c4bea1181727a2c136b0bd12af0c2433e804533752",
+      "h1": 1,
+      "tables": 12,
+      "wiki_links": 9,
+      "json_examples": 4
+    },
+    {
+      "file": "可行动事务Agent-产品定义.md",
+      "sha256": "c37b50ce8438524f3da5e088c9ed180acb697e322b3a749e35a881c51b2e3eb1",
+      "h1": 1,
+      "tables": 5,
+      "wiki_links": 12,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-内部筛选速览.md",
+      "sha256": "e78a7c41b9612dead5663e3b136932953bb639e9e5d7a2ad7c6703cba2013f55",
+      "h1": 1,
+      "tables": 2,
+      "wiki_links": 8,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-可行性分析.md",
+      "sha256": "8dc6cef893d9f8644f2d7ded31a9a2022012451bcc335c0da17e29c5ca41c1bb",
+      "h1": 1,
+      "tables": 5,
+      "wiki_links": 16,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-学分认定Demo规格.md",
+      "sha256": "3b98705c446128f588e85062591423000a1db474085c098963755237c833febe",
+      "h1": 1,
+      "tables": 5,
+      "wiki_links": 9,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-定位决策.md",
+      "sha256": "2437845e8ffe917450eaeb030523c62c76c13d50ee29a6f03d445cb30ca33379",
+      "h1": 1,
+      "tables": 3,
+      "wiki_links": 10,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-核查修订报告.md",
+      "sha256": "b2542d1bc18a8161aadb3f06266024f980fb6bb35e880b956373359c5203ec22",
+      "h1": 1,
+      "tables": 3,
+      "wiki_links": 8,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-西客松参赛对齐.md",
+      "sha256": "aa3f842fe793e30323ca8fae57a46d923d5ef0b96cc284599dd40700e7d182eb",
+      "h1": 1,
+      "tables": 3,
+      "wiki_links": 7,
+      "json_examples": 0
+    },
+    {
+      "file": "可行动事务Agent-路演答辩应答卡.md",
+      "sha256": "1f73b08f203f5eab36dac30cfbeb60b973763992e11287112ba6d98ff9a3f3d6",
+      "h1": 1,
+      "tables": 0,
+      "wiki_links": 11,
+      "json_examples": 0
+    }
+  ],
+  "sample_calculation": {
+    "category_sum": 128,
+    "recorded_total": 128,
+    "category_deficits": {
+      "sc_innovation": 8,
+      "sc_arts_sports": 10
+    },
+    "known_deficit_sum": 18,
+    "hypothetical_values": [
+      138,
+      22,
+      0
+    ],
+    "remaining_arts_sports_deficit": 10
+  },
+  "core_states": [
+    [
+      0,
+      0,
+      8
+    ],
+    [
+      1,
+      8,
+      20
+    ],
+    [
+      2,
+      20,
+      42
+    ],
+    [
+      3,
+      42,
+      62
+    ],
+    [
+      4,
+      62,
+      82
+    ],
+    [
+      5,
+      82,
+      105
+    ],
+    [
+      6,
+      105,
+      125
+    ],
+    [
+      7,
+      125,
+      145
+    ],
+    [
+      8,
+      145,
+      162
+    ],
+    [
+      9,
+      162,
+      174
+    ],
+    [
+      10,
+      174,
+      180
+    ]
+  ],
+  "presentation_timeline": [
+    [
+      0,
+      40
+    ],
+    [
+      40,
+      220
+    ],
+    [
+      220,
+      270
+    ],
+    [
+      270,
+      300
+    ]
+  ],
+  "official_development_hours": 67.0,
+  "manual_fact_review": "Independent comparison with all official source chunks completed; no material discrepancy found",
+  "limitations": [
+    "Document structure and sample arithmetic checks only",
+    "No application exists; no application or user tests performed",
+    "External published rules may change; unresolved scoring and ownership terms remain explicitly documented"
+  ],
+  "errors": [],
+  "passed": true,
+  "method_note": "Wiki target checks exclude fenced and inline code, including the literal syntax placeholder in AGENTS.md."
+}

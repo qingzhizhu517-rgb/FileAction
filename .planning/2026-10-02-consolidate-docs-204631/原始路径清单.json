@@ -1,0 +1,302 @@
+[
+  {
+    "source": "01-产品方案/可行动事务Agent-Logo设计说明.md",
+    "backup": "before/01-产品方案/可行动事务Agent-Logo设计说明.md",
+    "sha256": "d8e4c416216e05553d596c62455027a84d3181dd8caac7a75381756fc930f53e",
+    "bytes": 5061
+  },
+  {
+    "source": "01-产品方案/品牌素材/可行动事务Agent-文启Logo-透明.svg",
+    "backup": "before/01-产品方案/品牌素材/可行动事务Agent-文启Logo-透明.svg",
+    "sha256": "6e0b24dc5176b33a91da07b02a5e092432ae9b830e5e6560a1e3d5570b6f08f1",
+    "bytes": 6250
+  },
+  {
+    "source": "01-产品方案/品牌素材/可行动事务Agent-文启Logo-预览.png",
+    "backup": "before/01-产品方案/品牌素材/可行动事务Agent-文启Logo-预览.png",
+    "sha256": "7f2dd73dc2429d78b9a3953e8ab6c885dfde001a1a4b85841721951979493e4c",
+    "bytes": 17256
+  },
+  {
+    "source": "01-产品方案/品牌素材/可行动事务Agent-文启Logo.svg",
+    "backup": "before/01-产品方案/品牌素材/可行动事务Agent-文启Logo.svg",
+    "sha256": "bc112a9e6dbbb0a6bd6538c4e7e3b9ad69d0a08094f247ec745ad4a74ab85e88",
+    "bytes": 6316
+  },
+  {
+    "source": "01-产品方案/品牌素材/可行动事务Agent-文启图标.svg",
+    "backup": "before/01-产品方案/品牌素材/可行动事务Agent-文启图标.svg",
+    "sha256": "d3f5e5ea2702b4dd2e38e4312b5a2c3f57bddb3e82dcce3cbb4e92c62f5ab477",
+    "bytes": 584
+  },
+  {
+    "source": "01-产品方案/品牌视觉/可行动事务Agent-Logo-单色.svg",
+    "backup": "before/01-产品方案/品牌视觉/可行动事务Agent-Logo-单色.svg",
+    "sha256": "83a5c3e85746c20fc727772dc092cf90c91b120a8d39f6ade7b26e7b440247db",
+    "bytes": 574
+  },
+  {
+    "source": "01-产品方案/品牌视觉/可行动事务Agent-Logo-横版.svg",
+    "backup": "before/01-产品方案/品牌视觉/可行动事务Agent-Logo-横版.svg",
+    "sha256": "10bad744c7c38920fc121ad629f752bf51f685855027a437d641e9e85fa8a365",
+    "bytes": 3803
+  },
+  {
+    "source": "01-产品方案/品牌视觉/可行动事务Agent-Logo.svg",
+    "backup": "before/01-产品方案/品牌视觉/可行动事务Agent-Logo.svg",
+    "sha256": "a8d6ffb43226d84f491e7b8577b9ce66b76b22d8c988a8766271429a4e8b2774",
+    "bytes": 577
+  },
+  {
+    "source": "01-产品方案/品牌视觉/可行动事务Agent-Logo预览.html",
+    "backup": "before/01-产品方案/品牌视觉/可行动事务Agent-Logo预览.html",
+    "sha256": "05375d31544c3a38268c12eb6af125641e3b88ed726b15b944c6cb8d6d8897d2",
+    "bytes": 8301
+  },
+  {
+    "source": "01-产品方案/品牌视觉/可行动事务Agent-Logo预览.png",
+    "backup": "before/01-产品方案/品牌视觉/可行动事务Agent-Logo预览.png",
+    "sha256": "405e7470fb2c5a45ae3ffc2699ac420142f5308591e6e266cc615d6d3909a74c",
+    "bytes": 28670
+  },
+  {
+    "source": "05-交互Demo/可行动事务Agent-文启UI界面.html",
+    "backup": "before/05-交互Demo/可行动事务Agent-文启UI界面.html",
+    "sha256": "75ec4331203f2304f436d6800f1cf4171d89df0621b4cc12e1de1051dd71b9ff",
+    "bytes": 35957
+  },
+  {
+    "source": "06-讲解视频/output/DoAgent-讲解视频.mp4",
+    "backup": "before/06-讲解视频/output/DoAgent-讲解视频.mp4",
+    "sha256": "df5597287444adedfc2c10298cf3883ef5b553cae4f1f76cd8813eeb5acb3b5a",
+    "bytes": 40208322
+  },
+  {
+    "source": "06-讲解视频/output/旁批-讲解视频.mp4",
+    "backup": "before/06-讲解视频/output/旁批-讲解视频.mp4",
+    "sha256": "dc9d1c38e615225264bb9c607b5de0b8e4d87922fa0be06df3ab7d98f8db1a4c",
+    "bytes": 13587190
+  },
+  {
+    "source": "07-宣传页/app.js",
+    "backup": "before/07-宣传页/app.js",
+    "sha256": "aa81644e497af22274ea2ed11e2a26f2b9208d10771922017bf1f21d0f069ab8",
+    "bytes": 18219
+  },
+  {
+    "source": "07-宣传页/file-organize.css",
+    "backup": "before/07-宣传页/file-organize.css",
+    "sha256": "aaa834bf879ffd4c983f9b12851ad3b463b86445299eb42f20611a6eb4761172",
+    "bytes": 8171
+  },
+  {
+    "source": "07-宣传页/file-organize.js",
+    "backup": "before/07-宣传页/file-organize.js",
+    "sha256": "ab0bab26fad0d8e897d3950b10ecbe59b25cc3e3da232e1791d95573730fd3ec",
+    "bytes": 7387
+  },
+  {
+    "source": "07-宣传页/file-scroll.css",
+    "backup": "before/07-宣传页/file-scroll.css",
+    "sha256": "3e6420efc654289e36c25d4031d40f41eaa9c77aa01fc363096e2a0ef8737d7c",
+    "bytes": 8422
+  },
+  {
+    "source": "07-宣传页/file-scroll.js",
+    "backup": "before/07-宣传页/file-scroll.js",
+    "sha256": "7f8500bc944df8f34fd82c5eb7088f71cc84d53c9f6c8a90642f5f196316e873",
+    "bytes": 4059
+  },
+  {
+    "source": "07-宣传页/index.html",
+    "backup": "before/07-宣传页/index.html",
+    "sha256": "bc59f2c1231def09742c4447ca00fdb8131a0974c3fb31d911a02dc885f69c0e",
+    "bytes": 26940
+  },
+  {
+    "source": "07-宣传页/interactions.css",
+    "backup": "before/07-宣传页/interactions.css",
+    "sha256": "baadce331dc1d61c293c8edae13345e07fabedf5477adb3609d1043d70beb02e",
+    "bytes": 11124
+  },
+  {
+    "source": "07-宣传页/interactions.js",
+    "backup": "before/07-宣传页/interactions.js",
+    "sha256": "6060fd4f0a84f72193adae1b1515ba345ff0ad3f1a47e69b47fad912669fa387",
+    "bytes": 21755
+  },
+  {
+    "source": "07-宣传页/motion.css",
+    "backup": "before/07-宣传页/motion.css",
+    "sha256": "a942ad6a2fffbbbc89158336cb2e8c31d0fa8ab0525ca5acb4a380cd9b1a15a9",
+    "bytes": 10424
+  },
+  {
+    "source": "07-宣传页/motion.js",
+    "backup": "before/07-宣传页/motion.js",
+    "sha256": "73cda64eda2f08db6b45496dd02c12952aa9595af81cc7da6af7e59eef4ab618",
+    "bytes": 9221
+  },
+  {
+    "source": "07-宣传页/opportunity-radar.css",
+    "backup": "before/07-宣传页/opportunity-radar.css",
+    "sha256": "6f6f76923c2b41ec956f1597213c9e7ab5d0104c0f83eeda7c5506c9343dd656",
+    "bytes": 11234
+  },
+  {
+    "source": "07-宣传页/opportunity-radar.js",
+    "backup": "before/07-宣传页/opportunity-radar.js",
+    "sha256": "05279171d37298b59209c110776f618854ce5b668e038430a79c7ada62f0487b",
+    "bytes": 12390
+  },
+  {
+    "source": "07-宣传页/pitch-examples.js",
+    "backup": "before/07-宣传页/pitch-examples.js",
+    "sha256": "6544a8914c31e2ccdb61954f9d5a4a133783fdbbea1808ac722dbca0c85502ce",
+    "bytes": 8853
+  },
+  {
+    "source": "07-宣传页/pitch-flow.css",
+    "backup": "before/07-宣传页/pitch-flow.css",
+    "sha256": "91eec908c90d678e1b8c48ed9d107b6c69551ad39f54f9cee933389f71b58789",
+    "bytes": 5308
+  },
+  {
+    "source": "07-宣传页/pitch-flow.js",
+    "backup": "before/07-宣传页/pitch-flow.js",
+    "sha256": "e81d89eb18f8dabf5d759d92c2b096bb3f17c868b2ecc1a98deb58f00b4ca364",
+    "bytes": 11585
+  },
+  {
+    "source": "07-宣传页/styles.css",
+    "backup": "before/07-宣传页/styles.css",
+    "sha256": "b986aa77afa199a7102726b303b16977d3feffa82ea596a56710356747320675",
+    "bytes": 38071
+  },
+  {
+    "source": "07-宣传页/trusted-reuse.css",
+    "backup": "before/07-宣传页/trusted-reuse.css",
+    "sha256": "5d09927924a961d1722b5507f4eb659b180a3afae2f0ff4b334ff033ff86f90e",
+    "bytes": 13221
+  },
+  {
+    "source": "07-宣传页/trusted-reuse.js",
+    "backup": "before/07-宣传页/trusted-reuse.js",
+    "sha256": "62798c6f52ed6512a27a35fd30c96f13fa81e82ce4fe430e6da14a3aae25f27c",
+    "bytes": 12611
+  },
+  {
+    "source": "07-宣传页/可行动事务Agent-宣传页说明.md",
+    "backup": "before/07-宣传页/可行动事务Agent-宣传页说明.md",
+    "sha256": "197d8602a7a7c89bead0c547716c0208139cb200e00631d53dc809ee817ba3b1",
+    "bytes": 15964
+  },
+  {
+    "source": "AGENTS.md",
+    "backup": "before/AGENTS.md",
+    "sha256": "b86bb17bab49b4681e1cabd8efc67b3fb9dd21fe8c814826fc2087bf95497981",
+    "bytes": 8183
+  },
+  {
+    "source": "CLAUDE.md",
+    "backup": "before/CLAUDE.md",
+    "sha256": "24521329aaf391c383fe4ba69c9a0781c9829167c6b65bf2a35ad30375c4a87f",
+    "bytes": 6043
+  },
+  {
+    "source": "README.md",
+    "backup": "before/README.md",
+    "sha256": "1c8048bbe3c7761439149eb1edbad7f1d62da9f1c97aa8b47cdfb22cd7e26894",
+    "bytes": 5975
+  },
+  {
+    "source": "docs/01-产品方案/可行动事务Agent-参赛主线方案.md",
+    "backup": "before/docs/01-产品方案/可行动事务Agent-参赛主线方案.md",
+    "sha256": "667be5f69f43cd9392805473bd04847657479aa8f0094d26f9ffd5a127cb81d9",
+    "bytes": 16355
+  },
+  {
+    "source": "docs/01-产品方案/品牌素材/可行动事务Agent-文启Logo-透明.svg",
+    "backup": "before/docs/01-产品方案/品牌素材/可行动事务Agent-文启Logo-透明.svg",
+    "sha256": "6e0b24dc5176b33a91da07b02a5e092432ae9b830e5e6560a1e3d5570b6f08f1",
+    "bytes": 6250
+  },
+  {
+    "source": "docs/01-产品方案/品牌素材/可行动事务Agent-文启Logo-预览.png",
+    "backup": "before/docs/01-产品方案/品牌素材/可行动事务Agent-文启Logo-预览.png",
+    "sha256": "7f2dd73dc2429d78b9a3953e8ab6c885dfde001a1a4b85841721951979493e4c",
+    "bytes": 17256
+  },
+  {
+    "source": "docs/01-产品方案/品牌素材/可行动事务Agent-文启Logo.svg",
+    "backup": "before/docs/01-产品方案/品牌素材/可行动事务Agent-文启Logo.svg",
+    "sha256": "bc112a9e6dbbb0a6bd6538c4e7e3b9ad69d0a08094f247ec745ad4a74ab85e88",
+    "bytes": 6316
+  },
+  {
+    "source": "docs/01-产品方案/品牌素材/可行动事务Agent-文启图标.svg",
+    "backup": "before/docs/01-产品方案/品牌素材/可行动事务Agent-文启图标.svg",
+    "sha256": "d3f5e5ea2702b4dd2e38e4312b5a2c3f57bddb3e82dcce3cbb4e92c62f5ab477",
+    "bytes": 584
+  },
+  {
+    "source": "docs/02-调研与可行性/可行动事务Agent-竞品分析.md",
+    "backup": "before/docs/02-调研与可行性/可行动事务Agent-竞品分析.md",
+    "sha256": "859436ee656555ea61d2faaba425e8ed55ab12eeb6976d6844ad48750f458fa3",
+    "bytes": 13204
+  },
+  {
+    "source": "docs/03-参赛与路演/可行动事务Agent-核心路演稿.md",
+    "backup": "before/docs/03-参赛与路演/可行动事务Agent-核心路演稿.md",
+    "sha256": "ebc6cda7dac288de6136f38a63040101f44dccb91d61e2451d59c59d88202e41",
+    "bytes": 6703
+  },
+  {
+    "source": "docs/03-参赛与路演/可行动事务Agent-用户验证执行卡.md",
+    "backup": "before/docs/03-参赛与路演/可行动事务Agent-用户验证执行卡.md",
+    "sha256": "6b836156ac05a385e28b35849bb336fdf221a67920255fdfbff3c6aff605a442",
+    "bytes": 6792
+  },
+  {
+    "source": "docs/03-参赛与路演/可行动事务Agent-路演口径差异与修订记录.md",
+    "backup": "before/docs/03-参赛与路演/可行动事务Agent-路演口径差异与修订记录.md",
+    "sha256": "e2eeb9c3554d9b4e12cc448eae27fc89a0640bbd0f0c389e40320f176ed3aeaa",
+    "bytes": 9813
+  },
+  {
+    "source": "docs/03-参赛与路演/可行动事务Agent-路演答辩应答卡.md",
+    "backup": "before/docs/03-参赛与路演/可行动事务Agent-路演答辩应答卡.md",
+    "sha256": "6c461db355345d499eaf7be94517838754a6207e4cd6212a43fb74682ca24a20",
+    "bytes": 8752
+  },
+  {
+    "source": "docs/05-交互Demo/可行动事务Agent-交互Demo使用说明.md",
+    "backup": "before/docs/05-交互Demo/可行动事务Agent-交互Demo使用说明.md",
+    "sha256": "01ab1810b6b510c2b5f2328c523aceeab5f9a4094154e93ed9bd24cc4089a544",
+    "bytes": 8281
+  },
+  {
+    "source": "docs/06-讲解视频/可行动事务Agent-讲解视频说明.md",
+    "backup": "before/docs/06-讲解视频/可行动事务Agent-讲解视频说明.md",
+    "sha256": "7d0750e2a0aa222c304de2bc30e612d651a240310545b542ef7cd117b4e92ac6",
+    "bytes": 3348
+  },
+  {
+    "source": "docs/06-讲解视频/宣传片/可行动事务Agent-概念宣传片说明.md",
+    "backup": "before/docs/06-讲解视频/宣传片/可行动事务Agent-概念宣传片说明.md",
+    "sha256": "e111e1650ea5dc732c20973208770b2c5bf79372c0308db5be7a8ebd915705e1",
+    "bytes": 5601
+  },
+  {
+    "source": "docs/可行动事务Agent-00-总览.md",
+    "backup": "before/docs/可行动事务Agent-00-总览.md",
+    "sha256": "8899ee4ff733748e2a4b08bd2d430fcb5ea5b7a144505ea49c6b8ff60ed31b91",
+    "bytes": 7107
+  },
+  {
+    "source": "路演.md",
+    "backup": "before/路演.md",
+    "sha256": "12b39f058975c2d4a6ad37f05a95d5d1efb0e9b92ed19c1ee22862917e2922a1",
+    "bytes": 5138
+  }
+]

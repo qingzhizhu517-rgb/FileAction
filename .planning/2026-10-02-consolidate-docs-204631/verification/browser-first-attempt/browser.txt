@@ -1,0 +1,8 @@
+通过 1440×900：宣传页、三场景依据及 Demo 跳转。
+通过 390×844：宣传页、三场景依据及 Demo 跳转。
+通过：Logo 预览和全部图片资源。
+page.waitForURL: net::ERR_ABORTED; maybe frame was detached?
+=========================== logs ===========================
+waiting for navigation until "load"
+============================================================
+    at /Users/ant/Documents/大学/西客松/FileAction/.planning/2026-10-02-consolidate-docs-204631/verification/browser-check.cjs:47:12

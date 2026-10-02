@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" color="#2B2B2B" role="img" aria-labelledby="wenqi-mono-title wenqi-mono-desc">
+  <title id="wenqi-mono-title">文启 FileAction 单色标</title>
+  <desc id="wenqi-mono-desc">两片镜像几何面以透明页隙分隔的文启单色标志。</desc>
+  <path fill="currentColor" d="M16 20H34C48.359 20 60 31.641 60 46V108H42C27.641 108 16 96.359 16 82V20Z"/>
+  <path fill="currentColor" d="M68 46C68 31.641 79.641 20 94 20H112V82C112 96.359 100.359 108 86 108H68V46Z"/>
+</svg>

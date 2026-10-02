@@ -1,0 +1,22 @@
+[
+  {
+    "source": "README.md",
+    "backup": "worktree/README.md"
+  },
+  {
+    "source": "main:README.md",
+    "backup": "main/README.md"
+  },
+  {
+    "source": "可行动事务Agent-00-总览.md",
+    "backup": "worktree/可行动事务Agent-00-总览.md"
+  },
+  {
+    "source": "main:docs/可行动事务Agent-00-总览.md",
+    "backup": "main/docs/可行动事务Agent-00-总览.md"
+  },
+  {
+    "source": "路演.md",
+    "backup": "worktree/路演.md"
+  }
+]

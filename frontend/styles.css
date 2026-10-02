@@ -28,8 +28,8 @@ svg { display: block; }
 .site-header { position: sticky; top: 0; z-index: 30; background: rgba(255,253,248,.94); border-bottom: 1px solid rgba(241,231,200,.65); backdrop-filter: blur(18px); }
 .nav-wrap { max-width: 1440px; height: 82px; margin: 0 auto; padding: 0 5%; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
 .brand { display: inline-flex; align-items: center; gap: 11px; white-space: nowrap; font-size: 25px; font-weight: 650; letter-spacing: 1px; }
-.brand-mark { width: 37px; height: 39px; background: var(--yellow); border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; }
-.brand-mark svg { width: 31px; height: 31px; }
+.brand-mark { width: 39px; height: 39px; display: grid; place-items: center; flex-shrink: 0; }
+.brand-mark img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .brand-en { font-size: 14px; letter-spacing: -.3px; font-weight: 500; margin-left: 11px; }
 .desktop-nav { display: flex; gap: 35px; align-items: center; font-size: 13px; }
 .desktop-nav a { position: relative; padding: 8px 0; }
@@ -255,8 +255,7 @@ details p { color: var(--muted); font-size: 12px; line-height: 1.95; padding: 0 
 .site-footer { width: min(1280px, 90%); margin: 0 auto; padding: 41px 0 22px; }
 .footer-top, .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .footer-top .brand { font-size: 20px; }
-.footer-top .brand-mark { width: 30px; height: 31px; border-radius: 8px; }
-.footer-top .brand-mark svg { width: 25px; height: 25px; }
+.footer-top .brand-mark { width: 31px; height: 31px; }
 .footer-top .brand-en { font-size: 12px; }
 .footer-top > span { font-size: 11px; color: var(--muted); }
 .footer-top > a:last-child { font-size: 10px; }
@@ -374,8 +373,7 @@ dialog h2 { font-size: 26px; margin: 15px 0 22px; }
 @media (max-width: 540px) {
   .brand-en { display: none; }
   .brand { font-size: 21px; gap: 8px; }
-  .brand-mark { width: 32px; height: 33px; border-radius: 8px; }
-  .brand-mark svg { width: 27px; height: 27px; }
+  .brand-mark { width: 33px; height: 33px; }
   .nav-wrap { gap: 10px; }
   .nav-actions { gap: 8px; }
   .nav-actions .button { font-size: 11px; padding: 9px 12px; min-height: 36px; gap: 8px; }

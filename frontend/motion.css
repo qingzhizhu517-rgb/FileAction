@@ -5,7 +5,6 @@
 .paper-sculpture { rotate: y var(--plane-y, 0deg); translate: var(--plane-x, 0px) var(--plane-lift, 0px); transition: rotate .6s ease-out, translate .6s ease-out; }
 .floating-card { translate: var(--layer-x, 0px) var(--layer-y, 0px); transition: translate .85s ease-out; }
 .art-star { rotate: var(--star-turn, 0deg); transition: rotate 1s ease-out; }
-.site-header::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--yellow-deep); transform: scaleX(var(--reading-progress, 0)); transform-origin: left; pointer-events: none; }
 .feature-card { position: relative; isolation: isolate; }
 .feature-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(300px circle at var(--spot-x, 50%) var(--spot-y, 50%), #f6c94528, transparent 75%); opacity: 0; transition: opacity .35s; }
 .feature-card:hover::before { opacity: 1; }

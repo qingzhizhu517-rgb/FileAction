@@ -1,0 +1,13 @@
+{
+  "verified_at": "2026-10-02T21:01:00.271750+08:00",
+  "moved_files": 19,
+  "entry": "frontend/index.html",
+  "links_checked": 44,
+  "unrelated_files_unchanged": 842,
+  "static_checks": "passed",
+  "browser_checks": "passed",
+  "git_diff_check": "passed",
+  "branch": "chore/consolidate-docs-20261002",
+  "committed": false,
+  "pushed": false
+}

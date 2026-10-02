@@ -1,0 +1,12 @@
+initial 1440 { progress: '0.0000', playback: 'waiting', reduced: false, scroll: 0 }
+通过 1440×900：无选项/编辑区，自动展示完整，布局无溢出，收尾连续。
+initial 1024 { progress: '0.0000', playback: 'waiting', reduced: false, scroll: 0 }
+通过 1024×768：无选项/编辑区，自动展示完整，布局无溢出，收尾连续。
+initial 768 { progress: '0.0000', playback: 'waiting', reduced: false, scroll: 0 }
+通过 768×1024：无选项/编辑区，自动展示完整，布局无溢出，收尾连续。
+initial 390 { progress: '0.0000', playback: 'waiting', reduced: false, scroll: 0 }
+通过 390×844：无选项/编辑区，自动展示完整，布局无溢出，收尾连续。
+initial 320 { progress: '0.0000', playback: 'waiting', reduced: false, scroll: 0 }
+通过 320×568：无选项/编辑区，自动展示完整，布局无溢出，收尾连续。
+通过：无 JavaScript、减少动态效果的桌面与手机静态回退。
+通过：暂停/续播、离屏冻结、三场景依据与笔记、第三屏和文件预览入口、移动导航，无页面异常或资源错误。

@@ -199,16 +199,5 @@
     });
   });
 
-  let scrollFrame = 0;
-  function readingProgress() {
-    scrollFrame = 0;
-    const max = root.scrollHeight - window.innerHeight;
-    root.style.setProperty('--reading-progress', String(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0));
-  }
-  window.addEventListener('scroll', () => {
-    if (!scrollFrame) scrollFrame = requestAnimationFrame(readingProgress);
-  }, { passive: true });
-  window.addEventListener('resize', readingProgress, { passive: true });
-  readingProgress();
   resize();
 })();

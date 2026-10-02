@@ -1,5 +1,5 @@
 /* 第三屏：进入视口自动演示通知关联；保持普通文档流，不设置滚动占位。 */
-.opportunity-scene { --radar-header: 83px; --radar-progress: 1; --radar-outcome: 1; position: relative; background: linear-gradient(180deg, #fffdf8, #fff9e7 55%, #fffdf8); border-bottom: 1px solid var(--border); }
+.opportunity-scene { --radar-header: 83px; --radar-outcome: 1; position: relative; background: linear-gradient(180deg, #fffdf8, #fff9e7 55%, #fffdf8); border-bottom: 1px solid var(--border); }
 .opportunity-sticky { position: relative; min-height: calc(100svh - var(--radar-header)); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 36px 0 25px; gap: 20px; }
 .opportunity-heading { text-align: center; width: calc(100% - 32px); }
 .opportunity-heading .eyebrow { color: #9b8240; font-size: 9px; letter-spacing: 2px; }
@@ -67,8 +67,6 @@
 .radar-steps li span { font: 9px/1.5 ui-monospace, monospace; color: #9e812a; }
 .radar-steps li.is-current { color: var(--ink); }
 .radar-steps li.is-current span { background: var(--yellow); border-radius: 4px; padding: 1px 4px; }
-.radar-progress { height: 2px; margin-top: 12px; background: var(--border); }
-.radar-progress i { display: block; height: 100%; background: var(--yellow-deep); transform-origin: left; transform: scaleX(var(--radar-progress)); }
 .radar-footer > p { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px 14px; color: #9e916d; font-size: 8px; margin-top: 10px; }
 @media (max-width: 1100px) and (min-width: 901px) {
   .radar-stage { width: calc(100% - 40px); height: 429px; }

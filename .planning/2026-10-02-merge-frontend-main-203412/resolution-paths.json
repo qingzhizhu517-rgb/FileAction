@@ -1,0 +1,22 @@
+[
+  {
+    "source": "README.md",
+    "backup": "before-resolution/README.md"
+  },
+  {
+    "source": ".planning/2026-10-02-ui-interface/可行动事务Agent-00-总览.md",
+    "backup": "before-resolution/.planning/2026-10-02-ui-interface/可行动事务Agent-00-总览.md"
+  },
+  {
+    "source": "docs/可行动事务Agent-00-总览.md",
+    "backup": "before-resolution/docs/可行动事务Agent-00-总览.md"
+  },
+  {
+    "source": "07-宣传页/index.html",
+    "backup": "before-resolution/07-宣传页/index.html"
+  },
+  {
+    "source": "07-宣传页/可行动事务Agent-宣传页说明.md",
+    "backup": "before-resolution/07-宣传页/可行动事务Agent-宣传页说明.md"
+  }
+]

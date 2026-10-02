@@ -135,7 +135,6 @@
       else step.removeAttribute('aria-current');
     });
     scene.querySelector('.radar-scroll-hint').textContent = reduced.matches ? '先看与你有关的内容，再由你决定下一步' : progress === 1 ? '点击场景可重播，或展开依据核对 ↓' : '自动演示中，让关联一点点亮起';
-    scene.style.setProperty('--radar-progress', progress.toFixed(4));
     scene.dataset.radarProgress = progress.toFixed(4);
     scene.dataset.radarPhase = ['arrival', 'connecting', 'opportunity'][current];
   }

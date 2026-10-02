@@ -28,7 +28,7 @@ node --test --test-name-pattern '导出' docs/05-交互Demo/tests/engine.test.mj
 
 ### `docs/05-交互Demo/`：9月30日旧方案设计稿（规则模拟，未接模型）
 
-- 纯 ES module，不需要打包。`serve.py` 以仓库根目录作为静态根目录，把 `/` 重定向到 `/docs/05-交互Demo/index.html`，所以页面要通过它打开，不要直接用 file://。
+- 纯 ES module，不需要打包。`serve.py` 以 `docs/` 作为静态根目录，把 `/` 重定向到 `/05-交互Demo/demo-no-memory.html`，可在页头切换已有记忆与零记忆场景；页面要通过它打开，不要直接用 file://。
 - `engine.mjs` 是纯逻辑层，没有 DOM，也没有网络请求。`parseFile` 只解析受控 TXT 格式（`行动事务演示TXT-v1`），识别为 notice 或 material，并给出带行号的 evidence。`evaluate` 把通知要求 R1–R6 和材料对照，输出六种状态（未检查 / 可引用候选 / 需更新 / 本次未找到 / 不可用于本次 / 无法判断）。`correctMaterial` 和 `exportMarkdown` 负责更正与导出。测试只覆盖这一层。
 - `fixtures.mjs` 存放合成通知、记忆材料和固定日期 `DEMO_DATE`，测试与页面共用。`samples/*.txt` 是给用户下载、上传用的同格式样本。
 - `app.mjs` 管理状态和事件，`view.mjs`（`createViews`）负责渲染。`demo-with-memory.html` 和 `demo-no-memory.html` 通过 `body[data-mode]` 进入两种模式，各自使用独立的 localStorage 键 `doagent.demo.<mode>.memory.v1`。
@@ -39,6 +39,8 @@ node --test --test-name-pattern '导出' docs/05-交互Demo/tests/engine.test.mj
 `docs/06-讲解视频/src/` 里的页面动画完全由时间驱动，`src/index.html?t=秒数` 可以定格某一时刻。渲染流程依次为 `tts.sh` → `build_timeline.py` → `capture.mjs`（无头 Chromium 逐帧截图）→ `music.py` / `subtitles.py` → `assemble.sh`（ffmpeg）。完整命令和依赖见 `docs/06-讲解视频/可行动事务Agent-讲解视频说明.md`。`build/` 是中间产物，已被 gitignore，`build/narration.tsv` 也在其中。片中仍使用旧名「旁批」。
 
 ## 文档约定（摘自 AGENTS.md）
+
+品牌素材与 Logo 说明位于 `docs/01-产品方案/`，UI 界面设计稿位于 `docs/05-交互Demo/`，静态宣传页及配套说明单独位于根目录 `frontend/`，入口为 `frontend/index.html`。现行路演统一维护 `docs/03-参赛与路演/可行动事务Agent-核心路演稿.md`；原稿备份按历史记录保留。
 
 - 正文和回复都用中文。新业务文件命名为 `可行动事务Agent-主题.md`，放进 `docs/` 对应编号目录，并同步更新总览。每篇只有一个一级标题。
 - 链接写成 `[[docs/目录/文档名|可读名称]]`，表格里的 `|` 要转义为 `\|`。移动或重命名文件时，同步修改现行文档中的引用。

@@ -12,7 +12,7 @@ class DemoHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         if urlsplit(self.path).path == '/':
             self.send_response(302)
-            self.send_header('Location', '/' + quote('05-交互Demo') + '/index.html')
+            self.send_header('Location', '/' + quote('05-交互Demo') + '/demo-no-memory.html')
             self.end_headers()
             return
         super().do_GET()

@@ -1,4 +1,4 @@
-/* 路演.md 的三类场景；具体片段为宣传页合成示例，不是模型输出或真实规则。 */
+/* docs/03-参赛与路演/可行动事务Agent-核心路演稿.md 的三类场景；具体片段为宣传页合成示例，不是模型输出或真实规则。 */
 'use strict';
 window.fileactionPitchExamples = {
   scholarship: {

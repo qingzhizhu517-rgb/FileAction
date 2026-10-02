@@ -1,0 +1,125 @@
+/* 直接操作的动效场景：文件展开、可拖动关联图、滚动折页。 */
+.files-interactive .file-slot { translate: var(--gather-x, 0px) var(--gather-y, 0px); rotate: var(--gather-angle, 0deg); transition: translate .85s cubic-bezier(.2,.8,.2,1), rotate .85s cubic-bezier(.2,.8,.2,1); transition-delay: var(--gather-delay, 0ms); }
+.files-interactive .file-face { isolation: isolate; }
+.files-interactive .file-face::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 20%, #ffffffa0 40%, transparent 60%); translate: -140% 0; transition: translate .6s; z-index: 2; }
+.files-interactive .file-slot:hover .file-face::after { translate: 140% 0; }
+.files-interactive .file-slot:focus-within { z-index: 9; }
+.files-interactive .file-float { translate: 0 0; transition: translate .45s cubic-bezier(.16,1,.3,1); }
+.files-interactive .file-slot:hover .file-float, .files-interactive .file-slot:focus-within .file-float { translate: 0 -18px; animation-play-state: paused; }
+.files-interactive .file-slot:focus-within .file-face { border-color: var(--ink); }
+.file-open { position: absolute; inset: 0; width: 100%; background: transparent; border-radius: inherit; z-index: 4; }
+.file-open:focus-visible { outline: 2px solid var(--ink); outline-offset: -5px; }
+.files-interactive .art-coordinate { display: none; }
+.file-toolbar { position: absolute; bottom: -3px; left: 0; width: 100%; display: flex; align-items: center; justify-content: center; gap: 20px; font-size: 10px; color: var(--muted); opacity: var(--copy-alpha, 1); }
+.file-toolbar > span { display: inline-flex; align-items: center; gap: 7px; }
+.file-toolbar > span::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--yellow-deep); }
+.deck-toggle { border: 1px solid var(--border); border-radius: 20px; background: #ffffffc9; padding: 6px 12px; font-size: 10px; }
+.deck-toggle:hover { background: var(--yellow-soft); border-color: var(--yellow-deep); }
+.files-gathered .file-slot { z-index: var(--deck-level, 1); }
+.files-gathered .file-float { animation-play-state: paused; }
+.is-erasing .files-interactive .file-slot { translate: 0 0; rotate: 0deg; transition-delay: 0ms; }
+.is-erasing .file-toolbar { opacity: 0; pointer-events: none; }
+
+.file-preview { width: min(650px, calc(100% - 32px)); padding: 0; background: var(--card); overflow: auto; max-height: 85dvh; border-radius: 20px; }
+.file-preview[open] { animation: none; }
+.file-preview::backdrop { background: #2b281d65; backdrop-filter: blur(12px); }
+.preview-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; border-bottom: 1px solid var(--border); }
+.preview-head > span { font: 10px/1.6 ui-monospace, monospace; letter-spacing: 1.4px; color: var(--muted); }
+.preview-head .icon { width: 18px; height: 18px; }
+.preview-content { padding: 32px 36px; }
+.preview-type { display: inline-block; font: 10px/1.5 ui-monospace, monospace; padding: 5px 9px; background: var(--yellow-soft); color: #8f6b10; border: 1px solid var(--border); border-radius: 4px; }
+.file-preview h2 { margin: 17px 0 10px; font-size: 30px; }
+.preview-copy { color: var(--muted); font-size: 13px; line-height: 1.95; }
+.preview-insight { border-left: 2px solid var(--yellow); margin-top: 24px; padding: 13px 17px; background: var(--background); }
+.preview-insight > span { font-size: 10px; color: #997521; }
+.preview-insight > p { margin-top: 5px; font-size: 13px; }
+.preview-disclosure { margin-top: 22px; font-size: 10px; color: var(--muted); }
+.preview-foot { padding: 16px 22px; background: var(--yellow-soft); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.preview-pager { display: flex; align-items: center; gap: 13px; }
+.preview-pager > span { font: 10px/1.5 ui-monospace, monospace; color: var(--muted); }
+.preview-pager button { background: var(--card); border: 1px solid var(--border); border-radius: 50%; width: 34px; height: 34px; }
+.preview-foot .button { min-height: 38px; padding: 8px 14px; font-size: 11px; }
+
+.constellation.memory-visual { height: auto; width: 100%; max-width: 550px; background: var(--background); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; overflow: clip; overflow-clip-margin: 0px; box-shadow: 0 18px 60px #b3871110; }
+.constellation-top { display: flex; justify-content: space-between; align-items: center; padding: 19px 20px 0; min-height: 42px; }
+.constellation-top > span { font: 8px/1.5 ui-monospace, monospace; color: #9b8240; letter-spacing: 1.3px; }
+.graph-reset { background: transparent; font-size: 10px; color: var(--muted); padding: 4px; }
+.constellation-stage { height: 370px; position: relative; background: radial-gradient(ellipse at 50% 44%, #f6c94526, transparent 65%), radial-gradient(#e6ad1929 1px, transparent 1px); background-size: auto, 22px 22px; isolation: isolate; }
+.constellation-rings { pointer-events: none; position: absolute; top: 44%; left: 50%; width: 200px; height: 200px; translate: -50% -50%; border: 1px solid #e6ad1926; border-radius: 50%; }
+.constellation-rings::before, .constellation-rings::after { content: ""; position: absolute; inset: -38px; border: 1px dashed #e6ad1926; border-radius: 50%; }
+.constellation-rings::after { inset: 28px; border-style: solid; }
+.constellation-lines { position: absolute; inset: 0; height: 100%; width: 100%; pointer-events: none; overflow: visible; }
+.graph-path { fill: none; stroke: #e4d6ad; stroke-width: 1.3; vector-effect: non-scaling-stroke; transition: stroke .3s; }
+.graph-signal { fill: none; stroke: var(--yellow-deep); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 9 91; stroke-dashoffset: 100; opacity: 0; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 3px #f6c94570); }
+.graph-path.is-active { stroke: var(--yellow-deep); }
+.graph-signal.is-active { opacity: 1; }
+.context-node { position: absolute; transform: translate(-50%, -50%); width: 124px; padding: 11px 12px; background: #fffffff5; border: 1px solid var(--border); border-radius: 11px; text-align: left; box-shadow: 0 5px 18px #99752008; user-select: none; touch-action: none; z-index: 2; transition: border-color .25s, box-shadow .25s, scale .25s; }
+.context-node:not(:disabled) { cursor: grab; }
+.context-node:active, .context-node.is-dragging { cursor: grabbing; z-index: 5; }
+.context-node:hover, .context-node:focus-visible, .context-node[aria-pressed="true"] { border-color: var(--yellow-deep); box-shadow: 0 0 0 3px #f6c94518, 0 10px 25px #e6ad1917; }
+.context-node.is-dragging { scale: 1.06; }
+.node-orb { display: block; color: #ac8519; font-size: 17px; line-height: 1.1; margin-bottom: 7px; }
+.context-node strong { display: block; font-size: 11px; font-weight: 600; }
+.context-node small { display: block; font-size: 8px; color: var(--muted); margin-top: 3px; }
+.constellation-hub { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); width: 110px; height: 110px; padding: 12px; border: 1px solid var(--yellow-deep); background: var(--yellow); border-radius: 50%; box-shadow: 0 0 0 12px #f6c94514, 0 0 40px #f6c94526; z-index: 3; }
+.constellation-hub > span { display: block; font-size: 28px; line-height: 1; margin-bottom: 8px; }
+.constellation-hub > strong { display: block; font-size: 11px; }
+.constellation-hub > small { display: block; font-size: 7px; margin-top: 3px; color: #82631b; }
+.constellation-hub[aria-pressed="true"] { box-shadow: 0 0 0 16px #f6c94523, 0 0 60px #e6ad1933; }
+.constellation-caption { margin: 0 20px; padding: 16px 0; border-top: 1px solid var(--border); min-height: 101px; }
+.constellation-caption strong { display: block; font-size: 12px; font-weight: 550; }
+.constellation-caption p { margin-top: 6px; font-size: 10px; line-height: 1.9; color: var(--muted); }
+.constellation-help { padding: 0 20px 16px; font-size: 8px; color: #9d916f; line-height: 1.8; }
+.constellation button:disabled { cursor: default; opacity: 1; color: inherit; }
+
+.scenario-tabs.has-glider { position: relative; isolation: isolate; overflow: hidden; }
+.tab-glider { position: absolute; left: 0; top: 5px; height: calc(100% - 10px); background: var(--card); border: 1px solid #f1e7c870; box-shadow: 0 3px 10px #382d1210; border-radius: 5px; pointer-events: none; z-index: -1; transition: width .45s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1); }
+.scenario-tabs.has-glider button[aria-selected="true"] { background: transparent; box-shadow: none; }
+.scroll-unfold { position: relative; }
+.scroll-unfold .feature-card { transform-origin: center bottom; }
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-unfold .feature-card { translate: 0 var(--unfold-y, 0px); rotate: x var(--unfold-turn, 0deg); }
+  .scroll-unfold .feature-grid { perspective: 1400px; }
+  .constellation.is-visible .graph-signal.is-active { animation: graph-flow 2.2s linear infinite; }
+  .constellation.is-visible .constellation-rings { animation: graph-orbit 50s linear infinite; }
+  .constellation-hub > span { animation: star-spin 24s linear infinite; }
+}
+@keyframes graph-flow { to { stroke-dashoffset: 0; } }
+@keyframes graph-orbit { to { rotate: 360deg; } }
+.motion-paused .scroll-unfold .feature-card { translate: none; rotate: none; }
+.motion-paused .files-interactive .file-slot, .motion-paused .files-interactive .file-float,
+.motion-paused .tab-glider { transition: none; }
+@media (max-width: 1100px) {
+  .context-node { width: 110px; padding: 10px; }
+  .constellation-hub { width: 95px; height: 95px; }
+}
+@media (max-width: 540px) {
+  .file-toolbar { gap: 12px; font-size: 8px; }
+  .deck-toggle { font-size: 9px; padding: 5px 10px; }
+  .preview-content { padding: 25px 23px; }
+  .file-preview h2 { font-size: 26px; }
+  .preview-head, .preview-foot { padding: 13px 16px; }
+  .preview-copy, .preview-insight > p { font-size: 12px; }
+  .preview-pager { gap: 7px; }
+  .preview-pager button { width: 30px; height: 30px; }
+  .constellation-stage { height: 320px; }
+  .constellation-top { padding: 16px 14px 0; }
+  .constellation-top > span { font-size: 7px; letter-spacing: .6px; }
+  .context-node { width: 91px; padding: 9px 8px; border-radius: 8px; }
+  .context-node strong { font-size: 9px; }
+  .context-node small { font-size: 6px; }
+  .node-orb { font-size: 14px; margin-bottom: 5px; }
+  .constellation-hub { width: 79px; height: 79px; padding: 9px; }
+  .constellation-hub > span { font-size: 22px; margin-bottom: 6px; }
+  .constellation-hub > strong { font-size: 9px; }
+  .constellation-hub > small { font-size: 6px; }
+  .constellation-rings { width: 150px; height: 150px; }
+  .constellation-caption { margin: 0 14px; min-height: 110px; }
+  .constellation-help { padding: 0 14px 14px; font-size: 7px; }
+  .tab-glider { top: 4px; height: calc(100% - 8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-unfold .feature-card { translate: none; rotate: none; }
+  .files-interactive .file-slot:hover .file-float, .files-interactive .file-slot:focus-within .file-float { translate: none; }
+  .graph-signal { display: none; }
+}

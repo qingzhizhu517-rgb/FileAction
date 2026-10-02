@@ -185,6 +185,7 @@
     stopAnimations();
     if (!canMove()) return;
     const paper = document.querySelector('.sample-document');
+    if (!paper) return;
     animate(paper, [{ opacity: .3, transform: 'translateY(18px) rotate(-2deg)' }, { opacity: 1, transform: 'translateY(0) rotate(0)' }], { duration: 650, easing: 'cubic-bezier(.16,1,.3,1)' });
     const beam = document.createElement('span');
     beam.className = 'scan-beam';

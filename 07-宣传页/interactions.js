@@ -30,9 +30,8 @@
   document.addEventListener('motionpreferencechange', event => {
     paused = event.detail.paused;
     if (paused) finishAnimations();
-    queueUnfold();
   });
-  reduced.addEventListener('change', () => { finishAnimations(); queueUnfold(); });
+  reduced.addEventListener('change', finishAnimations);
   document.addEventListener('visibilitychange', () => { if (document.hidden) finishAnimations(); });
 
   // 文件抽屉：原地聚拢，点开时从卡片位置展开为可读预览。
@@ -47,7 +46,7 @@
     ['competition', '想法先存着，机会来了再连接。', '「校园无障碍地图」是一个合成项目构想。之后遇到相关通知时，文启可以解释两者为什么有关，供你决定要不要继续。', '主动发现关联，把要不要行动的决定留给你。'],
     ['internship', '同一份简章，从你的方向读。', '示例用户表达过想找教育方向的实习。产品岗位中的需求调研，与已有校园项目经历存在关联。', '先看看职责是否合适，也可以只是了解、暂不投递。'],
     ['internship', '用确认过的经历，讲清楚你是谁。', '示例简历可以引用已有项目经历，再根据岗位补充相关细节。没有提供的成绩、数据和经历，不应被自动编造。', '按岗位整理匹配点，初稿由你检查和修改。'],
-    ['competition', '文件读完，下一步也清楚了。', '把需要更新的材料、待确认的条件和准备事项整理成清单。示例清单可以在下方交互演示中实际导出。', '准备清单不等于已报名，最后提交依然由你完成。'],
+    ['competition', '文件读完，下一步也清楚了。', '把需要更新的材料、待确认的条件和准备事项整理成清单。可以从页面底部进入完整交互 Demo，继续了解行动准备。', '准备清单不等于已报名，最后提交依然由你完成。'],
   ];
   let gathered = false;
   let previewIndex = 0;
@@ -108,6 +107,7 @@
     dialog.querySelector('.preview-copy').textContent = `${fact[1]} ${fact[2]}`;
     dialog.querySelector('.preview-insight > p').textContent = fact[3];
     dialog.querySelector('.preview-pager > span').textContent = `${String(previewIndex + 1).padStart(2, '0')} / 07`;
+    dialog.querySelector('.preview-explore').textContent = previewIndex === 6 ? '探索完整 Demo ↗' : [1, 2, 5].includes(previewIndex) ? '看看材料如何核对 ↗' : '探索机会发现 ↗';
     if (transition) animate(dialog.querySelector('.preview-content'), [{ opacity: .2, transform: 'translateX(15px)' }, { opacity: 1, transform: 'translateX(0)' }], { duration: 320, easing: 'ease-out' });
   }
   function openPreview(index, button) {
@@ -173,13 +173,18 @@
   dialog.querySelector('.preview-explore').addEventListener('click', () => {
     if (closing) return;
     finishAnimations();
-    const tab = document.querySelector(`[data-scenario="${facts[previewIndex][0]}"]`);
-    focusAfterClose = tab;
+    const target = document.querySelector(previewIndex === 6 ? '#closing' : [1, 2, 5].includes(previewIndex) ? '#trusted-reuse' : '#opportunity-radar');
+    const tab = target.querySelector(`button[data-radar-case="${facts[previewIndex][0]}"]`);
+    target.setAttribute('tabindex', '-1');
+    focusAfterClose = tab || target;
     commitClose();
-    tab.click();
-    document.querySelector('#experience').scrollIntoView({ behavior: moving() ? 'smooth' : 'instant', block: 'start' });
+    tab?.click();
+    target.scrollIntoView({ behavior: moving() ? 'smooth' : 'instant', block: 'start' });
   });
 
+  // 旧版扩展栏目已移除；仅在对应结构存在时初始化。
+  function initExtendedSections() {
+  if (!document.querySelector('.constellation') || !document.querySelector('.possibilities') || !document.querySelector('.scenario-tabs')) return;
   // 记忆星图：点击选中、拖动节点、键盘微调，曲线实时重新连接。
   const graph = document.querySelector('.constellation');
   const stage = graph.querySelector('.constellation-stage');
@@ -346,6 +351,8 @@
     });
   }
   function queueUnfold() { if (!unfoldFrame) unfoldFrame = requestAnimationFrame(updateUnfold); }
+  document.addEventListener('motionpreferencechange', queueUnfold);
+  reduced.addEventListener('change', queueUnfold);
   window.addEventListener('scroll', queueUnfold, { passive: true });
   window.addEventListener('resize', queueUnfold, { passive: true });
   queueUnfold();
@@ -364,4 +371,6 @@
   if ('ResizeObserver' in window) new ResizeObserver(positionGlider).observe(tabs);
   else window.addEventListener('resize', positionGlider, { passive: true });
   positionGlider();
+  }
+  initExtendedSections();
 })();

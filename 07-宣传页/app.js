@@ -183,6 +183,8 @@ function initTypefield() {
 
 initTypefield();
 
+// 详细体验栏目可选；精简宣传页只初始化仍在页面中的功能。
+if (document.querySelector('#scenario-panel')) {
 let activeScenario = 'competition';
 const tabs = Array.from(document.querySelectorAll('[data-scenario]'));
 const dialog = document.querySelector('#source-dialog');
@@ -318,6 +320,8 @@ document.querySelector('#export-checklist').addEventListener('click', () => {
   setTimeout(() => URL.revokeObjectURL(url), 10000);
   showToast('已发起示例清单下载，请查看浏览器的下载记录。');
 });
+selectScenario(activeScenario);
+}
 
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileNav = document.querySelector('#mobile-nav');
@@ -354,5 +358,3 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
   document.documentElement.classList.add('motion-ready');
 }
-
-selectScenario(activeScenario);

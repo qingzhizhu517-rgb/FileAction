@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>旁批 Margin 讲解视频</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage" role="img" aria-label="旁批 Margin 项目讲解动画"></div>
+<script src="timeline.js"></script>
+<script src="core.js"></script>
+<script src="scenes-a.js"></script>
+<script src="scenes-b.js"></script>
+<script src="main.js"></script>
+<script>
+  // 直接用浏览器打开时实时播放；?t=秒 可定格到某一时刻；逐帧渲染时由脚本调用 render(t)
+  const q = new URLSearchParams(location.search);
+  if (q.has('t')) render(parseFloat(q.get('t')));
+  else if (!q.has('capture')) {
+    const t0 = performance.now();
+    (function loop() { render(((performance.now() - t0) / 1000) % TIMELINE.total); requestAnimationFrame(loop); })();
+  }
+</script>
+</body>
+</html>

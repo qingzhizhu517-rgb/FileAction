@@ -4,9 +4,22 @@
 .obsidian/workspace-mobile.json
 
 # 讲解视频渲染中间产物（帧序列，可重新生成）
-06-讲解视频/build/
+docs/06-讲解视频/build/
+docs/06-讲解视频/宣传片/build/
 
 # 常见缓存
 __pycache__/
 node_modules/
 .env
+
+# 成片只保留本地，不纳入 Git
+docs/06-讲解视频/output/*.mp4
+docs/06-讲解视频/宣传片/output/*.mp4
+
+# 产品运行数据与测试产物
+var/
+uploads/
+coverage/
+*.db
+*.db-wal
+*.db-shm

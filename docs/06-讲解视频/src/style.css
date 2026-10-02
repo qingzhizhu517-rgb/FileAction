@@ -1,0 +1,74 @@
+/* 旁批 Margin 讲解视频 · 1920×1080 · 浅色纸感编辑风 */
+:root {
+  --paper: #F3EFE6;
+  --sheet: #FFFDF8;
+  --ink: #1E1C19;
+  --ink2: #5F594F;
+  --ink3: #9A9286;
+  --rule: #DCD5C7;
+  --red: #C2412B;      /* 朱批：唯一强调色 */
+  --ok: #3F7552;
+  --warn: #A9781F;
+  --serif: "Songti SC", "STSong", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", sans-serif;
+  --hand: "Kaiti SC", "STKaiti", serif;
+  --latin: "Iowan Old Style", Baskerville, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); }
+body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; inset: 0; overflow: hidden; }
+#grain { position: absolute; inset: 0; opacity: .5; mix-blend-mode: multiply; }
+
+.scene { position: absolute; inset: 0; opacity: 0; display: none; }
+.abs { position: absolute; }
+.serif { font-family: var(--serif); }
+.hand { font-family: var(--hand); color: var(--red); }
+.latin { font-family: var(--latin); }
+.c2 { color: var(--ink2); } .c3 { color: var(--ink3); } .red { color: var(--red); }
+.ok { color: var(--ok); } .warn { color: var(--warn); }
+
+/* 大标题：宋体，留白充足 */
+.head { position: absolute; left: 0; right: 0; text-align: center; font-family: var(--serif); font-weight: 600; color: var(--ink); }
+.h1 { font-size: 96px; letter-spacing: 8px; }
+.h2 { font-size: 64px; letter-spacing: 4px; }
+.h3 { font-size: 44px; letter-spacing: 2px; }
+
+/* 纸页：文件统一画成一张纸 */
+.sheet {
+  position: absolute; background: var(--sheet); border: 1px solid #E4DDCF;
+  box-shadow: 0 1px 0 #E9E3D6, 0 18px 40px -18px rgba(60,48,30,.28);
+  padding: 44px 48px; border-radius: 3px;
+}
+.sheet .st { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.35; }
+.sheet .sm { font-size: 18px; color: var(--ink3); margin-top: 10px; letter-spacing: 1px; }
+.sheet .sr { height: 1px; background: var(--rule); margin: 24px 0 22px; }
+.sheet .bar { height: 12px; border-radius: 6px; background: #E8E2D6; margin: 0 0 18px; }
+.sheet .ln { font-size: 22px; line-height: 1.6; color: var(--ink2); margin-bottom: 14px; position: relative; }
+.tag { font-size: 15px; letter-spacing: 2px; color: var(--ink3); border: 1px solid var(--rule); padding: 2px 8px; border-radius: 2px; }
+
+/* 朱批：手写批注与下划线 */
+.note { position: absolute; font-family: var(--hand); color: var(--red); font-size: 34px; line-height: 1.45; white-space: nowrap; }
+.mark { position: absolute; height: 3px; background: var(--red); border-radius: 2px; transform-origin: left center; }
+
+/* 卡片：平面、细边，不发光 */
+.card { position: absolute; background: var(--sheet); border: 1px solid #E1DACB; border-radius: 6px; padding: 26px 30px; }
+.label { font-size: 17px; letter-spacing: 4px; color: var(--ink3); margin-bottom: 12px; }
+.opt { display: inline-block; font-size: 26px; padding: 12px 26px; border: 1.5px solid var(--ink); border-radius: 40px; margin-right: 14px; }
+.opt.on { background: var(--ink); color: var(--sheet); }
+.row { display: flex; align-items: center; gap: 18px; font-size: 26px; padding: 16px 0; border-bottom: 1px solid #ECE6DA; }
+.row:last-child { border-bottom: 0; }
+.k { font-size: 17px; letter-spacing: 2px; color: var(--ink3); width: 56px; flex: none; }
+.mini { margin-left: auto; font-size: 17px; color: var(--ink3); letter-spacing: 1px; }
+.caret::after { content: ""; display: inline-block; width: 2px; height: 1em; background: var(--ink); margin-left: 3px; vertical-align: -3px; }
+.cursor { position: absolute; left: 0; top: 0; width: 40px; height: 40px; }
+svg.layer { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+
+/* 常驻：章节、品牌、字幕、进度 */
+#chapter { position: absolute; left: 96px; top: 64px; font-size: 20px; letter-spacing: 6px; color: var(--ink3); }
+#chapter b { font-family: var(--latin); font-weight: 400; font-style: italic; color: var(--red); margin-right: 18px; font-size: 24px; letter-spacing: 0; }
+#brand { position: absolute; right: 96px; top: 56px; display: flex; align-items: center; gap: 12px; font-family: var(--serif); font-weight: 600; font-size: 26px; letter-spacing: 3px; }
+#brand svg { width: 38px; height: 38px; }
+#subs { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; }
+#subs span { display: inline-block; font-size: 34px; letter-spacing: 1.5px; color: var(--ink); padding: 8px 28px; background: rgba(243,239,230,.88); border-radius: 4px; }
+#bar { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--red); }

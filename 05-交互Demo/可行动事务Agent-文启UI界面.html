@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>文启 FileAction · 可行动事务工作台</title>
+<style>
+:root {
+  --bg: #f6f3ed;
+  --surface: #fffefa;
+  --panel: #ffffff;
+  --ink: #24262b;
+  --muted: #6d7280;
+  --subtle: #8d929d;
+  --line: #e4ddd0;
+  --line-strong: #d1c7b7;
+  --sage: #27705e;
+  --sage-soft: #e7f3ef;
+  --amber: #c98519;
+  --amber-soft: #fff1cf;
+  --rose: #ba4b5b;
+  --rose-soft: #fdecef;
+  --indigo: #4357b5;
+  --indigo-soft: #eef1ff;
+  --charcoal: #24272e;
+  --shadow: 0 16px 42px rgba(55, 45, 32, .08);
+  --radius: 8px;
+  --font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+* { box-sizing: border-box; }
+html { min-height: 100%; }
+body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 14px/1.55 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, textarea { font: inherit; }
+button { border: 0; cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .45; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p { margin: 0; }
+svg { display: block; width: 18px; height: 18px; flex: none; }
+.icon { stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 236px minmax(0, 1fr);
+}
+.rail {
+  min-height: 100vh;
+  background: var(--charcoal);
+  color: #eef0f4;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 6px;
+}
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #f4d06f;
+  color: #202226;
+}
+.brand strong { display: block; font-size: 18px; letter-spacing: -.3px; }
+.brand span { display: block; color: #aab0bd; font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; }
+.rail-group { display: grid; gap: 7px; }
+.rail-label {
+  color: #8c94a5;
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  padding: 0 10px 4px;
+  text-transform: uppercase;
+}
+.rail-button {
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 7px;
+  background: transparent;
+  color: #bac1ce;
+  padding: 9px 10px;
+  text-align: left;
+}
+.rail-button:hover, .rail-button.active { background: #30343d; color: #fff; }
+.rail-button.active { box-shadow: inset 3px 0 0 #f4d06f; }
+.rail-foot {
+  margin-top: auto;
+  display: grid;
+  gap: 12px;
+}
+.truth-note {
+  border: 1px solid #3b414c;
+  border-radius: var(--radius);
+  padding: 13px;
+  color: #adb5c3;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.truth-note strong { color: #fff; display: block; margin-bottom: 4px; }
+.main { min-width: 0; }
+.topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: rgba(255, 254, 250, .84);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.crumb { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 12px; }
+.crumb strong { color: var(--ink); font-weight: 600; }
+.top-actions { display: flex; align-items: center; gap: 10px; }
+.segmented {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+}
+.segmented button {
+  min-height: 30px;
+  border-radius: 5px;
+  padding: 0 12px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+}
+.segmented button.active { background: var(--charcoal); color: #fff; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 13px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.button:hover { border-color: var(--line-strong); background: #fffaf1; }
+.button.primary { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
+.button.sage { background: var(--sage); color: #fff; border-color: var(--sage); }
+.button.ghost { background: transparent; border-color: transparent; color: var(--muted); }
+.icon-button {
+  width: 36px;
+  min-height: 36px;
+  padding: 8px;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(240px, .76fr) minmax(430px, 1.34fr) minmax(290px, .86fr);
+  gap: 18px;
+  padding: 22px;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+.panel-head {
+  min-height: 58px;
+  padding: 17px 18px 13px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.panel-head h2 { font-size: 15px; line-height: 1.35; }
+.panel-head p { color: var(--muted); font-size: 12px; margin-top: 3px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  padding: 3px 7px;
+  background: #f1eee6;
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.badge.sage { background: var(--sage-soft); color: var(--sage); }
+.badge.amber { background: var(--amber-soft); color: #9a6416; }
+.badge.rose { background: var(--rose-soft); color: var(--rose); }
+.badge.indigo { background: var(--indigo-soft); color: var(--indigo); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.file-list { padding: 12px; display: grid; gap: 9px; }
+.file-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+}
+.file-item:hover, .file-item.active { background: #faf6ed; }
+.file-icon {
+  width: 36px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: var(--muted);
+}
+.file-item strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 650;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.file-item span { color: var(--muted); font-size: 11px; }
+.upload-strip {
+  margin: 0 12px 12px;
+  min-height: 82px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: #fffaf1;
+}
+.upload-strip strong { display: block; font-size: 13px; }
+.upload-strip span { color: var(--muted); font-size: 11px; }
+.memory-map { padding: 13px 14px 15px; border-top: 1px solid var(--line); }
+.memory-map h3 { font-size: 13px; margin-bottom: 12px; }
+.memory-node {
+  display: grid;
+  grid-template-columns: 9px minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: start;
+  padding: 9px 0;
+  border-bottom: 1px solid #f0ebe2;
+}
+.memory-node:last-child { border-bottom: 0; }
+.node-dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 6px; background: var(--sage); }
+.node-dot.amber { background: var(--amber); }
+.node-dot.rose { background: var(--rose); }
+.memory-node strong { display: block; font-size: 12px; font-weight: 620; }
+.memory-node span { color: var(--muted); font-size: 11px; }
+.conversation-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 108px);
+}
+.conversation-scroll {
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+  flex: 1;
+  align-content: start;
+}
+.message {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--charcoal);
+  color: #fff;
+  flex: none;
+}
+.avatar.user { background: var(--amber-soft); color: #7a521c; border: 1px solid #efd593; }
+.bubble {
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 13px 14px;
+}
+.message.user { justify-content: flex-end; }
+.message.user .bubble { background: var(--indigo-soft); border-color: #dce2ff; }
+.message.user .avatar { order: 2; }
+.bubble h1 { font-size: 20px; line-height: 1.45; letter-spacing: -.4px; margin-bottom: 8px; }
+.bubble p { color: var(--muted); font-size: 13px; }
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 12px;
+}
+.insight {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 10px;
+  background: #fff;
+}
+.insight strong { display: block; font-size: 16px; line-height: 1.25; }
+.insight span { color: var(--muted); font-size: 11px; }
+.matrix {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 12px;
+  background: #fff;
+}
+.matrix-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  min-height: 58px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0ebe2;
+}
+.matrix-row:last-child { border-bottom: 0; }
+.state-symbol {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 13px;
+}
+.ok { background: var(--sage-soft); color: var(--sage); }
+.warn { background: var(--amber-soft); color: var(--amber); }
+.bad { background: var(--rose-soft); color: var(--rose); }
+.matrix-row strong { display: block; font-size: 13px; }
+.matrix-row small { display: block; color: var(--muted); font-size: 11px; }
+.source-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 28px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  background: #f5f1e8;
+  color: #675d4e;
+  font-size: 11px;
+}
+.quick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 18px 16px;
+}
+.composer {
+  border-top: 1px solid var(--line);
+  padding: 13px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 9px;
+  background: #fffefa;
+}
+.composer input {
+  min-height: 39px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0 12px;
+  background: #fff;
+  color: var(--ink);
+  min-width: 0;
+}
+.right-stack { display: grid; gap: 18px; align-content: start; }
+.action-card { padding: 15px; }
+.action-card h3 {
+  font-size: 14px;
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.deadline {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 13px;
+  border-radius: 7px;
+  background: var(--amber-soft);
+  border: 1px solid #edd394;
+}
+.calendar {
+  width: 46px;
+  height: 48px;
+  border-radius: 7px;
+  background: #fff;
+  border: 1px solid #e8ce8c;
+  text-align: center;
+  overflow: hidden;
+}
+.calendar span { display: block; background: #d29223; color: #fff; font-size: 10px; line-height: 18px; }
+.calendar strong { display: block; font-size: 20px; line-height: 28px; }
+.deadline p { color: #72531e; font-size: 12px; }
+.todo-list { display: grid; gap: 8px; margin-top: 12px; }
+.todo {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  padding: 9px;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.todo input { width: 16px; height: 16px; margin-top: 3px; accent-color: var(--sage); }
+.todo strong { display: block; font-size: 12px; }
+.todo span { display: block; color: var(--muted); font-size: 11px; }
+.progress {
+  height: 8px;
+  background: #eee8dd;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.progress i {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: var(--sage);
+  border-radius: inherit;
+  transition: width .18s ease;
+}
+.draft {
+  display: grid;
+  gap: 9px;
+}
+.draft-preview {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 13px;
+  background: #fff;
+}
+.draft-preview p { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.doc-panel {
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.doc-page {
+  min-height: 310px;
+  padding: 23px 21px;
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(54, 43, 31, .06);
+}
+.doc-page h3 {
+  font-family: "Songti SC", "SimSun", serif;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  line-height: 1.7;
+  margin: 14px 0 18px;
+}
+.doc-page p {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 12px;
+  line-height: 2;
+  color: #37322b;
+  margin: 8px 0;
+}
+.doc-line {
+  display: inline;
+  background: transparent;
+  box-shadow: inset 0 -8px rgba(244, 208, 111, .35);
+  transition: background .18s, box-shadow .18s;
+}
+.doc-line.active {
+  background: var(--amber-soft);
+  box-shadow: 0 0 0 2px #ecc977;
+}
+.doc-meta {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.team-view { display: none; }
+.team-active .personal-view { display: none; }
+.team-active .team-view { display: block; }
+.team-board {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(280px, .8fr) minmax(400px, 1.2fr) minmax(280px, .9fr);
+  gap: 18px;
+}
+.member-list, .work-list, .gap-list {
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+.member, .work-block, .gap-item {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 12px;
+  background: #fff;
+}
+.member {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+.member-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--indigo-soft);
+  color: var(--indigo);
+  font-weight: 700;
+}
+.member strong, .work-block strong, .gap-item strong { display: block; font-size: 13px; }
+.member span, .work-block span, .gap-item span { display: block; color: var(--muted); font-size: 11px; line-height: 1.7; margin-top: 3px; }
+.work-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 40px);
+  background: var(--charcoal);
+  color: #fff;
+  border-radius: 7px;
+  padding: 10px 13px;
+  font-size: 12px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .22);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 50;
+}
+.toast.show { opacity: 1; transform: translate(-50%, -4px); }
+@media (max-width: 1160px) {
+  .app { grid-template-columns: 1fr; }
+  .rail { min-height: auto; position: static; flex-direction: row; align-items: center; overflow-x: auto; padding: 12px; }
+  .brand { min-width: 190px; }
+  .rail-group { display: flex; }
+  .rail-label, .rail-foot { display: none; }
+  .rail-button { min-width: 116px; }
+  .workspace, .team-board { grid-template-columns: 1fr; }
+  .conversation-panel { min-height: auto; }
+}
+@media (max-width: 720px) {
+  .topbar { height: auto; padding: 12px; align-items: flex-start; flex-direction: column; }
+  .top-actions { width: 100%; justify-content: space-between; }
+  .segmented { width: 100%; }
+  .segmented button { flex: 1; }
+  .workspace { padding: 12px; gap: 12px; }
+  .insight-grid { grid-template-columns: 1fr; }
+  .matrix-row { grid-template-columns: 28px minmax(0, 1fr); }
+  .source-button { grid-column: 2; width: max-content; }
+  .composer { grid-template-columns: 1fr; }
+  .button { white-space: normal; }
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="rail" aria-label="文启导航">
+    <a class="brand" href="#">
+      <span class="brand-mark" aria-hidden="true">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M15 4v5h4"/><path d="M9 13h6M9 16h4"/></svg>
+      </span>
+      <span><strong>文启</strong><span>FileAction</span></span>
+    </a>
+    <div class="rail-group">
+      <div class="rail-label">工作区</div>
+      <button class="rail-button active" data-mode="personal"><svg class="icon" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>个人事务</button>
+      <button class="rail-button" data-mode="team"><svg class="icon" viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 0-8 0"/><path d="M3 20a7 7 0 0 1 18 0"/><path d="M17 4a3 3 0 0 1 0 6M7 4a3 3 0 0 0 0 6"/></svg>团队分工</button>
+      <button class="rail-button"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3v18M5 8h14M5 16h14"/><path d="M5 4h14v16H5z"/></svg>记忆库</button>
+      <button class="rail-button"><svg class="icon" viewBox="0 0 24 24"><path d="M5 20h14"/><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/></svg>成果包</button>
+    </div>
+    <div class="rail-foot">
+      <div class="truth-note"><strong>演示状态</strong>合成资料与静态交互界面；不连接模型，不代表真实资格判断。</div>
+      <a class="rail-button" href="可行动事务Agent-交互Demo使用说明.md"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-1.5Z"/><path d="M8 7h6M8 11h7"/></svg>演示说明</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="crumb">
+        <svg class="icon" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        <span>工作台</span>
+        <svg class="icon" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>
+        <strong id="mode-title">个人事务</strong>
+      </div>
+      <div class="top-actions">
+        <div class="segmented" aria-label="视图切换">
+          <button class="active" data-mode="personal">个人版</button>
+          <button data-mode="team">团队版</button>
+        </div>
+        <button class="button primary" id="package-btn"><svg class="icon" viewBox="0 0 24 24"><path d="M5 20h14"/><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/></svg>导出成果</button>
+      </div>
+    </header>
+
+    <section class="workspace personal-view" aria-label="个人事务界面">
+      <aside class="panel">
+        <div class="panel-head">
+          <div><h2>文件与个人背景</h2><p>本次只读取相关片段</p></div>
+          <span class="badge sage"><span class="dot"></span>4 条可复用</span>
+        </div>
+        <div class="file-list">
+          <button class="file-item active" data-doc="notice">
+            <span class="file-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v5h4"/></svg></span>
+            <span><strong>奖学金申报通知</strong><span>今天 09:42 · PDF</span></span>
+            <span class="badge amber">新事务</span>
+          </button>
+          <button class="file-item" data-doc="grade">
+            <span class="file-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+            <span><strong>2025-2026 成绩单</strong><span>成绩排名 6 / 120</span></span>
+            <span class="badge sage">可用</span>
+          </button>
+          <button class="file-item" data-doc="award">
+            <span class="file-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="m8 12-2 9 6-3 6 3-2-9"/></svg></span>
+            <span><strong>创新创业获奖证书</strong><span>上一件事务使用过</span></span>
+            <span class="badge rose">需拦截</span>
+          </button>
+          <button class="file-item" data-doc="profile">
+            <span class="file-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+            <span><strong>个人经历说明</strong><span>教育方向、项目经历</span></span>
+            <span class="badge indigo">背景</span>
+          </button>
+        </div>
+        <div class="upload-strip">
+          <span class="file-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 16v4h14v-4"/></svg></span>
+          <span><strong>加入一份新文件</strong><span>通知、截图、PDF、Word、文字都可进入</span></span>
+        </div>
+        <div class="memory-map">
+          <h3>这次用到的记忆</h3>
+          <div class="memory-node"><i class="node-dot"></i><span><strong>成绩排名</strong><span>来自成绩单，已定位来源</span></span><span class="badge sage">可复用</span></div>
+          <div class="memory-node"><i class="node-dot amber"></i><span><strong>教育方向意向</strong><span>只解释相关性，不代表报名</span></span><span class="badge amber">需确认</span></div>
+          <div class="memory-node"><i class="node-dot rose"></i><span><strong>往届获奖材料</strong><span>与禁重复条款冲突</span></span><span class="badge rose">本次不用</span></div>
+        </div>
+      </aside>
+
+      <section class="panel conversation-panel">
+        <div class="panel-head">
+          <div><h2>Agent 对话</h2><p>文件进入后，对话里生成可行动事务</p></div>
+          <span class="badge sage"><span class="dot"></span>正在核对依据</span>
+        </div>
+        <div class="conversation-scroll" id="conversation">
+          <div class="message user">
+            <span class="avatar user">林</span>
+            <div class="bubble"><p>我刚收到这份奖学金通知，帮我看看跟我有没有关系。</p></div>
+          </div>
+          <div class="message">
+            <span class="avatar"><svg class="icon" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4z"/></svg></span>
+            <div class="bubble">
+              <h1>这份通知可能与你有关，但现在不该直接准备正式申请。</h1>
+              <p>我先把它拆成一个事务：对象是国家奖学金申报，截止时间是 2026-10-12 18:00。你的成绩排名看起来满足通知里的成绩条件，但综合测评排名还没有来源；往届获奖证书需要先看本次规则。</p>
+              <div class="insight-grid">
+                <div class="insight"><strong>10 月 12 日</strong><span>通知原文截止时间</span></div>
+                <div class="insight"><strong>前 5%</strong><span>成绩单中的排名</span></div>
+                <div class="insight"><strong>3 项</strong><span>仍需确认或补齐</span></div>
+              </div>
+              <div class="matrix" aria-label="材料状态">
+                <div class="matrix-row"><span class="state-symbol ok">✓</span><span><strong>成绩单可用于初步对照</strong><small>来源定位到成绩单第 2 段；仍不等于资格通过。</small></span><button class="source-button" data-source="grade">看依据</button></div>
+                <div class="matrix-row"><span class="state-symbol warn">△</span><span><strong>综合测评排名需要补一份证明</strong><small>通知要求成绩和综测均在专业前 10%。</small></span><button class="source-button" data-source="notice">看条款</button></div>
+                <div class="matrix-row"><span class="state-symbol bad">✕</span><span><strong>往届已使用获奖材料本次先排除</strong><small>禁重复条件成立前不能放进准备清单。</small></span><button class="source-button" data-source="award">看冲突</button></div>
+              </div>
+            </div>
+          </div>
+          <div class="message">
+            <span class="avatar"><svg class="icon" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></svg></span>
+            <div class="bubble">
+              <p><strong>建议下一步：</strong>先发一封询问邮件，确认综测排名证明和获奖证书认定范围；同时导出准备清单，避免把不能用的材料混进去。</p>
+            </div>
+          </div>
+        </div>
+        <div class="quick-actions">
+          <button class="button sage quick-reply" data-reply="先帮我起草询问老师的邮件。">起草询问邮件</button>
+          <button class="button quick-reply" data-reply="我只是先存着，这次不准备申报。">只是先存着</button>
+          <button class="button quick-reply" data-reply="我关心这份证书为什么不能直接用。">解释证书冲突</button>
+        </div>
+        <div class="composer">
+          <input id="composer-input" aria-label="输入给 Agent 的消息" placeholder="问一句，或纠正这次理解">
+          <button class="button primary" id="send-btn"><svg class="icon" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>发送</button>
+        </div>
+      </section>
+
+      <aside class="right-stack">
+        <section class="panel action-card">
+          <h3><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>本次事务</h3>
+          <div class="deadline">
+            <div class="calendar"><span>OCT</span><strong>12</strong></div>
+            <p><strong>奖学金材料预备</strong><br>18:00 前向学院提交，正式资格仍需学院审核。</p>
+          </div>
+          <div class="todo-list" id="todo-list">
+            <label class="todo"><input type="checkbox"><span><strong>确认综测排名证明</strong><span>询问学院查询与开具渠道</span></span></label>
+            <label class="todo"><input type="checkbox"><span><strong>核实证书认定范围</strong><span>先不放入正式清单</span></span></label>
+            <label class="todo"><input type="checkbox"><span><strong>整理成绩单与申请表</strong><span>标注来源版本</span></span></label>
+          </div>
+          <div class="progress" aria-label="事务进度"><i id="progress-bar"></i></div>
+        </section>
+        <section class="panel action-card draft">
+          <h3><svg class="icon" viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v5h4"/><path d="M9 13h6M9 16h4"/></svg>模型初稿</h3>
+          <div class="draft-preview">
+            <p>老师您好，我正在核对本年度国家奖学金申报要求。现有成绩单显示专业排名 6/120，想请教综合测评排名证明的获取方式，以及创新创业获奖证书是否属于学院认可范围。</p>
+          </div>
+          <button class="button primary full-width" id="copy-draft"><svg class="icon" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg>复制初稿</button>
+        </section>
+        <section class="panel doc-panel" aria-label="原文预览">
+          <div class="panel-head" style="padding:0 0 12px;min-height:auto;border-bottom:0">
+            <div><h2>原文回溯</h2><p id="doc-caption">通知条款已高亮</p></div>
+          </div>
+          <article class="doc-page" id="doc-page">
+            <div class="doc-meta">明川大学学生工作处 · 合成示例</div>
+            <h3>关于开展 2026 年国家奖学金评审工作的通知</h3>
+            <p>二、申请人应勤奋学习，积极进取。<span class="doc-line" data-mark="grade">学习成绩排名与综合测评成绩排名原则上均应位于专业前 10%。</span></p>
+            <p>三、申请材料包括申请表、学年成绩单、综合测评排名证明及相关获奖证明材料。</p>
+            <p>四、请有意申请的同学于 <span class="doc-line" data-mark="notice">2026 年 10 月 12 日 18:00 前</span>向所在学院提交相关材料。</p>
+            <p><span class="doc-line" data-mark="award">往届已用于评奖的成果材料不得作为本次重复申报依据。</span></p>
+          </article>
+        </section>
+      </aside>
+    </section>
+
+    <section class="workspace team-view" aria-label="团队分工界面">
+      <div class="team-board">
+        <section class="panel">
+          <div class="panel-head">
+            <div><h2>授权能力名片</h2><p>只展示队员确认公开的条目</p></div>
+            <span class="badge indigo">5 人</span>
+          </div>
+          <div class="member-list">
+            <div class="member"><span class="member-avatar">林</span><span><strong>林同学</strong><span>产品原型、材料梳理；想做教育方向</span></span></div>
+            <div class="member"><span class="member-avatar">王</span><span><strong>王同学</strong><span>React 项目 2 个，能接前端交互</span></span></div>
+            <div class="member"><span class="member-avatar">陈</span><span><strong>陈同学</strong><span>做过接口联调和部署</span></span></div>
+            <div class="member"><span class="member-avatar">许</span><span><strong>许同学</strong><span>路演表达强，暂无用户访谈记录</span></span></div>
+            <div class="member"><span class="member-avatar">周</span><span><strong>周同学</strong><span>零记忆成员，先参与本次任务</span></span></div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-head">
+            <div><h2>按人推荐分工</h2><p>推荐理由可点回能力来源</p></div>
+            <button class="button sage" id="accept-plan"><svg class="icon" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg>接受建议</button>
+          </div>
+          <div class="work-list">
+            <div class="work-block"><span><strong>前端原型：王同学</strong><span>依据：React 项目经验；能在比赛窗口内落地交互</span></span><span class="badge sage">匹配高</span></div>
+            <div class="work-block"><span><strong>通知理解与材料规则：林同学</strong><span>依据：已有材料梳理记录，熟悉个人版场景</span></span><span class="badge sage">匹配高</span></div>
+            <div class="work-block"><span><strong>模型接入与导出：陈同学</strong><span>依据：接口联调与部署经历</span></span><span class="badge indigo">可执行</span></div>
+            <div class="work-block"><span><strong>路演与用户验证：许同学</strong><span>依据：表达能力强；需要补一份访谈提纲</span></span><span class="badge amber">要补齐</span></div>
+            <div class="work-block"><span><strong>封包检查：周同学</strong><span>零记忆成员先承接清单核对，完成后沉淀能力名片</span></span><span class="badge amber">轻量开始</span></div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-head">
+            <div><h2>能力缺口与共用材料</h2><p>Agent 给建议，决定权留给队伍</p></div>
+          </div>
+          <div class="gap-list">
+            <div class="gap-item"><strong>缺口：用户访谈证据</strong><span>建议许同学按执行卡找 3 名活跃参赛学生回顾真实材料准备过程。</span></div>
+            <div class="gap-item"><strong>共用材料：60 秒团队介绍</strong><span>已用授权名片起草，不包含未确认经历。</span></div>
+            <div class="gap-item"><strong>边界提示</strong><span>团队版只推荐分工，不催交，不替队员执行子任务。</span></div>
+            <button class="button primary" id="team-draft"><svg class="icon" viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v5h4"/><path d="M9 13h6M9 16h4"/></svg>生成团队介绍稿</button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const app = document.querySelector('#app');
+const modeTitle = document.querySelector('#mode-title');
+const buttons = document.querySelectorAll('[data-mode]');
+const toast = document.querySelector('#toast');
+let timer;
+
+function showToast(message) {
+  clearTimeout(timer);
+  toast.textContent = message;
+  toast.classList.add('show');
+  timer = setTimeout(() => toast.classList.remove('show'), 2600);
+}
+
+function setMode(mode) {
+  app.classList.toggle('team-active', mode === 'team');
+  modeTitle.textContent = mode === 'team' ? '团队分工' : '个人事务';
+  buttons.forEach((button) => button.classList.toggle('active', button.dataset.mode === mode));
+}
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => setMode(button.dataset.mode));
+});
+
+document.querySelectorAll('.source-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.doc-line').forEach((line) => line.classList.toggle('active', line.dataset.mark === button.dataset.source));
+    const captions = {
+      notice: '通知中的排名与截止条款已高亮',
+      grade: '成绩单来源可用，但不代表资格通过',
+      award: '禁重复申报冲突已高亮'
+    };
+    document.querySelector('#doc-caption').textContent = captions[button.dataset.source] || '来源已定位';
+    showToast('已定位到对应来源，判断仍需用户确认。');
+  });
+});
+
+document.querySelectorAll('.file-item[data-doc]').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.file-item[data-doc]').forEach((item) => item.classList.remove('active'));
+    button.classList.add('active');
+    const labels = {
+      notice: '奖学金通知正在作为本次事务入口',
+      grade: '成绩单可复用，已回到来源片段',
+      award: '获奖证书与本次禁用条款冲突',
+      profile: '个人背景只用于解释相关性'
+    };
+    showToast(labels[button.dataset.doc]);
+  });
+});
+
+document.querySelectorAll('.quick-reply').forEach((button) => {
+  button.addEventListener('click', () => appendUserMessage(button.dataset.reply));
+});
+
+document.querySelector('#send-btn').addEventListener('click', () => {
+  const input = document.querySelector('#composer-input');
+  const value = input.value.trim();
+  if (!value) return;
+  appendUserMessage(value);
+  input.value = '';
+});
+
+document.querySelector('#composer-input').addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    document.querySelector('#send-btn').click();
+  }
+});
+
+function appendUserMessage(text) {
+  const conversation = document.querySelector('#conversation');
+  conversation.insertAdjacentHTML('beforeend', `<div class="message user"><span class="avatar user">林</span><div class="bubble"><p>${escapeHtml(text)}</p></div></div>`);
+  conversation.insertAdjacentHTML('beforeend', `<div class="message"><span class="avatar"><svg class="icon" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4z"/></svg></span><div class="bubble"><p>已把这句话作为本次事务偏好处理。若要沉淀到下次复用，需要你在成果包里确认。</p></div></div>`);
+  conversation.scrollTop = conversation.scrollHeight;
+}
+
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+
+document.querySelectorAll('#todo-list input').forEach((input) => {
+  input.addEventListener('change', updateProgress);
+});
+
+function updateProgress() {
+  const inputs = Array.from(document.querySelectorAll('#todo-list input'));
+  const done = inputs.filter((input) => input.checked).length;
+  document.querySelector('#progress-bar').style.width = `${Math.round(done / inputs.length * 100)}%`;
+}
+
+document.querySelector('#copy-draft').addEventListener('click', () => showToast('已复制模型初稿；正式发送前仍需人工修改确认。'));
+document.querySelector('#package-btn').addEventListener('click', () => showToast('成果包包含准备清单、引用来源和模型初稿状态。'));
+document.querySelector('#accept-plan').addEventListener('click', () => showToast('已记录为团队建议，不会自动分派或催交。'));
+document.querySelector('#team-draft').addEventListener('click', () => showToast('团队介绍稿已生成，未确认经历不会写入。'));
+updateProgress();
+</script>
+</body>
+</html>

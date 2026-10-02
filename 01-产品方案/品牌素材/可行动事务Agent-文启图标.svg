@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="16 23 224 224" role="img" aria-labelledby="title desc">
+  <title id="title">文启 · 开启纸页</title>
+  <desc id="desc">深黄色的纸页轻轻向右翻开，页间留白寓意从文件开启行动。透明背景。</desc>
+  <g fill="#E6AD19">
+    <path d="M73 40H151V64H79V178C79 185 84 190 91 190H101V214H73C62 214 53 205 53 194V60C53 49 62 40 73 40Z"/>
+    <path d="M115 93C115 87 118 82 124 79L188 43C195 39 203 44 203 52V174C203 182 199 189 192 193L132 228C124 233 115 227 115 218Z"/>
+  </g>
+</svg>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFDF8">
+  <meta name="description" content="文启 FileAction，每份文件，都从你的角度读一遍。从发现与你有关的机会，到核对已有材料，再到清晰的下一步。探索产品概念与交互示例。">
+  <title>文启 FileAction — 每份文件，都从你的角度读一遍</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23F6C945'/%3E%3Cpath d='M17 16h23v9H26v23h-9zm17 15h13v17H34z' fill='%232B2B2B'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 18 18 6H7m11 0v11"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8l-5-5Zm0 0v5h5M8 12h8m-8 4h6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Zm7 0v4m-2-2h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13 4-4m-7 6-2 2a4 4 0 0 0 6 6l3-3m-3-11 2-2a4 4 0 0 1 6 6l-3 3" transform="translate(0 -2)"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7V5Z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 15v5h16v-5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#" aria-label="文启 FileAction 首页">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 5h17v7H12v15H5zM17 17h10v10H17z" fill="currentColor"/></svg></span>
+        <span>文启<span class="brand-en">FileAction</span></span>
+      </a>
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="#possibilities">认识文启</a><a href="#experience">产品体验</a><a href="#together">一起行动</a><a href="#questions">常见问题</a>
+      </nav>
+      <div class="nav-actions"><a class="button button-small" href="#experience">探索 Demo <svg class="icon"><use href="#i-up"/></svg></a><button class="menu-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button></div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden><a href="#possibilities">认识文启</a><a href="#experience">产品体验</a><a href="#together">一起行动</a><a href="#questions">常见问题</a></nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-orbit orbit-one" aria-hidden="true"></div><div class="hero-orbit orbit-two" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <a class="announcement" href="#experience"><span class="status-dot"></span>从文件，开启新的可能<span class="announcement-divider"></span><span>探索文启</span><svg class="icon"><use href="#i-arrow"/></svg></a>
+        <p class="eyebrow hero-eyebrow">A LITTLE CONTEXT. A NEW POSSIBILITY.</p>
+        <h1 id="hero-title">每份文件，<br>都从<span class="marked">你的角度<svg viewBox="0 0 380 22" preserveAspectRatio="none" aria-hidden="true"><path d="M5 15Q174-1 372 11M25 21Q198 8 349 17"/></svg></span>读一遍。</h1>
+        <p class="hero-description">读懂一份文件，更读懂它与你的关系。<br>把散落的材料、想法与机会，变成属于你的下一步。</p>
+        <div class="hero-actions"><a class="button" href="#experience">看看我的下一步<svg class="icon"><use href="#i-arrow"/></svg></a><a class="button button-outline" href="#possibilities"><svg class="icon play-icon"><use href="#i-play"/></svg>认识文启</a></div>
+        <p class="hero-note">不用先填一份档案，从一份文件开始就好。</p>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-glow"></div>
+        <div class="floating-card float-file"><span class="mini-file"><svg class="icon"><use href="#i-file"/></svg></span><div><strong>新收到的竞赛通知.pdf</strong><span>一个可能属于你的机会</span></div><span class="file-extension">PDF</span></div>
+        <div class="floating-card float-context"><span class="context-symbol">✳</span><div><strong>记得你有个好想法</strong><span>校园无障碍地图 · 项目构想</span></div></div>
+        <svg class="paper-sculpture" viewBox="0 0 380 270">
+          <defs><linearGradient id="paper-top" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFEBA3"/><stop offset="1" stop-color="#F6C945"/></linearGradient><linearGradient id="paper-fold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F6C945"/><stop offset="1" stop-color="#E6AD19"/></linearGradient><filter id="paper-shadow" x="-40%" y="-40%" width="180%" height="200%"><feDropShadow dx="0" dy="20" stdDeviation="14" flood-color="#BE9126" flood-opacity=".2"/></filter></defs>
+          <g filter="url(#paper-shadow)"><path d="m35 117 298-88-90 218-66-91-142-39Z" fill="url(#paper-top)"/><path d="m177 156 156-127-130 157-26 46v-76Z" fill="#DDA516"/><path d="m203 186 40 61 90-218-130 157Z" fill="url(#paper-fold)"/><path d="m177 156-142-39 298-88-156 127Z" fill="url(#paper-top)"/><path d="m35 117 298-88" stroke="#FFF7D6" stroke-width="2"/></g>
+        </svg>
+        <div class="floating-card float-action"><span class="action-check"><svg class="icon"><use href="#i-check"/></svg></span><div><strong>你的下一步，有了方向</strong><span>找到关联 · 核对材料 · 开始行动</span></div><svg class="icon"><use href="#i-up"/></svg></div>
+        <span class="art-star star-one">✳</span><span class="art-star star-two">✦</span><span class="art-coordinate">DOCUMENT → YOUR NEXT MOVE</span>
+      </div>
+      <div class="hero-bottom"><span>让信息有意义，让行动有起点。</span><a href="#possibilities">向下发现 <span>↓</span></a><span class="edition">FILEACTION / CONCEPT 01</span></div>
+    </section>
+
+    <section class="section possibilities" id="possibilities" aria-labelledby="possibilities-title">
+      <div class="section-heading reveal"><div><p class="eyebrow">BUILT AROUND YOU</p><h2 id="possibilities-title">文件里有很多信息。<br><span class="muted-heading">与你有关的，才是重点。</span></h2></div><p class="section-intro">通知不用从头猜，材料不用重新找。<br>文启把“它说了什么”，<br>往前推进到“我可以做什么”。</p></div>
+      <div class="feature-grid">
+        <article class="feature-card reveal"><div class="feature-top"><span class="feature-number">01 / DISCOVER</span><svg class="icon"><use href="#i-spark"/></svg></div><div class="feature-illustration discovery-art" aria-hidden="true"><div class="tiny-doc"><svg class="icon"><use href="#i-file"/></svg><i></i><i></i><i></i></div><div class="connection-line"></div><div class="idea-chip">✳ 你曾经的想法</div><div class="match-chip"><span class="status-dot"></span>发现一个新机会</div></div><h3>好机会，主动与你相遇。</h3><p>带上你的经历和意向读文件。一个收藏已久的想法，也可能在新通知里找到出发点。</p><a class="text-link" href="#experience" data-select-scenario="competition">看看它如何发现<svg class="icon"><use href="#i-arrow"/></svg></a></article>
+        <article class="feature-card reveal"><div class="feature-top"><span class="feature-number">02 / CONNECT</span><svg class="icon"><use href="#i-link"/></svg></div><div class="feature-illustration reuse-art" aria-hidden="true"><div><span>✓</span>项目介绍 · 已确认版本<small>可用</small></div><div><span>△</span>成员名单 · 需重新签字<small>要处理</small></div><div><span>×</span>往届获奖成果<small>本次不能用</small></div></div><h3>用过的材料，用得更有底。</h3><p>对照本次要求，区分可用、要处理和本次不能用。每个判断，都能找到它的出处。</p><a class="text-link" href="#experience" data-select-scenario="scholarship">看看材料如何对照<svg class="icon"><use href="#i-arrow"/></svg></a></article>
+        <article class="feature-card reveal"><div class="feature-top"><span class="feature-number">03 / ACT</span><svg class="icon"><use href="#i-up"/></svg></div><div class="feature-illustration action-art" aria-hidden="true"><div class="mini-task"><span class="task-box">✓</span><span>整理已有材料</span></div><div class="mini-task"><span class="task-box"></span><span>起草一份项目简介</span><span class="draft-tag">初稿</span></div><div class="mini-task"><span class="task-box"></span><span>把下一步放进日历</span><span>↗</span></div></div><h3>不只给答案，还能往前一步。</h3><p>把缺项变成清单，把已确认的资料变成初稿。准备下一步，最后的决定依然由你来做。</p><a class="text-link" href="#experience">试试导出行动清单<svg class="icon"><use href="#i-arrow"/></svg></a></article>
+      </div>
+    </section>
+
+    <section class="experience-section" id="experience" aria-labelledby="experience-title">
+      <div class="section">
+        <div class="center-heading reveal"><p class="eyebrow">ONE DOCUMENT. YOUR PERSPECTIVE.</p><h2 id="experience-title">同一份文件，<span class="serif-emphasis">不一样的与你有关。</span></h2><p>选一个场景，看看文件如何变成清晰的下一步。</p></div>
+        <div class="scenario-tabs" role="tablist" aria-label="选择演示场景"><button id="tab-competition" type="button" role="tab" aria-selected="true" aria-controls="scenario-panel" data-scenario="competition">竞赛通知<span>从想法到机会</span></button><button id="tab-scholarship" type="button" role="tab" aria-selected="false" aria-controls="scenario-panel" tabindex="-1" data-scenario="scholarship">奖学金申请<span>从条件到准备</span></button><button id="tab-internship" type="button" role="tab" aria-selected="false" aria-controls="scenario-panel" tabindex="-1" data-scenario="internship">实习简章<span>从经历到可能</span></button></div>
+        <div class="product-window reveal" id="scenario-panel" role="tabpanel" aria-labelledby="tab-competition" tabindex="0">
+          <div class="window-bar"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>文启 · 你的文件工作台</span><span class="preview-tag">交互概念演示</span></div>
+          <div class="workspace">
+            <aside class="document-pane"><div class="pane-label"><svg class="icon"><use href="#i-file"/></svg>这次，从一份文件开始<span>↓</span></div><div class="sample-document"><div class="document-kicker" id="document-kicker">CAMPUS / OPPORTUNITY</div><div class="paper-type" id="paper-type">通知</div><h3 id="document-title">大学生创新创业大赛<br>参赛通知</h3><span class="document-rule"></span><p id="document-summary">寻找关注真实问题、具有创新价值的学生项目。鼓励跨学科组队，提交项目介绍及相关材料。</p><div class="paper-lines" aria-hidden="true"><i></i><i></i></div><div class="document-highlight" id="document-highlight">社会服务赛道<br>让一个好想法，从校园开始。</div><div class="paper-lines" aria-hidden="true"><i></i><i></i><i></i></div><span class="document-stamp">合成示例<br>非真实通知</span></div><div class="context-note"><svg class="icon"><use href="#i-link"/></svg><div><strong>带上与你相关的背景</strong><p id="context-description">校园无障碍地图 · 项目构想<br>项目介绍 v2 · 已确认</p></div></div></aside>
+            <div class="answer-pane"><div class="agent-label"><span class="small-brand"><svg class="icon"><use href="#i-spark"/></svg></span><strong>文启</strong><span>从你的角度，再读一遍</span></div><div class="answer-content" aria-live="polite" aria-atomic="true"><span class="insight-label"><span class="status-dot"></span>与你有关的发现</span><h3 id="answer-title">你的那个想法，<br>可以向前一步了。</h3><p id="answer-description">你之前保存的「校园无障碍地图」构想，与这次的社会服务赛道相关。已有的项目介绍可以继续用，不过有两份材料需要留意。</p><div class="material-list" id="material-list"></div><div class="next-step"><span>建议的下一步</span><p id="next-step-text">先用已确认的项目介绍起草参赛简介，再补齐本届成员名单。</p></div></div><div class="answer-actions"><button class="button button-small" id="export-checklist" type="button"><svg class="icon"><use href="#i-download"/></svg>导出示例清单</button><button class="source-button" id="view-source" type="button">查看判断依据<svg class="icon"><use href="#i-up"/></svg></button></div><p class="demo-disclosure">预设示例 · 未接入模型 · 不读取或上传你的真实文件</p></div>
+          </div>
+        </div>
+        <p class="experience-footnote"><svg class="icon"><use href="#i-shield"/></svg>清单是准备的开始，不代表已报名或资格通过。</p>
+      </div>
+    </section>
+
+    <section class="section context-section" aria-labelledby="context-title"><div class="context-copy reveal"><p class="eyebrow">LESS ASKING. MORE UNDERSTANDING.</p><h2 id="context-title">不用从头介绍自己。<br>也不用一次说完。</h2><p>只在这件事需要的时候，问你一个相关的问题。<br>你确认过的经历与材料，让下一次少一点重复。</p><div class="context-principles"><div><span>01</span><p><strong>从一份文件开始</strong>不填问卷，不用先建立完整档案。</p></div><div><span>02</span><p><strong>每一次确认，都有意义</strong>事实与建议分开，重要背景由你确认。</p></div><div><span>03</span><p><strong>记住什么，由你决定</strong>设计支持查看、修改、停用和删除记忆。</p></div></div></div><div class="memory-visual reveal"><div class="memory-orbit" aria-hidden="true"></div><span class="memory-caption">EVERY NEXT TIME, A LITTLE EASIER.</span><div class="memory-bubble bubble-top"><svg class="icon"><use href="#i-file"/></svg>一份你确认过的项目介绍<span>文件依据</span></div><div class="memory-center"><span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 5h17v7H12v15H5zM17 17h10v10H17z" fill="currentColor"/></svg></span><strong>属于你的上下文</strong><span>每一次，都更懂你一点</span></div><div class="memory-bubble bubble-left"><span>✳</span>“想找教育方向的实习”</div><div class="memory-bubble bubble-bottom"><svg class="icon"><use href="#i-check"/></svg>你确认，才留给下一次</div><div class="memory-small-note">个人记忆机制 · 产品设计示意</div></div></section>
+
+    <section class="section together-section" id="together" aria-labelledby="together-title"><div class="together-card reveal"><div class="together-copy"><p class="eyebrow">GOOD ON YOUR OWN. BETTER TOGETHER.</p><span class="roadmap-label">团队版 · 规划中</span><h2 id="together-title">从“我的下一步”，<br>到“我们的第一步”。</h2><p>临时组队，也可以从彼此的擅长开始。<br>用成员授权的能力名片推荐分工，<br>让合适的人，遇见合适的那件事。</p><span class="together-note">推荐有依据，分工由你们决定。</span></div><div class="team-visual" aria-label="合成团队分工示意"><div class="team-line" aria-hidden="true"></div><div class="team-node"><span class="avatar">林</span><div><strong>做过前端项目</strong><span>已授权的能力名片</span></div><span class="role-chip">产品原型 ↗</span></div><div class="team-node"><span class="avatar avatar-outline">陈</span><div><strong>喜欢讲清楚一个想法</strong><span>已授权的能力名片</span></div><span class="role-chip">路演表达 ↗</span></div><div class="team-node"><span class="avatar avatar-dark">周</span><div><strong>有访谈和调研经历</strong><span>已授权的能力名片</span></div><span class="role-chip">用户调研 ↗</span></div><p><svg class="icon"><use href="#i-spark"/></svg>是一起想办法的队友，不是监工。</p></div></div></section>
+
+    <section class="section faq-section" id="questions" aria-labelledby="faq-title"><div class="faq-heading"><p class="eyebrow">A FEW THINGS TO KNOW</p><h2 id="faq-title">你可能还想知道。</h2><p>关于文启，坦诚说清楚。</p></div><div class="faq-list"><details><summary>文启和普通的文件总结有什么不同？<span>+</span></summary><p>文启的产品设计从“这份文件与你有什么关系”出发，结合你确认过的经历、意向和材料，发现关联、核对材料是否适用于本次事务，并给出下一步。如果你只想了解或存着，它也不应硬凑待办。</p></details><details><summary>第一次使用，需要先上传很多个人资料吗？<span>+</span></summary><p>不用。设计上只需从当前的一份文件开始；当一条信息确实影响本次判断时，文启才问你，并说明原因。你可以回答、纠正，也可以跳过。</p></details><details><summary>现在可以使用真实的 AI 功能吗？<span>+</span></summary><p>当前仓库提供方案与交互概念演示，尚未接入真实模型。这一页的场景、人物与材料都是合成示例；场景切换和清单导出可以实际体验，但不代表已实现文件解析、长期记忆或自动执行。</p></details><details><summary>页面会上传我的文件或保存个人资料吗？<span>+</span></summary><p>这个宣传页不提供真实文件上传，不调用模型，也不收集个人资料。未来接入模型后，应明确告知使用哪些文件片段、发送给哪家服务方；本机保存不意味着云端模型看不到数据。</p></details><details><summary>文启会替我提交申请，或者安排队友吗？<span>+</span></summary><p>不会替你提交、签字或编造经历。材料初稿需要你确认，清单齐全也不意味着资格通过。团队版规划只看成员授权的能力名片，给出可接受、交换或拒绝的分工建议，不催交、不监督。</p></details></div></section>
+
+    <section class="closing-section"><div class="closing-orbit" aria-hidden="true"></div><div class="closing-content reveal"><span class="closing-star" aria-hidden="true">✳</span><p class="eyebrow">YOUR NEXT MOVE STARTS HERE</p><h2>让下一份文件，<br>成为下一步的开始。</h2><p>少一点“然后呢”，多一点“开始吧”。</p><a class="button button-dark" href="../05-交互Demo/可行动事务Agent-文启高保真Demo.html">探索完整交互 Demo<svg class="icon"><use href="#i-up"/></svg></a><span class="closing-note">无需注册 · 合成示例 · 未接入真实模型</span></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-top"><a class="brand" href="#"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 5h17v7H12v15H5zM17 17h10v10H17z" fill="currentColor"/></svg></span><span>文启<span class="brand-en">FileAction</span></span></a><span>每份文件，都从你的角度读一遍。</span><a href="#main">回到顶部 ↑</a></div><div class="footer-bottom"><span>© 2026 文启 FileAction · 项目概念宣传页</span><span>Document → Action → Possibility</span><a href="#questions">演示与数据说明</a></div></footer>
+  <dialog id="source-dialog" aria-labelledby="source-title"><div class="dialog-top"><span class="eyebrow">EVERY INSIGHT HAS A SOURCE</span><button id="close-dialog" class="icon-button" type="button" aria-label="关闭判断依据"><svg class="icon"><use href="#i-close"/></svg></button></div><h2 id="source-title">每个判断，都有来处。</h2><div id="source-content"></div><p class="dialog-note">以上均为合成演示资料，不构成真实资格或政策判断。</p><form method="dialog"><button class="button button-small">明白了</button></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

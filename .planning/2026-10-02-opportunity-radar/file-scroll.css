@@ -1,0 +1,105 @@
+/* 文件阵列 → 滚动擦除 → 下一页上推。静态布局也是无 JS 的完整回退。 */
+.hero-scroll { position: relative; z-index: 0; }
+.hero-scroll .hero { min-height: max(750px, calc(100svh - 83px)); padding-top: clamp(28px, 4vh, 48px); }
+.hero-scroll .hero-eyebrow { margin-top: 23px; }
+.hero-scroll h1 { font-size: clamp(48px, 5.1vw, 72px); }
+.hero-scroll .hero-description { margin-top: 22px; }
+.hero-scroll .hero-actions { margin-top: 22px; }
+.hero-scroll .hero-art { animation: none; }
+.file-array { height: 286px; width: min(1220px, 94%); max-width: none; margin: 44px auto 0; perspective: 1300px; }
+.file-array-track { position: absolute; inset: 24px 0 auto; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(8px, 1.4vw, 23px); transform: rotateX(var(--array-tilt-x, 0deg)) rotateY(var(--array-tilt-y, 0deg)); transition: transform .7s ease-out; }
+.file-slot { --wipe: 100%; --edge-alpha: 0; --erase-lift: 0px; --erase-x: 0px; min-width: 0; transform: translate(var(--erase-x), calc(var(--file-y) + var(--erase-lift))) rotate(var(--file-angle)); }
+.file-float { position: relative; }
+.file-sheet { position: relative; height: clamp(172px, 17vw, 214px); padding: 0; clip-path: polygon(0 0, 100% 0, 100% var(--wipe), 0 var(--wipe)); }
+.file-face { height: 100%; padding: 18px 15px 13px; display: flex; flex-direction: column; border-radius: 8px 24px 8px 8px; background: var(--card); border: 1px solid var(--border); box-shadow: inset 0 -5px 12px #f1e7c830; overflow: hidden; position: relative; }
+.file-fold { position: absolute; right: -1px; top: -1px; width: 23px; height: 23px; border-radius: 0 0 0 5px; background: linear-gradient(45deg, #f1e7c8, #fff7d6 50%, var(--background) 51%); border-left: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.file-meta { display: flex; align-items: center; justify-content: space-between; padding-right: 8px; margin-bottom: 18px; color: #a88526; }
+.file-meta .icon { width: 24px; height: 24px; }
+.file-meta > span { font: 8px/1.5 ui-monospace, monospace; letter-spacing: 1px; }
+.file-face > strong { font-size: clamp(12px, 1.12vw, 16px); line-height: 1.5; font-weight: 600; }
+.file-face > small { font-size: clamp(6px, .61vw, 9px); color: var(--muted); margin-top: 5px; white-space: nowrap; }
+.file-text-lines { display: grid; gap: 7px; margin-top: 18px; }
+.file-text-lines i { height: 3px; background: #eee8d8; border-radius: 2px; }
+.file-text-lines i:nth-child(2) { width: 83%; }
+.file-text-lines i:nth-child(3) { width: 60%; }
+.file-label { margin-top: auto; padding-top: 13px; font-size: clamp(6px, .58vw, 8px); color: #9b8545; letter-spacing: .2px; }
+.file-slot-featured .file-face { background: var(--yellow); border-color: var(--yellow-deep); }
+.file-slot-featured .file-face > small, .file-slot-featured .file-label, .file-slot-featured .file-meta { color: #6d551a; }
+.file-slot-featured .file-fold { background: linear-gradient(45deg, var(--yellow-deep), #ffdf7c 50%, var(--background) 51%); border-color: var(--yellow-deep); }
+.file-idea { font-size: 40px; line-height: 1; margin-top: 12px; color: #8e6a12; }
+.file-seal { font-size: 24px; line-height: 1; width: 38px; height: 38px; display: grid; place-items: center; margin-top: 15px; border-radius: 50%; border: 1px dashed var(--yellow-deep); color: var(--yellow-deep); }
+.file-checks { display: grid; gap: 5px; margin-top: 16px; font-size: 8px; color: var(--muted); }
+.file-erase-edge { position: absolute; pointer-events: none; top: var(--wipe); height: 2px; left: -4%; right: -4%; opacity: var(--edge-alpha); background: linear-gradient(90deg, transparent, #e6ad19 25%, #fff7d6 50%, #e6ad19 75%, transparent); box-shadow: 0 0 12px #e6ad1980, 0 3px 14px #f6c94590; }
+.file-erase-edge::before, .file-erase-edge::after { content: ""; position: absolute; top: -5px; left: 17%; height: 2px; width: 12px; background: var(--yellow); box-shadow: 19px 8px 0 #e6ad1980, 35px -3px 0 #f6c94580, 60px 7px 0 #f6c94560; }
+.file-erase-edge::after { left: 55%; top: 9px; width: 5px; opacity: .7; }
+.file-array .art-coordinate { bottom: 0; opacity: var(--copy-alpha, 1); }
+.page-surface { position: relative; z-index: 4; background: var(--background); display: flow-root; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-linked .hero-scroll { height: var(--scroll-scene-height, auto); }
+  .scroll-linked .hero-scroll .hero { position: sticky; top: var(--hero-pin-top, 83px); }
+  .scroll-linked .page-surface { margin-top: calc(-1 * var(--scroll-overlap, 440px)); border-radius: var(--surface-radius, 36px) var(--surface-radius, 36px) 0 0; border-top: 1px solid var(--border); box-shadow: 0 -24px 70px #8e6a120b; }
+  .scroll-linked .hero-copy { opacity: var(--copy-alpha, 1); transform: translateY(var(--copy-shift, 0px)); }
+  .scroll-linked .hero-bottom { opacity: var(--copy-alpha, 1); }
+  .scroll-linked .hero-particles, .scroll-linked .hero-typefield, .scroll-linked .hero-aurora, .scroll-linked .art-glow { opacity: var(--ambient-alpha, 1); }
+  .file-float { animation: file-hover 7s ease-in-out infinite; animation-delay: calc(var(--file-delay) * -4); }
+  .file-face { animation: file-arrive 1s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(.2s + var(--file-delay)); }
+  .is-erasing .file-float { animation-play-state: paused; }
+  .motion-paused .file-face { animation: none; }
+  .motion-paused .file-array-track { transform: none; }
+}
+@keyframes file-hover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes file-arrive { from { opacity: 0; transform: translateY(60px) rotateX(-20deg); } to { opacity: 1; transform: translateY(0) rotateX(0); } }
+@media (max-width: 1100px) {
+  .hero-scroll .hero { min-height: max(720px, calc(100svh - 83px)); }
+  .file-array { margin-top: 44px; height: 254px; }
+  .file-face { padding: 15px 11px 12px; }
+  .file-meta { margin-bottom: 12px; }
+}
+@media (max-width: 800px) {
+  .hero-scroll .hero { min-height: max(730px, calc(100svh - 71px)); padding-top: 30px; }
+  .hero-scroll h1 { font-size: 54px; }
+  .file-array { width: 95%; height: 256px; margin-top: 46px; }
+  .file-array-track { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+  .file-slot:first-child, .file-slot:last-child { display: none; }
+  .file-sheet { height: 190px; }
+  .file-face > strong { font-size: 14px; }
+  .file-face > small { font-size: 7px; }
+  .file-label { font-size: 7px; }
+}
+@media (max-width: 540px) {
+  .hero-scroll .hero { min-height: max(690px, calc(100svh - 71px)); padding-top: 28px; }
+  .hero-scroll h1 { font-size: clamp(30px, 8.9vw, 48px); }
+  .hero-scroll .hero-eyebrow { margin-top: 24px; }
+  .file-array { width: calc(100% - 34px); height: 238px; margin-top: 43px; }
+  .file-array-track { gap: 0; top: 23px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .file-slot { --file-y: 0px !important; }
+  .file-slot:nth-child(2), .file-slot:nth-child(6) { --file-y: 38px !important; }
+  .file-slot:nth-child(3), .file-slot:nth-child(5) { --file-y: 16px !important; }
+  .file-slot-featured { z-index: 2; }
+  .file-float { width: 145%; margin-left: -22.5%; }
+  .file-slot:nth-child(2) .file-float { width: 120%; margin-left: 0; }
+  .file-slot:nth-child(6) .file-float { width: 120%; margin-left: -20%; }
+  .file-sheet { height: 146px; }
+  .file-face { border-radius: 6px 19px 6px 6px; padding: 12px 9px; }
+  .file-fold { width: 18px; height: 18px; }
+  .file-meta { margin-bottom: 11px; padding-right: 2px; }
+  .file-meta .icon { width: 18px; height: 18px; }
+  .file-meta > span { font-size: 6px; letter-spacing: 0; }
+  .file-face > strong { font-size: 11px; }
+  .file-face > small { font-size: 6px; white-space: normal; }
+  .file-text-lines { margin-top: 12px; gap: 5px; }
+  .file-text-lines i { height: 2px; }
+  .file-label { font-size: 6px; padding-top: 8px; }
+  .file-idea { font-size: 29px; margin-top: 10px; }
+  .file-seal { width: 28px; height: 28px; font-size: 20px; margin-top: 12px; }
+  .file-array .art-coordinate { font-size: 6px; letter-spacing: 1px; bottom: 2px; }
+  .hero-scroll .hero-bottom { font-size: 8px; padding: 0 5%; height: 48px; }
+  .hero-scroll .hero-bottom > span:first-child { max-width: 38%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .file-array-track { transform: none; }
+  .file-slot { transform: translateY(var(--file-y)) rotate(var(--file-angle)); }
+  .file-sheet { clip-path: none; }
+  .file-erase-edge { display: none; }
+}

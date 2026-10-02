@@ -1,4 +1,4 @@
-/* 机会雷达：全部为本地合成示例，随原生滚动展示关联，不上传或处理真实文件。 */
+/* 个性化解读：进入视口自动联系文件要求与已确认背景；全部为合成示意。 */
 'use strict';
 
 (() => {
@@ -22,66 +22,19 @@
   const clamp = value => Math.max(0, Math.min(1, value));
   const smooth = value => value * value * (3 - 2 * value);
   const phase = (progress, start, length) => smooth(clamp((progress - start) / length));
-  // 示例分别说明 Idea、获奖经历、求职意向的关联，不把无关背景强行匹配。
-  const examples = {
-    competition: {
-      notice: '大学生创新创业大赛', detail: ['社会服务赛道', '寻找回应真实需求的项目'],
-      title: ['你存下的地图构想，', '遇到了合适的赛道。'],
-      reason: '无障碍地图关注校园出行需求，与通知中的“社会服务”赛道方向相关。',
-      evidence: '依据：已保存构想 × 通知 § 2',
-      ready: ['校园无障碍地图 Idea', '已确认的项目介绍 v2'],
-      missing: ['缺：本次参赛简介', '待更新：本届签字名单'],
-      caution: '往届获奖成果本次不能重复申报（通知 § 5）。',
-      next: '看看已有材料怎么用',
-      memories: [
-        ['校园无障碍地图', '社会服务赛道相关', 'match'],
-        ['往届获奖成果', '本次不能重复申报', 'caution'],
-        ['想找教育方向实习', '与本次竞赛无直接关联', 'idle'],
-        ['项目介绍 v2', '已有内容可用于起草', 'match'],
-      ],
-    },
-    scholarship: {
-      notice: '本年度奖学金申报', detail: ['成绩与综合测评条件', '核对相关支撑材料'],
-      title: ['你留下的获奖记录，', '连到了新的申请。'],
-      reason: '竞赛获奖经历可作为这次申请的支撑线索；成绩排名 6 / 120 符合示例的成绩条件。',
-      evidence: '依据：获奖记录、成绩单 × 通知 § 2',
-      ready: ['学年成绩单 · 6 / 120', '已关联的竞赛获奖证书'],
-      missing: ['缺：综合测评排名证明', '待核实：证书认定范围'],
-      caution: '证书已关联不等于本次可用；综测排名仍需确认。',
-      next: '看看材料如何核对',
-      memories: [
-        ['校园无障碍地图', '不直接证明申请条件', 'idle'],
-        ['竞赛获奖记录', '关联支撑材料，范围待核', 'match'],
-        ['想找教育方向实习', '与本次申请无直接关联', 'idle'],
-        ['学年成绩单', '已知排名 6 / 120', 'match'],
-      ],
-    },
-    internship: {
-      notice: '教育科技公司实习', detail: ['产品与教研方向', '需求调研与用户反馈'],
-      title: ['你说过的求职意向，', '遇到了相关的岗位。'],
-      reason: '你想找教育方向实习；岗位包含需求调研，与你已有的校园产品调研经历相连。',
-      evidence: '依据：已确认意向、项目经历 × 岗位职责',
-      ready: ['教育方向求职意向', '校园产品调研经历'],
-      missing: ['待更新：岗位版简历', '待确认：到岗时间与时长'],
-      caution: '经历匹配只是线索；是否投递仍由你决定。',
-      next: '继续探索完整 Demo',
-      memories: [
-        ['校园无障碍地图', '可回看项目调研过程', 'match'],
-        ['往届获奖成果', '奖项不直接代表岗位匹配', 'idle'],
-        ['想找教育方向实习', '与你确认过的意向相关', 'match'],
-        ['校园产品调研经历', '对应岗位的需求调研职责', 'match'],
-      ],
-    },
-  };
+  // 与原文回溯、按需询问和产物共用同一份合成示例，避免场景口径漂移。
+  const examples = window.fileactionPitchExamples;
+  const duration = 5200;
   let paused = document.documentElement.classList.contains('motion-paused');
-  let start = 0;
-  let travel = 1300;
   let progress = 0;
+  let elapsed = 0;
+  let lastTick = null;
+  let visible = false;
   let drawFrame = 0;
+  let visibilityFrame = 0;
   let measureFrame = 0;
   let lastDrawn = -1;
   let mapShift = 0;
-  let activeKey = 'competition';
 
   function lines(element, values) {
     element.replaceChildren();
@@ -99,7 +52,10 @@
   }
   function selectExample(key) {
     if (!examples[key]) return;
-    activeKey = key;
+    stopPlayback();
+    // 主动切换不应被全局暂停挡住；暂停时直接呈现所选场景。
+    elapsed = reduced.matches || paused ? duration : 0;
+    progress = reduced.matches || paused ? 1 : 0;
     const data = examples[key];
     scene.dataset.radarCase = key;
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.radarCase === key)));
@@ -111,8 +67,8 @@
     list(scene.querySelector('#radar-ready'), data.ready);
     list(scene.querySelector('#radar-missing'), data.missing);
     scene.querySelector('#radar-caution').textContent = data.caution;
-    next.setAttribute('href', key === 'internship' ? '#closing' : '#trusted-reuse');
-    next.replaceChildren(document.createTextNode(`${data.next} `));
+    next.setAttribute('href', '#trusted-reuse');
+    next.replaceChildren(document.createTextNode('看看如何继续行动 '));
     const arrow = document.createElement('span');
     arrow.setAttribute('aria-hidden', 'true');
     arrow.textContent = '↗';
@@ -125,12 +81,10 @@
       links[index].dataset.relevance = relevance;
     });
     measure();
+    document.dispatchEvent(new CustomEvent('pitchscenariochange', { detail: { key } }));
   }
 
   function draw(force = false) {
-    drawFrame = 0;
-    if (reduced.matches) progress = 1;
-    else if (!paused) progress = clamp((window.scrollY - start) / travel);
     if (!force && Math.abs(progress - lastDrawn) < .00001) return;
     lastDrawn = progress;
     const arrival = phase(progress, 0, .18);
@@ -172,14 +126,15 @@
       row.style.visibility = shown === 0 ? 'hidden' : 'visible';
     });
     next.inert = !reduced.matches && progress < .96;
-    scene.querySelector('.radar-notice-status').textContent = progress < .18 ? '新通知进入 · 滚动演示' : progress < .55 ? '正在唤起已有背景' : '关联线索已展开';
+    scene.querySelector('.pitch-source-button').inert = !reduced.matches && progress < .96;
+    scene.querySelector('.radar-notice-status').textContent = progress < .18 ? '读要求与限制 · 示意' : progress < .55 ? '联系已确认背景' : '与你有关的解读已展开';
     const current = progress < .18 ? 0 : progress < .64 ? 1 : 2;
     steps.forEach((step, index) => {
       step.classList.toggle('is-current', current === index);
       if (current === index) step.setAttribute('aria-current', 'step');
       else step.removeAttribute('aria-current');
     });
-    scene.querySelector('.radar-scroll-hint').textContent = reduced.matches ? '从你的角度，发现新的可能' : progress > .95 ? '机会已展开，继续向下探索 ↓' : '向下滚动，让关联一点点亮起 ↓';
+    scene.querySelector('.radar-scroll-hint').textContent = reduced.matches ? '先看与你有关的内容，再由你决定下一步' : progress === 1 ? '点击场景可重播，或展开依据核对 ↓' : '自动演示中，让关联一点点亮起';
     scene.style.setProperty('--radar-progress', progress.toFixed(4));
     scene.dataset.radarProgress = progress.toFixed(4);
     scene.dataset.radarPhase = ['arrival', 'connecting', 'opportunity'][current];
@@ -209,16 +164,52 @@
       const d = `M${x1},${y1} Q${(x1 + x2) / 2 + bend},${(y1 + y2) / 2} ${x2},${y2}`;
       links[index].querySelectorAll('path').forEach(path => path.setAttribute('d', d));
     });
-    const heightOfPanel = panel.offsetHeight;
-    const lead = Math.max(0, heightOfPanel - available);
-    start = scene.getBoundingClientRect().top + window.scrollY + lead - header;
-    travel = Math.round(Math.max(1000, Math.min(1700, available * 1.8)));
-    scene.style.setProperty('--radar-pin-top', `${header - lead}px`);
-    scene.style.setProperty('--radar-scene-height', `${heightOfPanel + travel}px`);
     draw(true);
+    updateVisibility();
   }
-  function queueDraw() {
-    if (!drawFrame && !paused && !document.hidden) drawFrame = requestAnimationFrame(() => draw());
+  function stopPlayback() {
+    cancelAnimationFrame(drawFrame);
+    drawFrame = 0;
+    lastTick = null;
+  }
+  function canPlay() {
+    return visible && !paused && !reduced.matches && !document.hidden && !document.querySelector('#pitch-evidence-dialog[open]') && progress < 1;
+  }
+  function tick(now) {
+    drawFrame = 0;
+    if (!canPlay()) { syncPlayback(); return; }
+    if (lastTick !== null) elapsed += now - lastTick;
+    lastTick = now;
+    progress = clamp(elapsed / duration);
+    draw();
+    if (progress < 1) drawFrame = requestAnimationFrame(tick);
+    else { lastTick = null; scene.dataset.radarPlayback = 'complete'; }
+  }
+  function syncPlayback() {
+    if (reduced.matches) {
+      stopPlayback();
+      elapsed = duration;
+      progress = 1;
+      draw(true);
+      scene.dataset.radarPlayback = 'static';
+    } else if (canPlay()) {
+      scene.dataset.radarPlayback = 'playing';
+      if (!drawFrame) drawFrame = requestAnimationFrame(tick);
+    } else {
+      stopPlayback();
+      scene.dataset.radarPlayback = progress === 1 ? 'complete' : paused || document.hidden ? 'paused' : 'waiting';
+    }
+  }
+  function updateVisibility() {
+    visibilityFrame = 0;
+    const rect = stage.getBoundingClientRect();
+    const header = document.querySelector('.nav-wrap').getBoundingClientRect().bottom;
+    // 画板刚露出一小段就开播；滚动仅判断可见性，不控制时间线。
+    visible = Math.min(rect.bottom, innerHeight) - Math.max(rect.top, header) >= Math.min(96, rect.height * .2);
+    syncPlayback();
+  }
+  function queueVisibility() {
+    if (!visibilityFrame) visibilityFrame = requestAnimationFrame(updateVisibility);
   }
   function queueMeasure() {
     if (!measureFrame) measureFrame = requestAnimationFrame(measure);
@@ -226,7 +217,7 @@
   buttons.forEach((button, index) => {
     button.disabled = false;
     button.addEventListener('click', () => {
-      if (button.dataset.radarCase !== activeKey) selectExample(button.dataset.radarCase);
+      selectExample(button.dataset.radarCase);
     });
     button.addEventListener('keydown', event => {
       const delta = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
@@ -237,23 +228,23 @@
       selectExample(buttons[target].dataset.radarCase);
     });
   });
-  window.addEventListener('scroll', queueDraw, { passive: true });
+  window.addEventListener('scroll', queueVisibility, { passive: true });
   window.addEventListener('resize', queueMeasure, { passive: true });
   window.addEventListener('pageshow', queueMeasure);
   reduced.addEventListener('change', queueMeasure);
   document.addEventListener('motionpreferencechange', event => {
     paused = event.detail.paused;
-    if (paused) { cancelAnimationFrame(drawFrame); drawFrame = 0; }
-    else queueDraw();
+    syncPlayback();
   });
+  document.addEventListener('pitchdialogchange', syncPlayback);
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { cancelAnimationFrame(drawFrame); drawFrame = 0; }
-    else queueMeasure();
+    syncPlayback();
+    if (!document.hidden) queueMeasure();
   });
   if ('ResizeObserver' in window) {
     const observer = new ResizeObserver(queueMeasure);
     [panel, result, scene.querySelector('.radar-cases'), document.querySelector('.organize-scene'), document.querySelector('.hero-scroll'), document.querySelector('.nav-wrap')].forEach(element => { if (element) observer.observe(element); });
   }
-  selectExample('competition');
+  selectExample('scholarship');
   document.fonts?.ready.then(queueMeasure);
 })();

@@ -51,6 +51,9 @@
       const scale = item.scale + (1 - item.scale) * ease + lift * .025;
       cards[index].style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${angle.toFixed(3)}deg) scale(${scale.toFixed(4)})`;
       cards[index].style.setProperty('--settled', clamp((local - .88) / .12).toFixed(3));
+      const focus = cards[index].dataset.readingFocus === 'true';
+      cards[index].style.opacity = focus ? '1' : (1 - ease * .46).toFixed(3);
+      cards[index].style.setProperty('--reading-focus', focus ? ease.toFixed(3) : '0');
       const titleProgress = smooth(clamp((local - .12) / .35));
       cards[index].style.setProperty('--title-shift', `${((1 - titleProgress) * 28).toFixed(2)}px`);
       insights[index].forEach((row, rowIndex) => {
@@ -68,9 +71,9 @@
     scene.dataset.organizeProgress = progress.toFixed(4);
     const phase = progress < .1 ? 'scattered' : settled === cards.length ? 'ordered' : 'arranging';
     scene.dataset.organizeState = phase;
-    status.textContent = phase === 'scattered' ? '只有文件名，还不知道与你的关系' : phase === 'ordered' ? '关联有依据，行动有起点' : '读出关联 · 核对依据 · 明确下一步';
-    count.textContent = `${String(settled).padStart(2, '0')} / ${cards.length}`;
-    hint.textContent = reduced.matches ? '每份文件，都从你的角度读一遍' : phase === 'ordered' ? '看懂与你的关系，再往前一步 ↓' : '继续下滑，让文件里的下一步浮现 ↓';
+    status.textContent = phase === 'scattered' ? '常见通知与方案，先交给文启' : phase === 'ordered' ? '重点示意四类文件，其余仍可回查' : '联系相关背景，阅读重点逐渐浮现';
+    count.textContent = phase === 'ordered' ? '4 类重点' : '12 类文件';
+    hint.textContent = reduced.matches ? '每份文件，都从你的角度理解' : phase === 'ordered' ? '为什么与你有关？继续看具体解读 ↓' : '继续下滑，看阅读重点浮现 ↓';
   }
 
   function measure() {

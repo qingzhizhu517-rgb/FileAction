@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFDF8">
+  <meta name="description" content="收到文件，先交给文启。结合已确认背景，讲清楚哪些内容与你有关、为什么值得关注，再由你选择是否准备可编辑的具体产物。">
+  <title>文启 FileAction — 收到文件，先交给文启</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23F6C945'/%3E%3Cpath d='M17 16h23v9H26v23h-9zm17 15h13v17H34z' fill='%232B2B2B'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="file-scroll.css">
+  <link rel="stylesheet" href="interactions.css">
+  <link rel="stylesheet" href="file-organize.css">
+  <link rel="stylesheet" href="opportunity-radar.css">
+  <link rel="stylesheet" href="trusted-reuse.css">
+  <link rel="stylesheet" href="pitch-flow.css">
+  <script src="pitch-examples.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="motion.js" defer></script>
+  <script src="file-scroll.js" defer></script>
+  <script src="interactions.js" defer></script>
+  <script src="file-organize.js" defer></script>
+  <script src="opportunity-radar.js" defer></script>
+  <script src="pitch-flow.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 18 18 6H7m11 0v11"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8l-5-5Zm0 0v5h5M8 12h8m-8 4h6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Zm7 0v4m-2-2h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13 4-4m-7 6-2 2a4 4 0 0 0 6 6l3-3m-3-11 2-2a4 4 0 0 1 6 6l-3 3" transform="translate(0 -2)"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7V5Z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 15v5h16v-5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#" aria-label="文启 FileAction 首页">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 5h17v7H12v15H5zM17 17h10v10H17z" fill="currentColor"/></svg></span>
+        <span>文启<span class="brand-en">FileAction</span></span>
+      </a>
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="#file-order">阅读重点</a><a href="#opportunity-radar">与你有关</a><a href="#trusted-reuse">选择行动</a><a href="#closing">预设体验</a>
+      </nav>
+      <div class="nav-actions"><a class="button button-small" href="#closing">探索 Demo <svg class="icon"><use href="#i-up"/></svg></a><button class="menu-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button></div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden><a href="#file-order">阅读重点</a><a href="#opportunity-radar">与你有关</a><a href="#trusted-reuse">选择行动</a><a href="#closing">预设体验</a></nav>
+  </header>
+
+  <main id="main">
+    <div class="hero-scroll">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <canvas class="hero-typefield" aria-hidden="true"></canvas>
+      <canvas class="hero-particles" aria-hidden="true"></canvas>
+      <div class="hero-aurora" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <a class="announcement" href="#opportunity-radar"><span class="status-dot"></span>从文件，开启新的可能<span class="announcement-divider"></span><span>探索文启</span><svg class="icon"><use href="#i-arrow"/></svg></a>
+        <p class="eyebrow hero-eyebrow">ONE FILE. WHAT IT MEANS TO YOU.</p>
+        <h1 id="hero-title">收到文件，<br>先交给<span class="marked">文启<svg viewBox="0 0 380 22" preserveAspectRatio="none" aria-hidden="true"><path d="M5 15Q174-1 372 11M25 21Q198 8 349 17"/></svg></span>。</h1>
+        <p class="hero-description">先看看，这份文件对当下的你意味着什么。<br>少一点通读、筛选和反复解释，多一点与你有关的理解。</p>
+        <div class="hero-actions"><a class="button" href="#opportunity-radar">试读一份示例<svg class="icon"><use href="#i-arrow"/></svg></a><a class="button button-outline" href="#file-order"><svg class="icon play-icon"><use href="#i-play"/></svg>看看如何理解</a></div>
+        <p class="hero-note">以文件为入口的个人行动助手 · 不必先填完整资料表</p>
+      </div>
+
+      <div class="hero-art file-array" aria-hidden="true">
+        <div class="art-glow"></div>
+        <div class="file-array-track">
+          <div class="file-slot" style="--file-angle:-12deg; --file-y:26px; --file-delay:0ms">
+            <div class="file-float"><div class="file-sheet"><div class="file-face"><span class="file-fold"></span><div class="file-meta"><svg class="icon"><use href="#i-file"/></svg><span>PDF</span></div><strong>奖学金通知</strong><small>哪些条件与你有关</small><div class="file-text-lines"><i></i><i></i><i></i></div><span class="file-label">先交给文启 ↗</span></div></div><div class="file-erase-edge"></div></div>
+          </div>
+          <div class="file-slot" style="--file-angle:-8deg; --file-y:1px; --file-delay:80ms">
+            <div class="file-float"><div class="file-sheet"><div class="file-face"><span class="file-fold"></span><div class="file-meta"><svg class="icon"><use href="#i-file"/></svg><span>DOCX</span></div><strong>项目经历</strong><small>已确认的相关背景</small><div class="file-text-lines"><i></i><i></i><i></i></div><span class="file-label">理解你的起点</span></div></div><div class="file-erase-edge"></div></div>
+          </div>
+          <div class="file-slot" style="--file-angle:-4deg; --file-y:-14px; --file-delay:160ms">
+            <div class="file-float"><div class="file-sheet"><div class="file-face"><span class="file-fold"></span><div class="file-meta"><svg class="icon"><use href="#i-file"/></svg><span>PDF</span></div><strong>申报指南</strong><small>联系正在推进的研究</small><div class="file-seal">✳</div><span class="file-label">为什么值得关注</span></div></div><div class="file-erase-edge"></div></div>
+          </div>
+          <div class="file-slot file-slot-featured" style="--file-angle:0deg; --file-y:-24px; --file-delay:240ms">
+            <div class="file-float"><div class="file-sheet"><div class="file-face"><span class="file-fold"></span><div class="file-meta"><svg class="icon"><use href="#i-spark"/></svg><span>YOU</span></div><strong>与你有关</strong><small>不是给所有人的摘要</small><div class="file-idea">✳</div><span class="file-label">读出对你的意义</span></div></div><div class="file-erase-edge"></div></div>
+          </div>
+          <div class="file-slot" style="--file-angle:4deg; --file-y:-14px; --file-delay:320ms">
+            <div class="file-float"><div class="file-sheet"><div class="file-face"><span class="file-fold"></span><div class="file-meta"><svg class="icon"><use href="#i-file"/></svg><span>PDF</span></div><strong>合作方案</strong><small>对照当前项目读重点</small><div class="file-text-lines"><i></i><i></i><i></i></div><span class="file-label">哪些问题需要问</span></div></div><div class="file-erase-edge"></div></div>
+          </div>
+          <div class="file-slot" style="--file-angle:8deg; --file-y:1px; --file-delay:400ms">
+            <div class="file-float"><div class="file-sheet"><div class="file-face"><span class="file-fold"></span><div class="file-meta"><svg class="icon"><use href="#i-file"/></svg><span>NOTE</span></div><strong>本次积累</strong><small>形成于这次阅读与交流</small><div class="file-text-lines"><i></i><i></i><i></i></div><span class="file-label">修改、保留，由你决定</span></div></div><div class="file-erase-edge"></div></div>
+          </div>
+          <div class="file-slot" style="--file-angle:12deg; --file-y:26px; --file-delay:480ms">
+            <div class="file-float"><div class="file-sheet"><div class="file-face"><span class="file-fold"></span><div class="file-meta"><svg class="icon"><use href="#i-check"/></svg><span>DRAFT</span></div><strong>可编辑产物</strong><small>理解之后，再选择行动</small><div class="file-checks"><span>□ 申请陈述草稿</span><span>□ 待核实的问题</span><span>□ 合作讨论提纲</span></div><span class="file-label">由你确认后再继续</span></div></div><div class="file-erase-edge"></div></div>
+          </div>
+        </div>
+        <span class="art-coordinate">文件入口 → 相关背景 → 对你的意义 · 合成示例</span>
+      </div>
+      <div class="hero-bottom"><span>让信息有意义，让行动有起点。</span><a href="#file-order">向下滚动，开启下一页 <span>↓</span></a><span class="edition">FILEACTION / CONCEPT 01</span></div>
+    </section>
+    </div>
+
+    <div class="page-surface">
+    <section class="organize-scene" id="file-order" aria-labelledby="organize-title">
+      <div class="organize-sticky">
+        <div class="organize-heading">
+          <p class="eyebrow">02 / LESS SIFTING. MORE MEANING.</p>
+          <h2 id="organize-title">不必先通读一遍，<br><span>再找与你有关的几处。</span></h2>
+          <p>一份奖学金通知 × 已确认的项目经历 · 把阅读重点，先讲给你听。</p>
+        </div>
+        <div class="organize-board">
+          <div class="organize-board-label" aria-hidden="true"><span>ONE NOTICE / YOUR READING FOCUS</span><span>12 EXCERPTS · 合成</span></div>
+          <ul class="organize-grid" aria-label="一份合成通知的十二处内容，重点关联四处">
+            <li class="organize-slot"><div class="organize-card" data-reading-focus="true"><span class="organize-fold" aria-hidden="true"></span><strong>成绩要求</strong><div class="organize-insights"><p class="organize-insight"><span>文件明确</span><b>成绩条件须核对</b></p><p class="organize-insight"><span>对你意味着</span><b>对照本人成绩</b></p><p class="organize-insight"><span>阅读重点</span><b>不能代替综测</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card organize-card-yellow" data-reading-focus="true"><span class="organize-fold" aria-hidden="true"></span><strong>项目成果</strong><div class="organize-insights"><p class="organize-insight"><span>已确认背景</span><b>完成校园调研</b></p><p class="organize-insight"><span>与你的关联</span><b>可能作为支撑</b></p><p class="organize-insight"><span>尚待核实</span><b>本次认定范围</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card" data-reading-focus="true"><span class="organize-fold" aria-hidden="true"></span><strong>综合测评</strong><div class="organize-insights"><p class="organize-insight"><span>文件明确</span><b>综测单独核对</b></p><p class="organize-insight"><span>缺少信息</span><b>排名尚未提供</b></p><p class="organize-insight"><span>按需询问</span><b>可补充或跳过</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card organize-card-soft" data-reading-focus="true"><span class="organize-fold" aria-hidden="true"></span><strong>申请陈述</strong><div class="organize-insights"><p class="organize-insight"><span>如果想继续</span><b>先准备一份草稿</b></p><p class="organize-insight"><span>沿用背景</span><b>不必重新解释</b></p><p class="organize-insight"><span>决定在你</span><b>也可以只了解</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card"><span class="organize-fold" aria-hidden="true"></span><strong>通知前言</strong><div class="organize-insights"><p class="organize-insight"><span>原文内容</span><b>评审背景介绍</b></p><p class="organize-insight"><span>当前阅读</span><b>暂不作为重点</b></p><p class="organize-insight"><span>原文保留</span><b>需要时再回查</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card"><span class="organize-fold" aria-hidden="true"></span><strong>目录索引</strong><div class="organize-insights"><p class="organize-insight"><span>原文内容</span><b>章节位置导航</b></p><p class="organize-insight"><span>当前阅读</span><b>暂不作为重点</b></p><p class="organize-insight"><span>原文保留</span><b>需要时再回查</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card"><span class="organize-fold" aria-hidden="true"></span><strong>名词解释</strong><div class="organize-insights"><p class="organize-insight"><span>原文内容</span><b>评审用语说明</b></p><p class="organize-insight"><span>当前阅读</span><b>暂不作为重点</b></p><p class="organize-insight"><span>原文保留</span><b>需要时再回查</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card"><span class="organize-fold" aria-hidden="true"></span><strong>机构介绍</strong><div class="organize-insights"><p class="organize-insight"><span>原文内容</span><b>相关部门介绍</b></p><p class="organize-insight"><span>当前阅读</span><b>暂不作为重点</b></p><p class="organize-insight"><span>原文保留</span><b>需要时再回查</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card"><span class="organize-fold" aria-hidden="true"></span><strong>格式说明</strong><div class="organize-insights"><p class="organize-insight"><span>原文内容</span><b>排版格式提示</b></p><p class="organize-insight"><span>当前阅读</span><b>准备时再细看</b></p><p class="organize-insight"><span>原文保留</span><b>不是忽略要求</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card"><span class="organize-fold" aria-hidden="true"></span><strong>附件索引</strong><div class="organize-insights"><p class="organize-insight"><span>原文内容</span><b>配套材料目录</b></p><p class="organize-insight"><span>当前阅读</span><b>准备时再细看</b></p><p class="organize-insight"><span>原文保留</span><b>需要时再回查</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card"><span class="organize-fold" aria-hidden="true"></span><strong>通知落款</strong><div class="organize-insights"><p class="organize-insight"><span>原文内容</span><b>发布主体信息</b></p><p class="organize-insight"><span>当前阅读</span><b>保留来源线索</b></p><p class="organize-insight"><span>原文保留</span><b>需要时再回查</b></p></div></div></li>
+            <li class="organize-slot"><div class="organize-card"><span class="organize-fold" aria-hidden="true"></span><strong>咨询信息</strong><div class="organize-insights"><p class="organize-insight"><span>原文内容</span><b>问题咨询渠道</b></p><p class="organize-insight"><span>当前阅读</span><b>待核实时参考</b></p><p class="organize-insight"><span>原文保留</span><b>需要时再回查</b></p></div></div></li>
+          </ul>
+          <div class="organize-board-bottom" aria-hidden="true"><span class="organize-status">先看与你有关的四处，其余仍可回查</span><span class="organize-count">4 处重点</span></div>
+        </div>
+        <div class="organize-caption">
+          <div class="organize-progress" aria-hidden="true"><span>逐段筛选</span><i><b></b></i><span>阅读重点</span></div>
+          <p><span class="organize-scroll-hint">每份文件，都从你的角度读一遍</span><span class="organize-disclosure">预设合成解读 · 未接入模型</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="opportunity-scene" id="opportunity-radar" aria-labelledby="opportunity-title">
+      <div class="opportunity-sticky">
+        <div class="opportunity-heading"><p class="eyebrow">03 / YOUR CONTEXT. YOUR READING.</p><h2 id="opportunity-title">不只说文件写了什么，<br><span>更解释为什么与你有关。</span></h2><p>文件要求 × 已确认背景 → 你的阅读重点。<br class="radar-mobile-break">分清原文、关联判断与未知，再由你核对。</p></div>
+        <div class="radar-cases" role="group" aria-label="切换路演中的三类阅读场景"><button type="button" data-radar-case="scholarship" aria-pressed="true" disabled>学生 · 奖学金</button><button type="button" data-radar-case="research" aria-pressed="false" disabled>教师 · 申报</button><button type="button" data-radar-case="business" aria-pressed="false" disabled>业务 · 合作</button></div>
+        <div class="radar-stage">
+          <div class="radar-map" aria-label="文件要求、已确认背景、未知与阅读意图的关联示意">
+            <div class="radar-grid" aria-hidden="true"></div>
+            <div class="radar-orbits" aria-hidden="true"><i></i><i></i><i></i><span class="radar-sweep"></span></div>
+            <svg class="radar-links" aria-hidden="true"><g data-radar-line="idea"><path class="radar-wire"/><path class="radar-energy" pathLength="100"/></g><g data-radar-line="award"><path class="radar-wire"/><path class="radar-energy" pathLength="100"/></g><g data-radar-line="intent"><path class="radar-wire"/><path class="radar-energy" pathLength="100"/></g><g data-radar-line="material"><path class="radar-wire"/><path class="radar-energy" pathLength="100"/></g></svg>
+            <article class="radar-notice"><div class="radar-notice-top"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><span>收到的文件 · 合成</span></div><h3 id="radar-notice-title">本年度奖学金通知</h3><p id="radar-notice-detail">成绩、综测与项目成果<br>哪些条件需要你注意？</p><span class="radar-notice-status">关联线索已展开</span><i class="radar-scan" aria-hidden="true"></i></article>
+            <div class="radar-memory" data-radar-memory="idea" data-relevance="match"><span class="radar-memory-kind">01 文件明确写的</span><strong>通知 § 2 / § 3</strong><small>先分清要求与限制</small><i aria-hidden="true"></i></div>
+            <div class="radar-memory" data-radar-memory="award" data-relevance="match"><span class="radar-memory-kind">02 你确认的背景</span><strong>已完成校园调研项目</strong><small>本人确认过的经历</small><i aria-hidden="true"></i></div>
+            <div class="radar-memory" data-radar-memory="intent" data-relevance="caution"><span class="radar-memory-kind">03 还不能确定的</span><strong>综测排名尚未提供</strong><small>不从成绩推断综测</small><i aria-hidden="true"></i></div>
+            <div class="radar-memory" data-radar-memory="material" data-relevance="match"><span class="radar-memory-kind">04 当下想了解的</span><strong>了解是否值得申请</strong><small>是否继续由你决定</small><i aria-hidden="true"></i></div>
+            <p class="radar-map-caption">把文件里的要求，放到你的背景中理解。</p>
+          </div>
+          <article class="radar-result" aria-labelledby="radar-result-title">
+            <div class="radar-result-top"><span>✳ 对当下的你意味着什么</span><span>关联判断 · 可核对</span></div>
+            <h3 id="radar-result-title">刚完成的项目，<br>可能与这次申请有关。</h3>
+            <div class="radar-result-row radar-reason"><span class="radar-row-label">结合已确认背景的解读</span><p id="radar-reason">你已完成校园调研项目。通知允许提供项目成果作为支撑线索，但综测条件和成果认定仍要分别确认。</p><small id="radar-evidence">合成依据：通知 § 2、§ 3 × 已确认项目经历</small></div>
+            <div class="radar-material-columns"><div class="radar-result-row"><span class="radar-row-label">文件明确写的</span><ul id="radar-ready"><li>成绩与综测条件须分别核对</li><li>项目成果可作为支撑线索</li></ul></div><div class="radar-result-row"><span class="radar-row-label">还不能确定的</span><ul id="radar-missing"><li>综合测评排名尚未提供</li><li>项目成果是否获认可待确认</li></ul></div></div>
+            <p class="radar-result-row radar-caution" id="radar-caution">有关联，不等于已经符合全部申请条件。</p>
+            <div class="radar-result-row radar-actions"><button type="button" class="pitch-source-button" disabled>展开依据与相关背景 ↗</button><a class="radar-next" href="#trusted-reuse">由我选择下一步 <span aria-hidden="true">↓</span></a></div>
+            <p class="radar-result-row pitch-evidence-hint">展开后可按需补充、修改本次笔记，并决定是否保留。</p>
+          </article>
+        </div>
+        <div class="radar-footer"><ol class="radar-steps" aria-label="个性化解读过程"><li data-radar-step="0"><span>01</span>读要求与限制</li><li data-radar-step="1"><span>02</span>联系已确认背景</li><li data-radar-step="2"><span>03</span>解释与你的关系</li></ol><div class="radar-progress" aria-hidden="true"><i></i></div><p><span class="radar-scroll-hint">继续向下探索 ↓</span><span>预设合成示例 · 未上传文件或调用模型</span></p></div>
+      </div>
+      <noscript><details class="trust-source-archive"><summary>查看奖学金示例的原文与相关背景</summary><article><h3>合成通知 · § 2 / § 3</h3><div class="trust-source-pair"><section class="trust-source-paper"><h4>文件明确写的</h4><p>学习成绩与综合测评条件需分别核对。申请人可提供项目成果作为支撑材料，具体认定范围以本次评审要求为准。</p></section><section class="trust-source-paper"><h4>已确认的相关背景</h4><p>示例中，你确认已完成校园调研项目，并希望了解该成果是否可能用于本次申请。</p></section></div><p class="trust-source-conclusion">当前没有综合测评排名，也没有项目成果的本次认定结果，因此不能判断申请资格已通过。</p><p>启用 JavaScript 后，可体验按需补充信息、修改笔记，并决定是否保留。</p></article></details></noscript>
+    </section>
+
+    <section class="trust-scene action-scene" id="trusted-reuse" aria-labelledby="trust-title">
+      <div class="trust-sticky">
+        <div class="trust-heading"><p class="eyebrow">04 / UNDERSTAND FIRST. ACT BY CHOICE.</p><h2 id="trust-title">读懂之后，是否继续，<br><span>由你决定。</span></h2><p>只想了解，到这里就好。想往前一步，<br class="trust-mobile-break">把刚确认的信息变成一份可以修改的产物。</p></div>
+        <div class="action-stage">
+          <div class="action-context"><span class="action-eyebrow">承接刚才的解读</span><label for="action-case">当前示例</label><select id="action-case" disabled><option value="scholarship">学生 · 奖学金</option><option value="research">教师 · 申报指南</option><option value="business">业务负责人 · 合作方案</option></select><h3 id="action-context-title">刚完成的项目，可能与这次申请有关。</h3><p id="action-context-copy">已完成校园调研项目；综测排名与成果认定仍需核实。</p><span class="action-context-tag">沿用已确认背景，不必重新解释</span><div class="action-note-preview" hidden><span>你选择保留的本次积累</span><p></p></div></div>
+          <div class="action-bridge" aria-hidden="true"><span></span><b>→</b><span></span></div>
+          <div class="action-decision"><span class="action-eyebrow">你的选择，才是下一步的起点</span><h3>现在，你想怎么继续？</h3><p>理解与行动之间，留一个选择。</p><div class="action-choice-buttons"><button id="action-stop" type="button" disabled>只想了解，先到这里</button><button id="action-go" type="button" disabled>继续，准备一份产物 ↗</button></div><p id="action-choice-status" role="status">尚未生成产物，也没有对外发送。</p></div>
+        </div>
+        <div class="action-workspace" hidden>
+          <div class="action-output-top"><div><span class="action-eyebrow">从意义，到可以推进的东西</span><h3 id="action-output-title">申请陈述草稿</h3></div><span class="action-draft-badge">初稿 · 待你确认</span></div>
+          <div class="action-output-tabs" role="group" aria-label="选择产物类型"><button type="button" data-artifact="draft" aria-pressed="true">申请陈述草稿</button><button type="button" data-artifact="questions" aria-pressed="false">核实问题</button><button type="button" data-artifact="checklist" aria-pressed="false">材料清单</button></div>
+          <label for="action-editor">直接编辑这份示例产物</label><textarea id="action-editor" rows="9" spellcheck="false" maxlength="12000"></textarea>
+          <div class="action-output-footer"><button id="action-download" type="button">下载当前编辑内容 ↓</button><p>重要决定与对外发送仍由你确认。本页只在本机准备文本。</p></div><p id="action-save-status" role="status">改动仅保留在本次页面会话中。</p>
+        </div>
+        <button id="action-replay" class="action-replay" type="button" hidden>重播解读 → 选择动效 ↻</button>
+        <p class="action-disclosure">预设合成示例 · 动效不代表模型生成 · 文字可编辑，不自动提交或发送</p>
+        <noscript><p class="action-disclosure">启用 JavaScript 后可体验选择与编辑。你也可以只阅读，到这里结束。</p></noscript>
+      </div>
+    </section>
+
+    <section class="closing-section" id="closing" aria-labelledby="closing-title" tabindex="-1"><div class="closing-orbit" aria-hidden="true"></div><div class="closing-content reveal"><span class="closing-star" aria-hidden="true">✳</span><p class="eyebrow">YOUR FILE. YOUR MEANING. YOUR NEXT MOVE.</p><h2 id="closing-title">收到文件，<br>先交给文启。</h2><p>不必每次从头阅读、筛选，<br>也不必每次从头介绍自己。</p><div class="pitch-roadmap"><span>当前路径 · 个人端 MVP 验证</span><span>未来探索 · 团队协作与企业级应用</span></div><a class="button button-dark" href="../05-交互Demo/可行动事务Agent-文启高保真Demo.html">打开预设交互体验<svg class="icon"><use href="#i-up"/></svg></a><span class="closing-note" id="demo-disclosure">本宣传页为合成交互示意 · 无真实上传或模型调用 · 示例不限定产品身份与文件类型</span></div></section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="footer-top"><a class="brand" href="#"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 5h17v7H12v15H5zM17 17h10v10H17z" fill="currentColor"/></svg></span><span>文启<span class="brand-en">FileAction</span></span></a><span>理解文件对你的意义，再由你选择行动。</span><a href="#main">回到顶部 ↑</a></div><div class="footer-bottom"><span>© 2026 文启 FileAction · 项目概念宣传页</span><span>文件 → 与我有关 → 选择行动</span><a href="#demo-disclosure">演示说明</a></div></footer>
+</body>
+</html>

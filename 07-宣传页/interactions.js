@@ -40,13 +40,13 @@
   const track = document.querySelector('.file-array-track');
   const slots = [...track.querySelectorAll('.file-slot')];
   const facts = [
-    ['competition', '这份竞赛通知，可能与你的旧想法有关。', '示例中，社会服务赛道与「校园无障碍地图」有关联。文启将通知里的机会与你确认过的构想放在一起看。', '先对照赛道和条件，再决定是否准备参赛。'],
-    ['competition', '已经写过的介绍，不必从头再写。', '示例项目介绍 v2 记录了项目方向和已有进展，是你确认过的背景。新事务需要材料时，可以先核对版本，再复用相关内容。', '用已确认内容起草新简介，修改后再由你确认。'],
-    ['scholarship', '一张证书，也是下一件事的线索。', '示例获奖记录可关联到奖学金准备，但奖项是否在本次认定范围内，仍需要对照通知确认。', '保留出处和使用记录，材料关联不等于资格通过。'],
-    ['competition', '想法先存着，机会来了再连接。', '「校园无障碍地图」是一个合成项目构想。之后遇到相关通知时，文启可以解释两者为什么有关，供你决定要不要继续。', '主动发现关联，把要不要行动的决定留给你。'],
-    ['internship', '同一份简章，从你的方向读。', '示例用户表达过想找教育方向的实习。产品岗位中的需求调研，与已有校园项目经历存在关联。', '先看看职责是否合适，也可以只是了解、暂不投递。'],
-    ['internship', '用确认过的经历，讲清楚你是谁。', '示例简历可以引用已有项目经历，再根据岗位补充相关细节。没有提供的成绩、数据和经历，不应被自动编造。', '按岗位整理匹配点，初稿由你检查和修改。'],
-    ['competition', '文件读完，下一步也清楚了。', '把需要更新的材料、待确认的条件和准备事项整理成清单。可以从页面底部进入完整交互 Demo，继续了解行动准备。', '准备清单不等于已报名，最后提交依然由你完成。'],
+    ['scholarship', '先看看通知对你意味着什么。', '合成示例将奖学金条件与你已完成的校园调研项目联系起来。哪些明确、哪些有关、哪些待确认，分开说清楚。', '可以先了解，不必立刻开始申请。'],
+    ['scholarship', '已确认背景，让解读更贴近你。', '项目经历是理解的依据，不意味着自动符合申请要求。展开关联判断时可以同时查看相关背景和原文。', '发现背景有误，可以修改并决定是否保留。'],
+    ['research', '申报指南，联系你的研究方向来读。', '合成教师场景将学习支持研究与指南方向相连，同时保留资格、限项和成果要求等未知。', '先列出值得进一步核实的问题。'],
+    ['scholarship', '不只是给所有人同一份摘要。', '文启要解释哪些内容与你有关、为什么值得关注、有哪些要求或限制。示例呈现这条理解路径。', '相关判断能回到原文与背景核对。'],
+    ['business', '合作方案，先对照当前项目。', '合成业务负责人场景关注用户调研需求与交付方案的关联，识别需向对方确认的边界和安排。', '理解后再决定是否准备合作讨论提纲。'],
+    ['scholarship', '这次阅读与交流，形成这次的积累。', '示例支持按需补充一条信息、修改本次笔记，并明确选择保留或不保留。不会要求先填完整档案。', '保留仅在本页会话中生效，刷新即清除。'],
+    ['scholarship', '把刚才的理解，带入下一步。', '沿用已确认的信息准备草稿、问题或清单，让你不必重新解释。下一屏展示从理解到行动的功能路径。', '重要决定与对外发送仍由你确认。'],
   ];
   let gathered = false;
   let previewIndex = 0;
@@ -107,7 +107,7 @@
     dialog.querySelector('.preview-copy').textContent = `${fact[1]} ${fact[2]}`;
     dialog.querySelector('.preview-insight > p').textContent = fact[3];
     dialog.querySelector('.preview-pager > span').textContent = `${String(previewIndex + 1).padStart(2, '0')} / 07`;
-    dialog.querySelector('.preview-explore').textContent = previewIndex === 6 ? '探索完整 Demo ↗' : [1, 2, 5].includes(previewIndex) ? '看看材料如何核对 ↗' : '探索机会发现 ↗';
+    dialog.querySelector('.preview-explore').textContent = previewIndex === 6 ? '看看如何继续行动 ↗' : '看看与你有关的解读 ↗';
     if (transition) animate(dialog.querySelector('.preview-content'), [{ opacity: .2, transform: 'translateX(15px)' }, { opacity: 1, transform: 'translateX(0)' }], { duration: 320, easing: 'ease-out' });
   }
   function openPreview(index, button) {
@@ -173,7 +173,7 @@
   dialog.querySelector('.preview-explore').addEventListener('click', () => {
     if (closing) return;
     finishAnimations();
-    const target = document.querySelector(previewIndex === 6 ? '#closing' : [1, 2, 5].includes(previewIndex) ? '#trusted-reuse' : '#opportunity-radar');
+    const target = document.querySelector(previewIndex === 6 ? '#trusted-reuse' : '#opportunity-radar');
     const tab = target.querySelector(`button[data-radar-case="${facts[previewIndex][0]}"]`);
     target.setAttribute('tabindex', '-1');
     focusAfterClose = tab || target;

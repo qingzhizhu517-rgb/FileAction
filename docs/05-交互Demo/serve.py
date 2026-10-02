@@ -12,7 +12,7 @@ class DemoHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         if urlsplit(self.path).path == '/':
             self.send_response(302)
-            self.send_header('Location', '/' + quote('docs/05-交互Demo') + '/index.html')
+            self.send_header('Location', '/' + quote('05-交互Demo') + '/index.html')
             self.end_headers()
             return
         super().do_GET()
@@ -27,7 +27,7 @@ def main():
     parser.add_argument('--port', type=int, default=8765)
     parser.add_argument('--no-browser', action='store_true')
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[2]
+    root = Path(__file__).resolve().parent.parent
     try:
         server = ThreadingHTTPServer(('127.0.0.1', args.port), partial(DemoHandler, directory=str(root)))
     except OSError as exc:

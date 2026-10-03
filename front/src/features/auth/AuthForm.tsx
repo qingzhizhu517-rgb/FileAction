@@ -168,7 +168,7 @@ export function AuthForm({
             {register ? "已有账号，返回登录" : "没有账号？创建账号"}
           </Link>
         </p>
-        <small>文件上传、云端保存与模型外发分别确认。</small>
+        <small>上传文件后开始阅读，发送给模型前会说明使用范围。</small>
       </section>
     </main>
   );

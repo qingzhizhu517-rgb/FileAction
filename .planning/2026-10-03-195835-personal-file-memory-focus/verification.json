@@ -1,0 +1,108 @@
+{
+  "verified_at": "2026-10-03T20:07:41.876426+08:00",
+  "tdd_before": "旧版本4项个人卡片、重点主次、来源筛选、移动端展开预期失败",
+  "browser_personal_memory": [
+    {
+      "name": "本文件沉淀仅展示本人信息，旧文件摘要和规则不混入",
+      "passed": true
+    },
+    {
+      "name": "与你有关优先突出，首轮长说明默认折叠且仍可查看",
+      "passed": true
+    },
+    {
+      "name": "个人卡片可修改并自动归档，新请求明确只整理本人信息",
+      "passed": true
+    },
+    {
+      "name": "个人重点、卡片和展开说明在手机上无溢出",
+      "passed": true
+    }
+  ],
+  "browser_feedback": [
+    {
+      "name": "关键信息原文打开可见出处",
+      "passed": true
+    },
+    {
+      "name": "阅读视角可回应，取消不发送或沉淀",
+      "passed": true
+    },
+    {
+      "name": "空回答不发送，填入答案后按用户情况继续",
+      "passed": true
+    },
+    {
+      "name": "个人判断优先展示，阅读要求实际发给模型",
+      "passed": true
+    },
+    {
+      "name": "移动端原文弹窗与回答框可完整操作",
+      "passed": true
+    }
+  ],
+  "browser_project_memory": [
+    {
+      "name": "右侧首个区域为当前项目沉淀，档案依据默认折叠",
+      "passed": true
+    },
+    {
+      "name": "不同项目卡片隔离，项目沉淀仍自动归入全局档案",
+      "passed": true
+    },
+    {
+      "name": "档案依据按需展开，切换项目重新折叠并展示对应卡片",
+      "passed": true
+    },
+    {
+      "name": "项目卡片修改、同文件多会话共享和刷新恢复",
+      "passed": true
+    },
+    {
+      "name": "手机宽度展示当前项目，无横向溢出，补充可取消",
+      "passed": true
+    }
+  ],
+  "workspace_browser": "完整合成流程全部通过：真实 HTTP 流式替身、编辑、原文、取消、导出、恢复与移动布局",
+  "unit_tests": {
+    "count": 83,
+    "passed": true,
+    "seconds": 3.778
+  },
+  "real_model": {
+    "model": "gpt-5.6-sol",
+    "passed": true,
+    "synthetic_data": true,
+    "first_text_seconds": 27.657,
+    "complete_seconds": 65.232,
+    "knowledge": [
+      {
+        "field": "role",
+        "value": "高校教师，负责向学生转发比赛通知，不打算自己参赛",
+        "kind": "user_fact"
+      }
+    ]
+  },
+  "services": [
+    {
+      "port": 8787,
+      "workspace_count": 2,
+      "personal_title_served": true
+    },
+    {
+      "port": 8788,
+      "workspace_count": 7,
+      "personal_title_served": true
+    }
+  ],
+  "checks": [
+    "git diff --check",
+    "node --check src/web/app.js"
+  ],
+  "limitations": [
+    "个人卡片筛选为前端展示规则，不删除旧文档档案和历史；后台来源校验仍保持原样",
+    "新增沉淀内容约束通过每次请求附带的阅读要求发给模型，真实gpt-5.6-sol合成验证返回user_fact教师身份卡片",
+    "未重启8787/8788后台，未重新发送用户实际文件或档案",
+    "真实COS未在本轮调用"
+  ]
+}

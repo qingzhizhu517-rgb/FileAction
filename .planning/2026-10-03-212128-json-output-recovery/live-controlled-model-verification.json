@@ -1,0 +1,8 @@
+{
+  "synthetic_input": true,
+  "real_model": "gpt-5.6-sol",
+  "passed": true,
+  "delta_events": 116,
+  "insights": 2,
+  "elapsed_seconds": 69.657
+}

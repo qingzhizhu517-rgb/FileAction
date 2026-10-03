@@ -1,0 +1,8 @@
+{
+  "originals": [
+    "src/web/app.js"
+  ],
+  "new_files": [
+    "tests/citation_retry_browser.cjs"
+  ]
+}

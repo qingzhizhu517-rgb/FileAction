@@ -1,0 +1,86 @@
+{
+  "recorded_at": "2026-10-03T17:36:09+08:00",
+  "backend_tests": {
+    "command": ".venv/bin/python -m unittest discover -s tests -v",
+    "passed": 83
+  },
+  "browser": {
+    "command": "NODE_PATH=<bundled node_modules> <bundled node> tests/workspace_browser.cjs",
+    "passed": true,
+    "model": "explicit synthetic HTTP substitute",
+    "cos": "explicit SDK substitute",
+    "widths": [
+      1440,
+      1024,
+      768,
+      390,
+      320
+    ],
+    "cancel_failure_export_and_provenance_verified": true
+  },
+  "real_model": {
+    "date": "2026-10-03T09:16:51.399Z",
+    "model": "gpt-5.6-sol",
+    "synthetic_data": true,
+    "real_model": true,
+    "steps": [
+      {
+        "name": "上传后自动进入 Agent，无个人资料也先给真实总结",
+        "passed": true,
+        "seconds": 21.318
+      },
+      {
+        "name": "真实连续对话，用户纠正定位后再推进",
+        "passed": true,
+        "seconds": 25.506
+      },
+      {
+        "name": "编辑文件沉淀后真实模型读取最新身份",
+        "passed": true,
+        "seconds": 18.206
+      },
+      {
+        "name": "按对话目标确认生成真实转发稿",
+        "passed": true,
+        "seconds": 10.283
+      },
+      {
+        "name": "编辑导出并直接结束，不强制沉淀",
+        "passed": true,
+        "seconds": 0.241
+      },
+      {
+        "name": "关闭后重开保留对话与草稿，新会话共享沉淀",
+        "passed": true,
+        "seconds": 19.193
+      }
+    ],
+    "first_text_seconds": 5.178,
+    "draft_characters": 353
+  },
+  "syntax_and_structure": {
+    "node_check": true,
+    "compileall": true,
+    "diff_check": true,
+    "secret_matches_in_scanned_sources": 0
+  },
+  "running_services": {
+    "old_port": 8787,
+    "temporary_workspaces_preserved": 2,
+    "new_port": 8788,
+    "new_data_directory": "var/current",
+    "existing_profile_copied": true,
+    "services_share_no_mutable_runtime_files": true
+  },
+  "limitations": [
+    "真实COS尚未配置和验收",
+    "仅单用户本机服务",
+    "真实模型仅验收合成通知与合成身份"
+  ],
+  "failures_before_pass": [
+    "自动档案、SSE与导出新增测试先失败后实现",
+    "首次真实流式浏览器验收未等到首段，未报告成功；小规模真实SSE通过，重启隔离验收服务后六环节通过",
+    "档案筛选变化时导出丢失本轮依据，失败后改用历史快照并完成回归"
+  ],
+  "git_writes_performed": false
+}

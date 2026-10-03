@@ -1,0 +1,56 @@
+{
+  "verified_at": "2026-10-03T19:39:43.799136+08:00",
+  "tdd_before": "旧版缺少独立日期值、倒计时行、报名入口按钮和材料条目；相关3项浏览器预期失败",
+  "browser_summary": [
+    {
+      "name": "日期为独立大字，倒计时单列，保留原文上下文",
+      "passed": true
+    },
+    {
+      "name": "报名入口独立按钮，材料拆成条目，记忆自动保存",
+      "passed": true
+    },
+    {
+      "name": "窄屏信息块不溢出，日期和入口保持独立",
+      "passed": true
+    },
+    {
+      "name": "缺少年份时不编造倒计时或报名链接",
+      "passed": true
+    }
+  ],
+  "workspace_browser": "完整合成上传、流式、自动记忆、编辑、档案依据、原文、取消、导出、恢复、移动布局全部通过",
+  "unit_tests": {
+    "count": 83,
+    "passed": true,
+    "seconds": 3.218
+  },
+  "checks": [
+    "git diff --check",
+    "node --check src/web/app.js"
+  ],
+  "services": [
+    {
+      "port": 8787,
+      "workspace_count": 2,
+      "quicklook_served": true
+    },
+    {
+      "port": 8788,
+      "workspace_count": 5,
+      "quicklook_served": true
+    }
+  ],
+  "changes": [
+    "日期和计时独立突出，倒计时每分钟更新并在返回页面时刷新",
+    "报名入口按钮、完整URL、材料条目与原文上下文",
+    "无完整日期不编造计时；无链接不编造入口",
+    "缩短模型阅读要求，保持3500字用户输入不超过4000字请求边界",
+    "项目卡片自动归档并可修改，不需要逐条确认记忆"
+  ],
+  "limitations": [
+    "本次浏览器使用合成 HTTP 模型及 COS 替身；没有重发用户真实文件",
+    "模型正文精简要求从下次回复生效，本次未重新运行真实 LLM",
+    "未修改或重启8787/8788后台，临时工作区保持在内存"
+  ]
+}

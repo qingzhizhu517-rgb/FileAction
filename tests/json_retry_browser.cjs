@@ -50,7 +50,8 @@ const {chromium}=require('playwright');
   });
   await check('接口错误不自动重试，避免无关重复调用',async()=>{
    mode='network';attempts=0;await page.locator('#chat-input').fill('合成额度失败边界');await page.locator('#chat-send').click();await ready();
-   assert.equal(attempts,1);assert.match(await page.locator('#notice').textContent(),/HTTP 429/);
+   assert.equal(attempts,1);assert.match(await page.locator('.stream-failed .stream-status').textContent(),/HTTP 429/);
+   assert.equal(await page.locator('#notice').isVisible(),false);
   });
   await check('纠正过程中可以取消，迟到结果不生效，也不进行第三次请求',async()=>{
    mode='cancel';attempts=0;const memory=await page.locator('#memory-count').textContent();

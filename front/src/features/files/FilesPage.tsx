@@ -660,7 +660,7 @@ function UploadDialog({
         )}
         <div className="consent-box">
           <p>点击“开始上传”即同意将原件保存到你的文件空间，方便以后继续阅读；可在文件管理中删除。</p>
-          <small>文件托管于腾讯云北京地域。发送给模型前会另外展示本次使用范围。</small>
+          <small>发送给模型前会另外展示本次使用范围。</small>
           {config.isPending && <p role="status">正在连接文件空间…</p>}
           {config.error && <ErrorNotice error={config.error} retry={() => void config.refetch()} />}
           {config.isSuccess && !config.data?.cos?.configured && <p role="alert">文件空间暂不可用，请稍后重试。</p>}

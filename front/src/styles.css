@@ -20,8 +20,7 @@ button { cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .48; }
 .app-shell { min-height: 100vh; display: grid; grid-template-columns: minmax(280px, 31vw) 1fr; }
 .brand-rail { padding: 42px clamp(26px, 5vw, 76px); background: var(--yellow); display: flex; flex-direction: column; justify-content: space-between; min-height: 100vh; }
-.brand-mark { display: inline-flex; gap: 3px; font-weight: 900; font-size: 27px; letter-spacing: .02em; }
-.brand-mark span:last-child { color: #fffdf8; }
+.brand-mark { display: block; width: 40px; height: 40px; object-fit: contain; }
 .rail-copy { max-width: 330px; margin: auto 0; }
 .rail-copy h1 { font-size: clamp(2.5rem, 4.3vw, 4.8rem); line-height: 1.05; letter-spacing: -.04em; margin: 14px 0 22px; }
 .rail-copy p:not(.eyebrow) { font-size: 17px; line-height: 1.75; max-width: 270px; }

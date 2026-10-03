@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="fileaction-token" content="__TOKEN__">
+  <meta name="theme-color" content="#F6C945">
+  <title>文启 · 收到文件，先交给文启</title>
+  <link rel="icon" href="/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/"><img src="/logo.svg" alt=""><span>文启<small>FILEACTION</small></span></a>
+    <div class="side-caption">你的个人行动助手</div>
+    <button id="new-session" class="new-session" data-lock>＋ 新的文件</button>
+    <div class="side-label">文件工作区</div>
+    <div id="current-file" class="current-file">还没有打开文件</div><div id="sidebar-workspaces" class="sidebar-workspaces"></div>
+    <button id="memory-open" class="nav-button" data-lock><span>◇</span> 用户档案 <span id="memory-count" class="count">0</span></button>
+    <button id="files-open" class="nav-button" data-lock><span>▤</span> COS 文件库</button>
+    <div class="side-bottom">
+      <p>先理解，<br>再决定下一步。</p>
+      <button id="settings-open" class="nav-button" data-lock>⚙ 模型设置</button>
+      <button id="cos-settings-open" class="nav-button" data-lock>☁ COS 设置</button>
+      <small>个人端 MVP · 本机单用户</small>
+    </div>
+  </aside>
+  <div class="shell">
+    <header><span>从一份文件开始</span><button id="model-status" class="status" data-lock>○ 模型未配置</button></header>
+    <main>
+      <div id="notice" role="status" aria-live="polite" hidden></div>
+      <section id="welcome" class="welcome">
+        <div class="eyebrow">LESS READING. MORE MEANING.</div>
+        <h1>把新的文件<br><span>拖到这里。</span></h1>
+        <p class="intro">上传后，文启先读文件、给你总结。<br>有背景就结合，没有也能开始聊。</p>
+        <label class="consent upload-permission"><input id="upload-consent" type="checkbox" data-lock><span id="upload-scope">上传后自动将文件文字及已保存背景发送给配置的模型，先给我总结。也可不勾选，先在 Agent 中查看原文。</span></label>
+        <label class="consent"><input id="persist-consent" type="checkbox" data-lock><span>将原文件、对话和文件沉淀持续保存到已配置的腾讯云 COS，可随时打开继续。</span></label>
+        <label class="upload-zone" id="upload-zone">
+          <span class="file-symbol">↥</span>
+          <strong>拖入文件，开启一个工作区</strong>
+          <span>点击选择，或拖拽到这里</span>
+          <small id="formats">TXT · Markdown · Word · PDF（文字层） / 最大 8 MB</small>
+          <input id="upload" type="file" accept=".txt,.md,.docx,.pdf" aria-label="上传文件" data-lock>
+        </label>
+        <div class="sample-row"><div><span class="tiny-label">先体验一下</span><p>一份通知，看看它与你的关系</p></div><button id="sample" class="sample-button" data-lock>合成体验 · 奖学金通知 <span>↗</span></button></div>
+        <p class="privacy-note">先在本机解析；勾选上方授权后，上传即开始真实模型总结。回答问题和继续行动都由你决定。</p>
+      <section class="recent-section"><div class="section-heading"><h2>最近聊过的文件</h2><span id="recent-count"></span></div><p id="workspace-storage-note" class="subtle"></p><div id="recent-workspaces" class="recent-workspaces"></div></section></section>
+      <section id="workspace" hidden>
+        <nav id="workspace-tabs" class="workspace-tabs" aria-label="打开的文件"></nav>
+        <div class="workspace-heading"><div><div class="eyebrow">YOUR DOCUMENT, YOUR NEXT STEP</div><h1 id="doc-name"></h1><p id="doc-meta"></p></div><button id="finish" class="quiet" data-lock>关闭工作区，保留对话</button></div>
+        <div id="thread-tabs" class="thread-tabs" aria-label="文件会话"></div><p id="context-note" class="subtle" hidden></p><div id="summary-highlights" class="summary-highlights"></div>
+        <div class="workspace-grid agent-layout">
+          <div class="work-column">
+            <div class="agent-intro"><span class="agent-avatar">文</span><div><strong>文启 Agent</strong><p>先读文件，再跟着你的问题走。随时可以结束。</p></div></div>
+            <div id="agent-thread" class="agent-thread" role="log" aria-label="与文启的对话" aria-live="polite"></div>
+            <section id="agent-start" class="agent-start">
+              <p id="snapshot-note" class="subtle"></p>
+              <label class="consent"><input id="send-consent" type="checkbox" data-lock><span id="send-scope"></span></label>
+              <button id="analyze" class="primary" data-lock>让文启先总结文件 ↗</button>
+            </section>
+            <div class="agent-request"><span id="loading" class="subtle" hidden></span><button id="cancel" class="quiet" hidden>取消本次请求</button><button id="retry-chat" class="quiet" hidden data-lock>重试这条消息</button></div>
+            <form id="chat-form" class="chat-composer" hidden>
+              <label for="chat-input">继续聊，也可以到这里结束</label>
+              <textarea id="chat-input" rows="2" maxlength="3500" placeholder="回答刚才的问题、纠正我的猜测，或直接说你想了解什么……" data-lock></textarea>
+              <div class="composer-bottom"><small>发送即同意将本次文件、已保存背景和对话发给同一模型。文件沉淀自动加入用户档案。可在右侧直接修改。</small><button id="chat-send" class="primary" type="submit" data-lock>发送 ↑</button></div>
+            </form>
+            <section id="action-section" class="action-section" hidden>
+              <div class="section-heading"><h2>准备这个产物</h2><button id="close-action" class="quiet">先不做了</button></div>
+              <label for="goal">你想得到什么？</label><input id="goal" type="text" maxlength="1000" data-lock>
+              <label class="consent"><input id="action-confirm" type="checkbox" data-lock><span>我确认继续生成初稿，并同意将文件、背景与本次对话发送给同一模型。</span></label>
+              <button id="generate" class="primary" data-lock>确认生成可编辑初稿 ↗</button>
+            </section>
+            <section id="draft-section" class="draft-section" hidden><div class="section-heading"><h2 id="draft-title">可编辑初稿</h2><span>模型初稿 · 需核对</span></div><textarea id="draft" rows="16" aria-label="编辑产物正文" data-lock></textarea><div class="button-row"><button id="export-draft" class="primary" data-lock>导出 Markdown ↓</button><button id="copy-draft" class="quiet" data-lock>复制正文</button><button id="store-draft" class="quiet" data-lock>保存当前产物到 COS</button></div><p class="subtle">文启只准备初稿。准备材料不等于已报名或资格通过。</p></section>
+          </div>
+          <aside class="source-panel">
+            <section class="knowledge-panel"><div class="section-heading"><h2>项目沉淀</h2><button id="knowledge-add" class="text-button" data-lock>＋ 补充</button></div><p id="project-memory-file" class="project-memory-file"></p><p class="subtle">当前文件的各个会话共用，修改后下一轮读取。自动同步到用户档案。</p><div id="file-knowledge"></div><p id="knowledge-status" class="subtle"></p></section>
+            <details id="profile-context" class="profile-context"><summary id="profile-context-summary">本轮参考的用户档案</summary><section class="profile-panel"><p id="profile-basis-note" class="subtle"></p><div id="profile-basis"></div></section></details>
+            <div class="section-heading"><h2>这次聊的文件</h2><span id="source-count"></span></div>
+            <details id="source-details"><summary>展开原文，核对引用</summary><div id="sources" tabindex="0" aria-label="文件原文"></div></details>
+            <details class="storage-details"><summary>文件保存 · 腾讯云 COS</summary><div class="cloud-storage"><strong id="cos-file-state">原文件尚未保存到 COS</strong><p id="cos-scope" class="subtle"></p><label class="consent"><input id="cos-consent" type="checkbox" data-lock><span>我同意将原文件、全部会话和文件沉淀持续保存到配置的 COS 私有桶。</span></label><button id="store-original" class="quiet" data-lock>启用 COS 工作区保存</button></div></details>
+            <button id="retry-sync" class="text-button" hidden data-lock>重试工作区同步</button><button id="export-analysis" class="text-button" hidden data-lock>导出本轮解读 ↓</button>
+          </aside>
+        </div>
+      </section>
+      <footer>文启 · 文件是入口，与你有关的理解是起点。</footer>
+    </main>
+  </div>
+  <dialog id="source-dialog" aria-labelledby="source-dialog-title"><div class="dialog-top"><h2 id="source-dialog-title">文件原文</h2><button class="close" data-close="source-dialog" aria-label="关闭原文">×</button></div><p id="source-dialog-location" class="subtle"></p><div id="source-preview" tabindex="0" aria-label="可滚动的文件原文"></div></dialog>
+  <dialog id="clarification-dialog" aria-labelledby="clarification-title"><div class="dialog-top"><h2 id="clarification-title">补充你的情况</h2><button class="close" data-close="clarification-dialog" aria-label="关闭问题回答">×</button></div><p id="clarification-question"></p><form id="clarification-form"><label for="clarification-answer">你的回答</label><textarea id="clarification-answer" rows="4" maxlength="2000" required placeholder="按你的实际情况回答，也可以纠正我的猜测……"></textarea><p class="subtle">发送后继续对话，相关信息会自动整理到档案。不确定或暂时不想回答，可以跳过。</p><div class="button-row"><button id="clarification-submit" class="primary" type="submit">发送回答</button><button id="clarification-skip" class="quiet" type="button">先跳过</button></div></form></dialog>
+  <dialog id="knowledge-dialog"><div class="dialog-top"><h2>修改项目沉淀</h2><button class="close" data-close="knowledge-dialog">×</button></div><p>当前文件的各个会话共用。与用户档案中的同一条沉淀同步，保存后自动生效；用户修改不会被 AI 覆盖。</p><form id="knowledge-form"><label for="knowledge-field">内容类别</label><select id="knowledge-field"><option value="role">阅读身份</option><option value="background">相关背景</option><option value="conditions">已知条件</option><option value="notes">文件要点</option><option value="pending">待核实事项</option></select><label for="knowledge-value">内容</label><textarea id="knowledge-value" rows="5" maxlength="2000"></textarea><div class="button-row"><button class="primary" type="submit">保存修改</button><button id="knowledge-remove" class="quiet" type="button">移除此项</button></div><p id="knowledge-result" class="subtle"></p></form></dialog>
+  <dialog id="settings-dialog"><div class="dialog-top"><h2>连接你的模型</h2><button class="close" data-close="settings-dialog" aria-label="关闭模型设置">×</button></div><p id="model-config-note">使用 OpenAI 兼容接口。页面临时配置仅在服务内存中；后台受控配置可在重启后自动加载。</p><form id="settings-form"><label for="base-url">Base URL</label><input id="base-url" type="url" placeholder="https://你的服务地址/v1" required><label for="model-name">模型名</label><input id="model-name" placeholder="填写服务提供的完整模型 ID" required maxlength="200"><label for="api-key">API Key</label><input id="api-key" type="password" autocomplete="off" required placeholder="仅发送到本机服务和你指定的模型接口"><label class="consent"><input id="json-mode" type="checkbox"><span>启用 JSON 模式（服务支持 response_format 时勾选）</span></label><div class="button-row"><button class="primary" type="submit">保存连接设置</button><button id="test-connection" class="quiet" type="button">测试连接</button></div><p id="config-result" role="status" class="subtle"></p></form><p class="subtle">连接测试会发送一条不含文件和背景的请求，可能消耗少量模型额度。设置不代表连接已验证。</p></dialog>
+  <dialog id="memory-dialog"><div class="dialog-top"><h2>用户档案 · 跨文件使用</h2><button class="close" data-close="memory-dialog" aria-label="关闭我的背景">×</button></div><p>每份文件的沉淀会自动加入这里，保留类型和出处。可直接修改或删除，之后阅读会重新读取。</p><div id="memory-usage" class="memory-usage"></div><div id="memory-list"></div><button id="add-memory" class="primary">＋ 添加档案内容</button><div class="button-row"><button id="export-user-memory" class="text-button">导出 USER.md ↓</button><button id="export-task-memory" class="text-button">导出 MEMORY.md ↓</button></div></dialog>
+  <dialog id="edit-memory-dialog"><div class="dialog-top"><h2 id="memory-edit-title">确认并保存背景</h2><button class="close" data-close="edit-memory-dialog" aria-label="关闭背景编辑">×</button></div><form id="memory-form"><label for="memory-target">保存到</label><select id="memory-target"><option value="user">个人背景 · 身份、偏好、长期经历</option><option value="memory">长期事项 · 项目方向、持续约束</option><option value="file">文件沉淀 · 自动归档</option></select><label for="memory-content">内容（请先确认属实，可直接修改）</label><textarea id="memory-content" rows="5" required maxlength="3000"></textarea><p id="memory-source" class="subtle"></p><button class="primary" type="submit">保存修改</button><p id="memory-result" role="status" class="subtle"></p></form></dialog>
+  <dialog id="cos-dialog"><div class="dialog-top"><h2>腾讯云 COS 设置</h2><button class="close" data-close="cos-dialog" aria-label="关闭 COS 设置">×</button></div><p>保存原文件和编辑后的产物。请使用自己的私有存储桶，访问密钥只保存在本机服务内存中。</p><form id="cos-form"><label for="cos-bucket">Bucket（含 APPID）</label><input id="cos-bucket" required placeholder="fileaction-1234567890"><label for="cos-region">Region</label><input id="cos-region" required placeholder="ap-guangzhou"><label for="cos-secret-id">SecretId</label><input id="cos-secret-id" type="password" required autocomplete="off"><label for="cos-secret-key">SecretKey</label><input id="cos-secret-key" type="password" required autocomplete="off"><label for="cos-token">临时 Token（可选，使用临时密钥时填写）</label><input id="cos-token" type="password" autocomplete="off"><button class="primary" type="submit">保存 COS 设置</button><p id="cos-result" role="status" class="subtle"></p></form><p class="subtle">建议限制子账号为该桶 fileaction/ 前缀的读写权限。配置成功不代表已连通；以实际上传、打开文件的结果为准。</p></dialog>
+  <dialog id="files-dialog"><div class="dialog-top"><h2>COS 文件库</h2><button class="close" data-close="files-dialog" aria-label="关闭 COS 文件库">×</button></div><p id="files-description">这里只显示通过本机文启登记的 COS 文件。结束本次会话不会删除云端对象。</p><div id="files-list"></div><p id="files-result" role="status" class="subtle"></p></dialog>
+</body>
+<!-- COS 使用服务器签名请求；浏览器不保存访问密钥。 -->
+</html>

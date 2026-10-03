@@ -1,0 +1,9 @@
+{
+  "originals": [
+    "src/web/app.js",
+    "src/web/style.css"
+  ],
+  "new_files": [
+    "tests/stream_error_browser.cjs"
+  ]
+}

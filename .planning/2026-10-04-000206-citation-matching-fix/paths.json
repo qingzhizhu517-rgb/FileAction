@@ -1,0 +1,9 @@
+[
+  "src/core.py",
+  "src/web/app.js",
+  "tests/test_core.py",
+  "tests/citation_retry_browser.cjs",
+  "tests/json_retry_browser.cjs",
+  "tests/stream_error_browser.cjs",
+  "tests/e2e_server.py"
+]

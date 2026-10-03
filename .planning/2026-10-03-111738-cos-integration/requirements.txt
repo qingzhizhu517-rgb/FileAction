@@ -1,0 +1,2 @@
+# TXT / MD / DOCX 仅依赖 Python 标准库；此项用于带文字层的 PDF。
+pypdf>=6.0,<7

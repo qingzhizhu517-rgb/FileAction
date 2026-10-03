@@ -1,0 +1,83 @@
+{
+  "verified_at": "2026-10-03T20:34:07.198050+08:00",
+  "tdd_before": "旧版引用失败只有一次请求，首轮失败不会自动恢复，新增测试预期失败",
+  "browser_recovery": [
+    {
+      "name": "引用失败自动纠正一次，同一问题不重复保存，旧临时文字清除",
+      "passed": true
+    },
+    {
+      "name": "两次引用失败停止重试，无新回复或记忆，允许手动重试",
+      "passed": true
+    },
+    {
+      "name": "接口错误不自动重试，避免无关重复调用",
+      "passed": true
+    },
+    {
+      "name": "纠正过程中可以取消，迟到结果不生效，也不进行第三次请求",
+      "passed": true
+    }
+  ],
+  "browser_errors": [
+    {
+      "name": "原文校验失败在回复旁显示具体原因，未产生已保存回复",
+      "passed": true
+    },
+    {
+      "name": "连接提前结束保留具体原因，部分文字不算完成",
+      "passed": true
+    },
+    {
+      "name": "开始输出前的接口拒绝也显示具体原因",
+      "passed": true
+    },
+    {
+      "name": "主动取消明确标记为取消，保留原有回复和档案",
+      "passed": true
+    }
+  ],
+  "workspace_browser": "完整上传、流式、自动档案、编辑、原文引用、失败、取消、导出及恢复通过",
+  "unit_tests": {
+    "count": 83,
+    "passed": true,
+    "seconds": 3.755
+  },
+  "real_model_revalidation": {
+    "synthetic_data": true,
+    "initial_error_injected": true,
+    "real_model_calls": 1,
+    "model": "gpt-5.6-sol",
+    "passed": false,
+    "error": "模型流式连接失败或超时，未保存不完整结果。"
+  },
+  "services": [
+    {
+      "port": 8787,
+      "workspace_count": 2,
+      "citation_recovery_served": true
+    },
+    {
+      "port": 8788,
+      "workspace_count": 8,
+      "citation_recovery_served": true
+    }
+  ],
+  "checks": [
+    "git diff --check",
+    "node --check src/web/app.js"
+  ],
+  "implementation": [
+    "正常请求明确quote逐字复制单一segment.text，保留空格标点",
+    "仅原文引用校验失败会自动重新生成并核对一次",
+    "未保存的临时输出在纠正开始时移除，成功只保存一轮",
+    "两次仍不匹配即停止；HTTP/网络/格式/取消/档案冲突不会因此自动重试",
+    "纠正保持可取消，第二次单独计时；3500字最大输入的正常/纠正请求均不超4000"
+  ],
+  "limitations": [
+    "没有放松后端逐字引用校验，不做未经证实的空白或标点归一化",
+    "自动纠正要求通过本次请求阅读方式附带给模型，不保证任何模型都一次纠正成功",
+    "本轮真实模型纠正复验失败于连接错误；首次引用失败为合成注入，不是观测到的真实模型错误",
+    "未重启8787/8788，也未重新发送用户文件或档案"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "verified_at": "2026-10-03T19:27:01.198680+08:00",
+  "tdd_before": "旧布局主区域仍是全局档案，折叠依据及切换时重置不存在；项目数据本身已隔离",
+  "browser_project_memory": [
+    {
+      "name": "右侧首个区域为当前项目沉淀，档案依据默认折叠",
+      "passed": true
+    },
+    {
+      "name": "不同项目卡片隔离，项目沉淀仍自动归入全局档案",
+      "passed": true
+    },
+    {
+      "name": "档案依据按需展开，切换项目重新折叠并展示对应卡片",
+      "passed": true
+    },
+    {
+      "name": "项目卡片修改、同文件多会话共享和刷新恢复",
+      "passed": true
+    },
+    {
+      "name": "手机宽度展示当前项目，无横向溢出，补充可取消",
+      "passed": true
+    }
+  ],
+  "workspace_browser": "完整合成流程通过：上传、流式、档案修改、多会话、原文、取消、导出、恢复、手机布局",
+  "unit_tests": {
+    "count": 83,
+    "passed": true,
+    "seconds": 3.723
+  },
+  "checks": [
+    "git diff --check",
+    "node --check src/web/app.js"
+  ],
+  "services": [
+    {
+      "port": 8787,
+      "workspace_count": 2,
+      "project_panel_served": true
+    },
+    {
+      "port": 8788,
+      "workspace_count": 5,
+      "project_panel_served": true
+    }
+  ],
+  "limitations": [
+    "本轮使用合成 HTTP 模型和 COS 替身，未重新运行真实 LLM 或真实 COS",
+    "未重启产品后台，保留所有现有临时文件",
+    "全局档案仍自动接收项目沉淀，右侧依据默认折叠"
+  ]
+}

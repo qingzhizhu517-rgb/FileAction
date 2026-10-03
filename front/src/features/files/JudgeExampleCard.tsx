@@ -43,7 +43,7 @@ export function JudgeExampleCard({ upload }: { upload: () => void }) {
       <h3>校园创新实践计划</h3>
       <p>你将以一位有校园工具想法的学生视角，理解申请条件和准备事项。每次开始都会建立独立阅读会话。</p>
       <blockquote className="judge-example-background">{JUDGE_EXAMPLE.background}</blockquote>
-      <p className="hint">文件会保存到你的文件空间（腾讯云北京地域，可删除）；合成背景仅用于本次会话，不加入个人档案。进入后可编辑背景，模型调用前还会核对发送范围。</p>
+      <p className="hint">文件会保存到你的文件空间，可在文件管理中删除；合成背景仅用于本次会话，不加入个人档案。进入后可编辑背景，模型调用前还会核对发送范围。</p>
       <a href={JUDGE_EXAMPLE.url} download={JUDGE_EXAMPLE.name}>先下载示例 PDF 看看</a>
       {error != null && <ErrorNotice error={error} />}
       <div className="modal-actions">

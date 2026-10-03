@@ -1,0 +1,10 @@
+[
+  "src/web/app.js",
+  "src/web/index.html",
+  "src/web/style.css",
+  "src/core.py",
+  "src/workspaces.py",
+  "tests/workspace_browser.cjs",
+  "README.md",
+  "docs/01-产品方案/可行动事务Agent-MVP运行与验收.md"
+]

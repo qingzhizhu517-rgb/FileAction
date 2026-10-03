@@ -1,0 +1,69 @@
+{
+  "verified_at": "2026-10-03T19:05:05.100281+08:00",
+  "changes": [
+    "流式回复失败处直接显示具体错误，聊天与产物生成共用",
+    "中断/超时及浏览器连接、格式错误提供可读提示",
+    "错误文字加大，并明确未保存和临时输出状态"
+  ],
+  "tdd_before": {
+    "citation_reason": false,
+    "connection_reason": false,
+    "http_reason": false,
+    "cancel_test": "初次浏览器取消按钮等待超时；调整桌面视口并在busy后取消"
+  },
+  "browser_errors": [
+    {
+      "name": "原文校验失败在回复旁显示具体原因，未产生已保存回复",
+      "passed": true
+    },
+    {
+      "name": "连接提前结束保留具体原因，部分文字不算完成",
+      "passed": true
+    },
+    {
+      "name": "开始输出前的接口拒绝也显示具体原因",
+      "passed": true
+    },
+    {
+      "name": "主动取消明确标记为取消，保留原有回复和档案",
+      "passed": true
+    }
+  ],
+  "browser_regression": [
+    {
+      "name": "关键信息原文打开可见出处",
+      "passed": true
+    },
+    {
+      "name": "阅读视角可回应，取消不发送或沉淀",
+      "passed": true
+    },
+    {
+      "name": "空回答不发送，填入答案后按用户情况继续",
+      "passed": true
+    },
+    {
+      "name": "个人判断优先展示，阅读要求实际发给模型",
+      "passed": true
+    },
+    {
+      "name": "移动端原文弹窗与回答框可完整操作",
+      "passed": true
+    }
+  ],
+  "unit_tests": {
+    "count": 83,
+    "passed": true,
+    "seconds": 3.218,
+    "initial_sandbox_run": "本机测试端口监听被限制，改用获准的隔离本机测试后通过"
+  },
+  "checks": [
+    "git diff --check",
+    "node --check src/web/app.js"
+  ],
+  "limitations": [
+    "本次用户真实请求的具体报错尚未取得，不能据统一提示推定根因",
+    "所有新增失败浏览器测试使用隔离合成模型/网络替身，不是真实LLM",
+    "未修改或重启8787/8788后台，也未重新发送用户文件"
+  ]
+}

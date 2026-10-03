@@ -1,0 +1,12 @@
+{
+  "originals": [
+    "src/web/index.html",
+    "src/web/app.js",
+    "src/web/style.css",
+    "tests/workspace_browser.cjs",
+    "tests/live_browser.cjs"
+  ],
+  "new_files": [
+    "tests/project_memory_browser.cjs"
+  ]
+}

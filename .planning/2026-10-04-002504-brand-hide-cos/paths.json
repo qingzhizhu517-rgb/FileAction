@@ -1,0 +1,14 @@
+[
+  "src/server.py",
+  "src/web/index.html",
+  "src/web/app.js",
+  "src/web/style.css",
+  "front/index.html",
+  "front/legacy.html",
+  "front/src/App.tsx",
+  "front/src/styles.css",
+  "front/src/features/auth/AuthForm.tsx",
+  "front/src/features/settings/SettingsPage.tsx",
+  "front/src/features/files/FilesPage.tsx",
+  "front/src/features/files/JudgeExampleCard.tsx"
+]

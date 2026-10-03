@@ -1,0 +1,42 @@
+{
+  "verified_at": "2026-10-03T15:17:42.747837+08:00",
+  "backend_tests": 69,
+  "real_model": "gpt-5.6-sol",
+  "real_model_steps": [
+    {
+      "name": "上传后自动进入 Agent，无个人资料也先给真实总结",
+      "seconds": 45.026,
+      "passed": true
+    },
+    {
+      "name": "真实连续对话，用户纠正定位后再推进",
+      "seconds": 73.862,
+      "passed": true
+    },
+    {
+      "name": "编辑文件沉淀后真实模型读取最新身份",
+      "seconds": 59.391,
+      "passed": true
+    },
+    {
+      "name": "按对话目标确认生成真实转发稿",
+      "seconds": 34.733,
+      "passed": true
+    },
+    {
+      "name": "编辑导出并直接结束，不强制沉淀",
+      "seconds": 0.232,
+      "passed": true
+    },
+    {
+      "name": "关闭后重开保留对话与草稿，新会话共享沉淀",
+      "seconds": 58.996,
+      "passed": true
+    }
+  ],
+  "real_cos_verified": false,
+  "browser_mock_cos": true,
+  "draft_characters": 349,
+  "committed": false,
+  "deployed": false
+}

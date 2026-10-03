@@ -1,0 +1,9 @@
+[
+  "src/model.py",
+  "src/server.py",
+  "src/web/index.html",
+  "src/web/app.js",
+  "tests/test_http.py",
+  "README.md",
+  "docs/01-产品方案/可行动事务Agent-MVP运行与验收.md"
+]

@@ -1,0 +1,8 @@
+[
+  "AGENTS.md",
+  "CLAUDE.md",
+  "docs/可行动事务Agent-00-总览.md",
+  "docs/01-产品方案/可行动事务Agent-参赛主线方案.md",
+  "tests/e2e_server.py",
+  "tests/browser.cjs"
+]

@@ -1,0 +1,12 @@
+[
+  "src/core.py",
+  "src/server.py",
+  "src/web/index.html",
+  "src/web/app.js",
+  "src/web/style.css",
+  "requirements.txt",
+  "tests/test_core.py",
+  "tests/test_http.py",
+  "tests/e2e_server.py",
+  "tests/browser.cjs"
+]

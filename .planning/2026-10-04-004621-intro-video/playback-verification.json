@@ -1,0 +1,22 @@
+{
+  "loadsOnlyOnClick": true,
+  "media": {
+    "duration": 100,
+    "width": 1920,
+    "height": 1080
+  },
+  "played": true,
+  "seekWorks": true,
+  "closeStopsPlayback": true,
+  "responseStatuses": [
+    206,
+    206
+  ],
+  "mobileLayout": {
+    "left": 18,
+    "right": 372,
+    "width": 354,
+    "viewport": 390
+  },
+  "escapeCloses": true
+}

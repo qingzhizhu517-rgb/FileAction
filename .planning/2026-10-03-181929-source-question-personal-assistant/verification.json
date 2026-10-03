@@ -1,0 +1,71 @@
+{
+  "recorded_at": "2026-10-03T18:42:24+08:00",
+  "backend": {
+    "command": ".venv/bin/python -m unittest discover -s tests -v",
+    "passed": 83
+  },
+  "feedback_browser": {
+    "command": "<bundled node> tests/feedback_browser.cjs",
+    "substitute_model": true,
+    "checks": [
+      {
+        "name": "关键信息原文打开可见出处",
+        "passed": true
+      },
+      {
+        "name": "阅读视角可回应，取消不发送或沉淀",
+        "passed": true
+      },
+      {
+        "name": "空回答不发送，填入答案后按用户情况继续",
+        "passed": true
+      },
+      {
+        "name": "个人判断优先展示，阅读要求实际发给模型",
+        "passed": true
+      },
+      {
+        "name": "移动端原文弹窗与回答框可完整操作",
+        "passed": true
+      }
+    ],
+    "failed_before_implementation": 4
+  },
+  "workspace_browser": {
+    "command": "<bundled node> tests/workspace_browser.cjs",
+    "passed": true,
+    "substitute_model": true,
+    "substitute_cos": true
+  },
+  "real_model": {
+    "script": "tests/live_feedback_browser.cjs",
+    "model": "gpt-5.6-sol",
+    "synthetic_data": true,
+    "scenarios": [
+      {
+        "role": "student",
+        "passed": true,
+        "first_text_seconds": 9.75,
+        "complete_seconds": 14.158
+      },
+      {
+        "role": "teacher",
+        "passed": true,
+        "first_text_seconds": 8.133,
+        "complete_seconds": 14.039
+      }
+    ],
+    "live_clarification_branch_executed": false,
+    "note": "两组信息已足够，模型未强制追问；弹窗提交由明确合成HTTP模型验证"
+  },
+  "production": {
+    "url": "http://127.0.0.1:8788/",
+    "restarted": false,
+    "temporary_workspaces_preserved": 2,
+    "real_user_data_sent_by_tests": false
+  },
+  "syntax_and_dom_checks": true,
+  "max_frontend_request_characters": 3941,
+  "git_diff_check": true,
+  "backup_note": "paths.json所列文件保存了修改前副本；tests/live_browser.cjs漏存原快照，单独提供明确标注的可逆还原副本，未伪造备份时间。"
+}

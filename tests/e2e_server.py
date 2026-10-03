@@ -53,6 +53,10 @@ class Provider(BaseHTTPRequestHandler):
                      'questions': [] if skip or finish else ['你希望核对采购要求还是整理清单？' if business else '你是准备申请，还是帮别人了解这份通知？'],
                      'memory_candidates': [{'target': 'user', 'content': '合成用户是一名老师', 'reason': '合成对话用户自述，待审阅保存'}] if teacher else [],
                      'actions': ['采购事项核对清单'] if business else ['材料清单', '通知转发稿']}
+            if value['document']['name'].startswith('synthetic-linebreak-'):
+                # 合成 PDF 刻意分行，模型替身返回连贯的一句引用。
+                reply['insights'][0]['document_fact'] = 'Complete 5 credits before April 30.'
+                reply['insights'][0]['evidence'] = [{'source_id': 'P1L1', 'quote': 'Complete 5 credits before April 30.'}]
         if request.get('stream'):
             self.send_response(200);self.send_header('Content-Type','text/event-stream');self.end_headers()
             content=json.dumps(reply,ensure_ascii=False)

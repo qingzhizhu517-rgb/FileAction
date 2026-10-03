@@ -4,6 +4,7 @@ import { ArrowRight, Check, ChevronDown, ChevronUp, Download, FileText, LoaderCi
 import * as api from './api'
 import type { Config, Fact, Memory, Reading, Session } from './types'
 import './styles.css'
+import wenqiIcon from '../../frontend/wenqi-icon.svg'
 
 const emptySession: Session = { id: '', revision: 0, document: null, facts: [], reading: null, artifact: null, ended: false, busy: false }
 
@@ -161,7 +162,7 @@ export default function App() {
 
   return <div className="app-shell">
     <aside className="brand-rail">
-      <div className="brand-mark" aria-label="文启"><span>文</span><span>启</span></div>
+      <img className="brand-mark" src={wenqiIcon} alt="文启" width="40" height="40" />
       <div className="rail-copy"><p className="eyebrow">FILEACTION / 个人工作台</p><h1>把收到的文件，变成下一步。</h1><p>文启先帮你看懂当下，再由你决定是否行动。</p></div>
       <div className="rail-foot"><ShieldCheck size={16} aria-hidden="true" /> <span>本机会话 · 默认不保存</span></div>
     </aside>

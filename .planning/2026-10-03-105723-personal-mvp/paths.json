@@ -1,0 +1,19 @@
+{
+  "originals": [
+    "README.md",
+    "CLAUDE.md",
+    ".gitignore",
+    "docs/可行动事务Agent-00-总览.md",
+    "docs/01-产品方案/可行动事务Agent-参赛主线方案.md"
+  ],
+  "new": [
+    "src/",
+    "tests/",
+    "requirements.txt",
+    "docs/01-产品方案/可行动事务Agent-MVP运行与验收.md"
+  ],
+  "source_references": [
+    "/Users/ant/Documents/大学/西客松/路演(3).md",
+    "/Users/ant/Documents/大学/西客松/路演_品牌黄版(1).pptx"
+  ]
+}

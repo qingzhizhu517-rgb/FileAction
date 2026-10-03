@@ -236,7 +236,7 @@ response是本轮直接给用户的话：首轮可简短引出总结；后续直
 按文件类型、用户目标和对话动态决定下一步，没有标准步骤、没有必须填写的信息。只问最影响判断的0至2个核心问题，先提供有用内容，允许跳过或直接结束。用户不愿补充时停止索要相同信息。
 用户要求只阅读或结束时next_step为finish，questions和actions为空；只有适合准备产物且用户可能需要时提供可选actions，不能自动生成或执行。
 每个判断都区分原文明示、个人背景、系统推断、未知；不声称资格通过、已报名或已发送。
-所有原文引用须逐字来自一个 segment.text，source_id 使用其 id。每条 insight 至少一条引用。
+所有原文引用须逐字来自一个 segment.text，source_id 使用其 id。PDF 的 segment 可能只是半句话；跨行依据拆成多条 evidence，各自引用对应行，不扩写短行、不猜测行号。保留原文空格、标点和数字，每条 insight 至少一条引用。
 background_refs 是输入 background 列表的0起始下标。memory_refs 是输入 memory 中条目的 id；没有关联背景则给空数组并说明未知。
 务必区分两种来源：background=[] 时，所有 insight.background_refs 必须为 []，即使 memory 有个人身份信息也不能写 [0]。引用沉淀只能在 memory_refs 写其真实 id；不得用 background_refs 指代第一条记忆。对话自述可在文字中解释，但不能为 conversation 编造 background 下标。
 memory_candidates 是可由用户审阅的长期沉淀建议，不会自动保存；不要把通知要求、别人的经历、短期截止时间或你的推断当作用户事实。
@@ -249,6 +249,59 @@ ACTION_SYSTEM = '''你是文启。用户已明确选择继续行动，沿着已�
 未确认的信息用【待补充：具体内容】标注，不编造经历、成绩、身份或资格。保留原文的关键限制和截止要求，不声称已经提交、报名、资格通过或对外发送。
 只有准备动作，无外部执行。只输出JSON对象：{"title":"产物标题","markdown":"可编辑Markdown正文"}。
 正文须标记为模型初稿，需用户核对。可用引用的source_id标注依据。'''
+
+
+def _citation_layout(value):
+    """只归一化排版空白，保留原字符偏移、数字、标点和英文词间边界。"""
+    normalized, offsets = [], []
+    for match in re.finditer(r'\s+|\S', value):
+        token = match.group()
+        if token.isspace():
+            left = value[match.start() - 1] if match.start() else ''
+            right = value[match.end()] if match.end() < len(value) else ''
+            # 不能把“1 0”变成“10”，也不能把英文的两个词合为一个词。
+            if not (left.isascii() and left.isalnum() and right.isascii() and right.isalnum()):
+                continue
+            token = ' '
+        normalized.append(token)
+        offsets.append(match.start())
+    return ''.join(normalized), offsets
+
+
+def resolve_citation(sid, quote, sources):
+    """把排版有差异的引用还原成逐字原文；仅允许从指定 PDF 行向后连续取行。"""
+    error = '模型原文引用校验失败，未展示无依据结果。请重试。'
+    if sid not in sources:
+        raise AppError(error, 502)
+    if quote in sources[sid]:
+        return [{'source_id': sid, 'quote': quote}]
+    pieces = [(sid, sources[sid])]
+    line = re.fullmatch(r'P(\d+)L(\d+)', sid)
+    if line:
+        page, number = map(int, line.groups())
+        # 有界的同页相邻行；不跨空行、页码、链接或 DOCX 段落拼接。
+        for offset in range(1, 8):
+            next_id = f'P{page}L{number + offset}'
+            if next_id not in sources:
+                break
+            pieces.append((next_id, sources[next_id]))
+    joined = '\n'.join(value for _, value in pieces)
+    normalized, offsets = _citation_layout(joined)
+    target, _ = _citation_layout(quote)
+    start = normalized.find(target) if target else -1
+    # 必须起始于模型明确引用的那一行，不能偷偷改成别处的来源。
+    if start < 0 or offsets[start] >= len(pieces[0][1]):
+        raise AppError(error, 502)
+    first, last = offsets[start], offsets[start + len(target) - 1] + 1
+    evidence, cursor = [], 0
+    for source_id, original in pieces:
+        stop = cursor + len(original)
+        if first < stop and last > cursor:
+            literal = original[max(0, first - cursor):min(len(original), last - cursor)].strip()
+            if literal:
+                evidence.append({'source_id': source_id, 'quote': literal})
+        cursor = stop + 1
+    return evidence
 
 
 def validate_analysis(value, segments, background, memory=None):
@@ -287,9 +340,9 @@ def validate_analysis(value, segments, background, memory=None):
                 raise AppError('模型引用格式不正确。', 502)
             sid = e['source_id']
             quote = text(e.get('quote'), '引用')
-            if sid not in sources or quote not in sources[sid]:
-                raise AppError('模型原文引用校验失败，未展示无依据结果。请重试。', 502)
-            checked.append({'source_id': sid, 'quote': quote})
+            for literal in resolve_citation(sid, quote, sources):
+                if literal not in checked:
+                    checked.append(literal)
         row.update(background_refs=refs, memory_refs=mrefs, evidence=checked)
         out['insights'].append(row)
     for key, maximum in [('questions', 3), ('actions', 4)]:

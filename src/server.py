@@ -120,10 +120,44 @@ class Handler(BaseHTTPRequestHandler):
         file=folder/filename
         if not file.is_file() or file.is_symlink():
             raise AppError('页面不存在。',404)
+        if file.suffix == '.mp4':
+            self._video(file)
+            return True
         self._send(200,file.read_bytes(),(mimetypes.guess_type(file.name)[0] or 'application/octet-stream')+'; charset=utf-8')
         return True
 
-    def _send(self, status, body, mime='application/json; charset=utf-8'):
+    def _video(self, file):
+        """静态宣传视频支持单个字节范围，供浏览器按需加载与跳转进度。"""
+        import re
+        size = file.stat().st_size
+        start, end = 0, size - 1
+        headers = {'Accept-Ranges': 'bytes'}
+        requested = self.headers.get('Range') if self.command == 'GET' else None
+        if requested:
+            try:
+                match = re.fullmatch(r'bytes=(\d*)-(\d*)', requested.strip())
+                if not match or not any(match.groups()):
+                    raise ValueError()
+                first, last = match.groups()
+                if first:
+                    start = int(first)
+                    end = min(int(last), size - 1) if last else size - 1
+                else:
+                    length = int(last)
+                    if length <= 0:
+                        raise ValueError()
+                    start = max(0, size - length)
+                if start > end or start >= size:
+                    raise ValueError()
+            except ValueError:
+                self._send(416, b'', 'video/mp4', {**headers, 'Content-Range': f'bytes */{size}'})
+                return
+            headers['Content-Range'] = f'bytes {start}-{end}/{size}'
+        with file.open('rb') as stream:
+            stream.seek(start)
+            self._send(206 if requested else 200, stream.read(end - start + 1), 'video/mp4', headers)
+
+    def _send(self, status, body, mime='application/json; charset=utf-8', headers=None):
         if not isinstance(body, bytes):
             body = json.dumps(body, ensure_ascii=False).encode()
         self.send_response(status)
@@ -134,7 +168,11 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Referrer-Policy', 'no-referrer')
         style_extra=" 'unsafe-inline'" if self.server.accounts and urlsplit(self.path).path.startswith(('/intro/','/login','/register','/assets/')) else ''
         self.send_header('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'"+style_extra+"; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
+        for name, value in (headers or {}).items():
+            self.send_header(name, value)
         self.end_headers()
+        if self.command == 'HEAD':
+            return
         try:
             self.wfile.write(body)
         except (BrokenPipeError, ConnectionResetError):
@@ -185,11 +223,14 @@ class Handler(BaseHTTPRequestHandler):
                 file = WEB / path[1:]
                 self._send(200, file.read_bytes(), mimetypes.guess_type(file.name)[0] + '; charset=utf-8')
             elif path == '/logo.svg':
-                self._send(200, (ROOT / 'docs/01-产品方案/品牌视觉/可行动事务Agent-Logo.svg').read_bytes(), 'image/svg+xml')
+                self._send(200, (ROOT / 'frontend/wenqi-icon.svg').read_bytes(), 'image/svg+xml')
             else:
                 self._send(404, {'error': '页面不存在。'})
         except AppError as e:
             self._error(e,path)
+
+    def do_HEAD(self):
+        self.do_GET()
 
     def _stream(self, work):
         started=False

@@ -1,0 +1,10 @@
+{
+  "originals": [
+    "src/web/index.html",
+    "src/web/app.js",
+    "src/web/style.css"
+  ],
+  "new_files": [
+    "tests/summary_browser.cjs"
+  ]
+}

@@ -2,6 +2,9 @@ const $ = (id) => document.getElementById(id);
 const token = document.querySelector('meta[name="fileaction-token"]').content;
 const state = { doc: null, analysis: null, draft: null, revision: 0, background: [], snapshot: [], memory: null, config: null, busy: false, epoch: 0, controller: null, editing: null, cancellation: Promise.resolve(), turns: 0, retryMessage: null, workspaces: [], tabs: [], knowledgeEditing: null, restoring: false, draftTimer: null, draftQueue: Promise.resolve() };
 const accountMode=document.querySelector('meta[name="fileaction-account-mode"]')?.content==='true';
+// 默认隐藏存储界面。仅开发时修改 HTML 开关，不删除已有接口和功能。
+const CLOUD_UI_ENABLED=document.body.dataset.cloudUi==='enabled';
+function publicError(message){return CLOUD_UI_ENABLED ? message : message.replace(/腾讯云\s*COS|COS/g,'文件存储');}
 const browserStorage={
   key(name){return accountMode ? `${name}:${state.config?.account?.id || 'anonymous'}` : name;},
   getItem(name){return localStorage.getItem(this.key(name));},
@@ -16,8 +19,8 @@ function readingRequest(message,repair=false){
     '速览已有日期、入口和材料，勿重复。summary≤200字、response≤120字。insights突出与你有关并列真实memory_refs，不问已知身份，问题可跳过。'+
     '其他文件的资格、日期和要求勿套到本文件；已截止要说明，宽泛背景不等于资格通过。'+
     'file_knowledge_updates仅记我的自述或个人档案，notes仅为我的目标偏好；文件内容、规则、日期与猜测不沉淀，无新增个人信息给[]。document_fact不是个人背景。'+
-    '先输出response、overview。问题和猜测不是自述；阅读方式不沉淀。quote逐字复制一个segment.text的短片段，保留空格标点。'+
-    '只输出完整JSON对象，不加围栏或解释；字符串正确转义。最多3个insights，每条1处原文短引。'+
+    '先输出response、overview。问题和猜测不是自述；阅读方式不沉淀。quote逐字复制segment.text，保留空格标点；PDF跨行拆成多条evidence，各用对应id。'+
+    '只输出完整JSON对象，不加围栏；字符串正确转义。最多3个insights，引用简短。'+
     (repair==='format' ? '上次JSON格式校验失败：重新生成完整JSON，双引号和换行正确转义；字段类型遵循系统格式，结束全部括号。' :
       repair ? '上次引用校验失败：请重抄错误quote并核对source_id，选足以支持判断的短片段，勿改写或跨段。' : '');
 }
@@ -41,19 +44,19 @@ async function api(path, data, signal) {
   });
   const result = await response.json();
   if(response.status===401 && accountMode)window.location.replace('/login');
-  if (!response.ok) throw new Error(result.error || '请求失败，请重试。');
+  if (!response.ok) throw new Error(publicError(result.error || '请求失败，请重试。'));
   return result;
 }
 async function apiStream(path, data, signal, onDelta) {
   if(legacyBackend())throw new Error('当前是保留临时文件的旧服务。自动档案和流式对话请打开 http://127.0.0.1:8788/。');
   const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json','X-FileAction-Token':token},body:JSON.stringify({...data,stream:true}),signal});
-  if(!response.ok){if(response.status===401 && accountMode)window.location.replace('/login');const got=await response.json();throw new Error(got.error || '流式请求失败');}
+  if(!response.ok){if(response.status===401 && accountMode)window.location.replace('/login');const got=await response.json();throw new Error(publicError(got.error || '流式请求失败'));}
   if(!response.headers.get('content-type')?.startsWith('application/x-ndjson'))throw new Error('服务未返回流式输出，请刷新后重试。');
   const reader=response.body.getReader(),decoder=new TextDecoder();let pending='',result=null,ended=false;
   function event(line){
     if(!line.trim())return;
     const value=JSON.parse(line);
-    if(value.type==='error')throw new Error(value.error);
+    if(value.type==='error')throw new Error(publicError(value.error));
     if(value.type==='delta')onDelta(value.field,value.text);
     if(value.type==='done'){result=value.result;ended=true;}
   }
@@ -84,11 +87,14 @@ function streamingOutput(container,title,firstReading=false) {
     finish(){node.remove();},
     fail(error){
       node.classList.add('stream-failed');status.setAttribute('role','alert');
+      node.querySelector('.message-label').textContent='文启 · 本次未完成';
       let reason=error?.message || '无法确认模型已完成输出。';
       if(error?.name==='AbortError')reason='请求已中断或超时。';
       else if(error instanceof SyntaxError)reason='收到的流式数据格式不正确。';
       else if(error instanceof TypeError && /fetch|network|load failed/i.test(reason))reason='浏览器与本地服务的连接失败，请检查服务是否仍在运行。';
       status.textContent=`${reason}\n本次回复尚未保存，临时文字仅供参考。可以重试。`;
+      // 已在对应回复旁解释原因，operation 不再重复显示顶部错误。
+      if(error)error.shownInReply=true;
     },
   };
 }
@@ -131,9 +137,9 @@ async function operation(message, work, cancellable = true) {
   catch (error) {
     if (epoch === state.epoch) {
       if (error.name === 'AbortError') {
-        notice(cancellable ? '请求已中断或超时。结果没有生效，可以重新尝试。' : '请求已中断或超时。如正在保存到 COS，云端可能已收到文件，请检查文件库或 COS 控制台。', true);
+        notice(error.shownInReply ? '' : cancellable ? '请求已中断或超时。结果没有生效，可以重新尝试。' : publicError('请求已中断或超时。如正在保存到 COS，云端可能已收到文件，请检查文件保存状态。'), true);
         if (state.doc) api('/api/cancel', { id: state.doc.id }).catch(() => {});
-      } else notice(error.message, true);
+      } else notice(error.shownInReply ? '' : error.message, true);
     }
   } finally {
     clearTimeout(timer);
@@ -197,6 +203,7 @@ function messageBubble(role, content) {
 function renderStorage() {
   const c = state.config?.storage, doc = state.doc;
   if (!doc) return;
+  if(!CLOUD_UI_ENABLED)return;
   const sync = doc.sync || {};
   $('storage-summary').textContent=sync.pending ? '保存状态 · 待同步' : doc.persistent ? '保存状态 · COS 已保存' : '保存状态 · 临时';
   $('cos-file-state').textContent = sync.pending ? `待同步 · ${sync.error || '最新更改尚未写入 COS'}`
@@ -259,7 +266,7 @@ async function upload(name, bytes) {
   await operation('正在读取文件…', async (signal, active) => {
     let binary = '';
     for (let i = 0; i < bytes.length; i += 8192) binary += String.fromCharCode(...bytes.subarray(i, i + 8192));
-    const doc = await api('/api/documents', { name, content: btoa(binary), persist: $('persist-consent').checked }, signal);
+    const doc = await api('/api/documents', { name, content: btoa(binary), persist: CLOUD_UI_ENABLED && $('persist-consent').checked }, signal);
     if (!active()) return;
     showDocument(doc); uploaded = doc.id;
     notice('已进入 Agent 对话。你可以先看原文，或让文启总结。');
@@ -278,7 +285,7 @@ async function finish() {
     browserStorage.removeItem('wenqi-active-file');
     $('workspace').hidden = true; $('welcome').hidden = false;
     $('current-file').textContent = '还没有打开文件'; $('upload').value = '';
-    await refreshWorkspaces(); notice('工作区已关闭，对话和文件沉淀会保留。临时工作区需要启用 COS 才能跨服务重启恢复。');
+    await refreshWorkspaces(); notice(CLOUD_UI_ENABLED ? '工作区已关闭，对话和文件沉淀会保留。临时工作区需要启用 COS 才能跨服务重启恢复。' : '已收起文件，本次服务运行期间可从最近文件继续。个人沉淀已保存到本机档案。');
   } catch (e) { notice(e.message, true); }
 }
 function chooseAction(goal) {
@@ -363,6 +370,8 @@ async function askAgent(message, retry = false) {
   if (!state.config?.configured) { notice('请先配置模型接口，再开始真实对话。', true); openSettings(); return; }
   if (!$('send-consent').checked) { notice('请先确认文件与已保存背景的发送范围。', true); return; }
   await state.cancellation; await flushDraft();
+  $('agent-thread').querySelectorAll('.stream-failed').forEach(node=>node.remove());
+  notice('');$('retry-chat').hidden=true;$('agent-start').hidden=true;
   if (message && !retry) messageBubble('user', message);
   state.retryMessage = message;
   clearResults();
@@ -381,7 +390,6 @@ async function askAgent(message, retry = false) {
           repair=formatFailure ? 'format' : 'citation';
           output.finish();
           output=streamingOutput($('agent-thread'),formatFailure ? '文启 · 正在纠正输出格式' : '文启 · 正在校对原文引用',state.turns===0);
-          notice(formatFailure ? '输出格式未通过校验，正在自动重新生成一次；校验通过后保存。' : '原文引用未匹配，正在自动纠正一次。未通过校验的临时输出不会保存。');
           $('loading').textContent=formatFailure ? '正在重新生成完整回复，请稍候；仍可取消。' : '正在重新核对引用，请稍候；仍可取消。';
           renewDeadline();continue;
         }
@@ -557,6 +565,7 @@ $('memory-form').addEventListener('submit', async (e) => {
   finally { button.disabled = false; }
 });
 function openCOS() {
+  if(!CLOUD_UI_ENABLED)return;
   const c = state.config?.storage;
   $('cos-bucket').value = c?.bucket || ''; $('cos-region').value = c?.region || '';
   for (const id of ['cos-secret-id', 'cos-secret-key', 'cos-token']) $(id).value = '';
@@ -577,6 +586,7 @@ $('cos-form').addEventListener('submit', async (e) => {
   finally { button.disabled = false; }
 });
 $('store-original').addEventListener('click', async () => {
+  if(!CLOUD_UI_ENABLED)return;
   if (!state.doc) return;
   if (!state.config?.storage?.configured) { openCOS(); return; }
   if (!$('cos-consent').checked) { notice('请先确认将这份原文件保存到腾讯云 COS。', true); return; }
@@ -588,6 +598,7 @@ $('store-original').addEventListener('click', async () => {
   }, false);
 });
 $('store-draft').addEventListener('click', async () => {
+  if(!CLOUD_UI_ENABLED)return;
   if (!state.draft) return;
   if (!state.config?.storage?.configured) { openCOS(); return; }
   if (!confirm(`将当前编辑框中的产物保存到腾讯云 COS？\n\n${state.draft.title}\n存储桶：${state.config.storage.bucket}`)) return;
@@ -631,6 +642,7 @@ async function renderFiles() {
   }
 }
 $('files-open').addEventListener('click', async () => {
+  if(!CLOUD_UI_ENABLED)return;
   try { $('files-result').textContent = ''; await renderFiles(); $('files-dialog').showModal(); }
   catch (e) { notice(e.message, true); }
 });
@@ -665,16 +677,18 @@ async function refreshWorkspaces() {
   for (const id of ['recent-workspaces', 'sidebar-workspaces']) $(id).replaceChildren();
   $('current-file').hidden=state.workspaces.length>0;
   $('recent-count').textContent = `${state.workspaces.length} 个工作区`;
-  $('workspace-storage-note').textContent = '已保存的工作区从 COS 恢复；临时工作区只保留到本次服务停止。';
+  $('workspace-storage-note').textContent = CLOUD_UI_ENABLED ? '已保存的工作区从 COS 恢复；临时工作区只保留到本次服务停止。' : '本次服务运行期间可继续文件与对话，个人沉淀保存在本机档案。';
   if (!state.workspaces.length) $('recent-workspaces').append(el('p','还没有聊过的文件。拖入第一份文件开始。','subtle'));
   for (const w of state.workspaces) {
     const row = el('article',undefined,'workspace-card');
     const open = el('button',w.name,'workspace-open'); open.dataset.lock = ''; open.disabled = state.busy;
     open.addEventListener('click',()=>openWorkspace(w.id));
-    row.append(open,el('p',w.preview || '已读取，随时开始聊。','workspace-preview'),el('small',`${w.thread_ids.length} 个会话 · ${w.sync?.pending ? '待同步' : w.persistent ? 'COS 已保存' : '临时工作区'}${w.available ? '' : ' · 请恢复对应 COS 配置'}`));
+    const storageLabel=CLOUD_UI_ENABLED ? ` · ${w.sync?.pending ? '待同步' : w.persistent ? 'COS 已保存' : '临时工作区'}${w.available ? '' : ' · 请恢复对应 COS 配置'}` : w.available ? '' : ' · 暂不可打开';
+    row.append(open,el('p',w.preview || '已读取，随时开始聊。','workspace-preview'),el('small',`${w.thread_ids.length} 个会话${storageLabel}`));
     const remove = el('button','移除','workspace-delete'); remove.dataset.lock = ''; remove.disabled = state.busy;
     remove.addEventListener('click',async()=>{
-      if (!confirm(`移除「${w.name}」和全部会话、文件沉淀？\n已登记的 COS 原文件和工作区快照也将删除。用户档案不受影响。`)) return;
+      const scope=w.persistent ? '\n已保存的原件和工作区备份也将删除。' : '';
+      if (!confirm(`移除「${w.name}」和全部会话、文件沉淀？${scope}\n用户档案不受影响。`)) return;
       await operation('正在移除工作区…',async()=>{
         await api('/api/workspace/delete',{file_id:w.id,consent:true});
         state.tabs = state.tabs.filter(t=>t.id!==w.id); rememberTabs();
@@ -913,6 +927,7 @@ async function flushDraft() {
 $('draft').addEventListener('input',()=>{clearTimeout(state.draftTimer);state.draftTimer=setTimeout(()=>flushDraft().catch(e=>notice(e.message,true)),1000);});
 $('draft').addEventListener('blur',()=>flushDraft().catch(e=>notice(e.message,true)));
 $('retry-sync').addEventListener('click',async()=>{
+  if(!CLOUD_UI_ENABLED)return;
   if(!state.config?.storage?.configured){openCOS();return;}
   await operation('正在重试 COS 保存…',async()=>{
     await api('/api/workspace/sync',{file_id:state.doc.file_id,consent:true});

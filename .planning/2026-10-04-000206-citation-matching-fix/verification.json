@@ -1,0 +1,47 @@
+{
+  "completed_at": "2026-10-04T00:13:22.034441+08:00",
+  "changes": [
+    "保守归一化引用排版空白，保留数字、标点与英文词间边界",
+    "指定PDF行开始、同页连续最多8行匹配，还原为可逐条核对的原文片段",
+    "去除顶部重复报错与失败卡片堆积，首轮失败只留重试入口"
+  ],
+  "red_tests": {
+    "backend": "7项中4项因原单行逐字校验失败",
+    "browser": "重复提示、失败卡片堆积、PDF跨行引用保存均复现失败"
+  },
+  "validation": {
+    "backend": "94 tests OK",
+    "browser": "16 checks passed; synthetic model and PDF",
+    "real_model": {
+      "tested_at": "2026-10-04T00:11:00.393839+08:00",
+      "model": "gpt-5.6-sol",
+      "input": "synthetic_only",
+      "segments": 15,
+      "passed": true,
+      "stream_deltas": 198,
+      "insights": 4,
+      "verified_quotes": 15
+    },
+    "diff_check": "passed"
+  },
+  "deployment": {
+    "port": 8789,
+    "user_authorization": "直接覆盖在原端口就可以",
+    "data_dir": "var/accounts",
+    "http_routes": {
+      "/": 200,
+      "/login": 200,
+      "/register": 200,
+      "/app.js": 200
+    },
+    "preserved_old_ports": [
+      8787,
+      8788
+    ]
+  },
+  "limits": [
+    "未重放用户截图中的真实PDF或DeepSeek调用",
+    "只允许排版差异，不放过不存在的引文或未知来源编号",
+    "8789临时内存状态按用户授权重启，磁盘账号目录保留"
+  ]
+}

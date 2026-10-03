@@ -1,0 +1,7 @@
+[
+  "src/web/app.js",
+  "src/web/style.css",
+  "src/web/index.html",
+  "tests/personal_memory_browser.cjs",
+  "tests/feedback_browser.cjs"
+]

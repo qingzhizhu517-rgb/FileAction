@@ -1,0 +1,21 @@
+{
+  "updated_at": "2026-10-04T00:35:30.613021+08:00",
+  "scope": "统一活动产品界面logo；默认关闭COS展示，保留后台实现",
+  "validation": {
+    "front_build": "passed",
+    "front_tests": 20,
+    "backend_storage_and_auth_tests": 14,
+    "browser_checks": 6,
+    "browser_model": "synthetic; no real model or real COS called"
+  },
+  "flags": {
+    "personal_agent": "src/web/index.html body data-cloud-ui: disabled (enable: enabled)",
+    "react_client": "VITE_FILEACTION_CLOUD_UI=true to opt in"
+  },
+  "preserved": [
+    "src/storage.py",
+    "server COS APIs",
+    "upload/chat/memory/export",
+    "prior citation fix modifications"
+  ]
+}

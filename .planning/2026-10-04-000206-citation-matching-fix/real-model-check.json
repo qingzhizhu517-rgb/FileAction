@@ -1,0 +1,10 @@
+{
+  "tested_at": "2026-10-04T00:11:00.393839+08:00",
+  "model": "gpt-5.6-sol",
+  "input": "synthetic_only",
+  "segments": 15,
+  "passed": true,
+  "stream_deltas": 198,
+  "insights": 4,
+  "verified_quotes": 15
+}

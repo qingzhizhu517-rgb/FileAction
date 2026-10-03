@@ -1,0 +1,5 @@
+[
+  "front/vite.config.ts",
+  "front/src/features/auth/AuthForm.tsx",
+  "front/src/shared/api.ts"
+]

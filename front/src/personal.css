@@ -1,0 +1,6 @@
+/* 只调整本机账号入口；保留 main 的登录注册视觉。 */
+@media (max-width: 1000px) {
+  .personal-entry .auth-screen {
+    padding-top: 84px;
+  }
+}

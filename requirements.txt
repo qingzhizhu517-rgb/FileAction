@@ -1,0 +1,4 @@
+# TXT / MD / DOCX 仅依赖 Python 标准库；此项用于带文字层的 PDF。
+pypdf>=6.0,<7
+# 腾讯云 COS 官方 Python SDK。
+cos-python-sdk-v5>=1.9.33,<2

@@ -19,7 +19,7 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
-    rolldownOptions: { input: { main: "index.html", legacy: "legacy.html" } },
+    rolldownOptions: { input: { main: "index.html", legacy: "legacy.html", personal: "personal.html" } },
   },
   test: {
     environment: "jsdom",

@@ -11,6 +11,10 @@ docs/06-讲解视频/宣传片/build/
 __pycache__/
 node_modules/
 .env
+.env.*
+!.env.example
+.venv/
+.pytest_cache/
 
 # 成片只保留本地，不纳入 Git
 docs/06-讲解视频/output/*.mp4

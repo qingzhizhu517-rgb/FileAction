@@ -1,10 +1,10 @@
-import { useState, type FormEvent } from "react";
+import { useState, type DragEvent, type FormEvent } from "react";
 import {
   useInfiniteQuery,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import {
   FileText,
   Upload,
@@ -41,8 +41,10 @@ export function FilesPage() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
-  const [list, setList] = useState(false);
+  const [list, setList] = useState(true);
   const [upload, setUpload] = useState(false);
+  const [droppedFile, setDroppedFile] = useState<File>();
+  const [dragging, setDragging] = useState(false);
   const [source, setSource] = useState<DocumentItem>();
   const [uploaded, setUploaded] = useState<DocumentItem>();
   const [indexDoc, setIndexDoc] = useState<DocumentItem>();
@@ -101,46 +103,41 @@ export function FilesPage() {
       setOpening(false);
     }
   }
+  function handleDrop(event: DragEvent<HTMLElement>) {
+    event.preventDefault();
+    setDragging(false);
+    const file = event.dataTransfer.files[0];
+    if (!file) return;
+    setDroppedFile(file);
+    setUpload(true);
+  }
   return (
     <main className="page files-entry">
       <div className="page-heading files-heading">
         <div>
-          <p className="entry-kicker">YOUR FILE. YOUR NEXT STEP.</p>
           <h1>文件空间</h1>
-          <p>从收到的一份文件，找到与你有关的下一步。</p>
         </div>
         <a className="files-how" href="/intro/">
           看看文启如何理解 <ArrowUpRight size={15} />
         </a>
       </div>
-      <section className="files-upload-hero" aria-labelledby="upload-title">
+      <section
+        className={"files-upload-hero" + (dragging ? " is-dragging" : "")}
+        aria-label="上传一份文件"
+        onDragOver={(event) => { event.preventDefault(); setDragging(true); }}
+        onDragLeave={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setDragging(false); }}
+        onDrop={handleDrop}
+      >
         <div className="files-upload-copy">
-          <span className="files-upload-symbol" aria-hidden="true">
-            <FileText size={32} />
-          </span>
-          <h2 id="upload-title">
-            把文件带来，
-            <br />
-            先读懂它与你的关系。
-          </h2>
-          <p>
-            通知、方案、申请指南……
-            <br />
-            先理解，再决定是否继续行动。
-          </p>
-          <span className="files-upload-note">
-            不必先填资料表 · 发送模型前，范围看得见
-          </span>
+          <span className="files-upload-symbol" aria-hidden="true"><Upload size={22} /></span>
+          <div>
+            <h2>上传一份文件</h2>
+            <p>拖入文件，或选择 TXT、Markdown、文本 PDF、DOCX · 最大 10 MiB</p>
+          </div>
         </div>
-        <div className="files-upload-target">
-          <Upload size={28} aria-hidden="true" />
-          <strong>从一份文件开始</strong>
-          <span>TXT / Markdown / 文本 PDF / DOCX · 最大 10 MiB</span>
-          <button className="primary" onClick={() => setUpload(true)}>
-            上传并理解 <ArrowRight size={17} />
-          </button>
-          <small>上传后核对本次使用范围，再确认是否发给模型。</small>
-        </div>
+        <button className="primary" onClick={() => { setDroppedFile(undefined); setUpload(true); }}>
+          上传并理解 <ArrowRight size={17} />
+        </button>
       </section>
       <JudgeExampleCard upload={() => setUpload(true)} />
       {uploaded && (
@@ -171,19 +168,17 @@ export function FilesPage() {
         />
       )}{" "}
       {items(temporary.data).length > 0 && (
-        <section className="temporary-bar">
-          <strong>最近阅读</strong>
-          <span className="hint">继续本次会话中的理解</span>
+        <section className="temporary-bar recent-workspaces" aria-label="最近继续">
+          <strong>最近继续</strong>
           {items(temporary.data).map((w) => (
-            <button key={w.id} onClick={() => navigate("/workspaces/" + w.id)}>
-              {w.title || "未命名工作区"}
-            </button>
+            <Link key={w.id} to={"/workspaces/" + encodeURIComponent(w.id)}>
+              {w.title || "未命名工作区"} <ArrowRight size={15} aria-hidden="true" />
+            </Link>
           ))}
         </section>
       )}
       <div className="files-library-heading">
         <h2>我的文件</h2>
-        <p>保存下来的文件，随时接着读。</p>
       </div>
       <div className="file-toolbar">
         <div className="tabs">
@@ -315,9 +310,11 @@ export function FilesPage() {
       </footer>
       {upload && (
         <UploadDialog
-          close={() => setUpload(false)}
+          initialFile={droppedFile}
+          close={() => { setUpload(false); setDroppedFile(undefined); }}
           done={(doc) => {
             setUpload(false);
+            setDroppedFile(undefined);
             void cache.invalidateQueries({ queryKey: [user.id, "documents"] });
             setUploaded(doc);
             void openWorkspace(doc);
@@ -575,14 +572,16 @@ function DeleteDocumentDialog({
   );
 }
 function UploadDialog({
+  initialFile,
   close,
   done,
 }: {
+  initialFile?: File;
   close: () => void;
   done: (doc: DocumentItem) => void;
 }) {
   const { user, api } = useSession();
-  const [selectedFile, setSelectedFile] = useState<File>();
+  const [selectedFile, setSelectedFile] = useState<File | undefined>(initialFile);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<unknown>();
   const config = useQuery({
@@ -643,7 +642,7 @@ function UploadDialog({
               setSelectedFile(e.target.files?.[0]);
             }}
             accept=".txt,.md,.pdf,.docx"
-            required
+            required={!selectedFile}
             disabled={busy}
           />
           <small>TXT / Markdown / 文本PDF / DOCX · 最大10 MiB</small>

@@ -9,6 +9,7 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { FormalApp } from "../../app/FormalApp";
+import { JUDGE_EXAMPLE } from "../files/judgeExample";
 
 // HTTP替身与全部内容均为合成测试数据，不代表真实模型验收。
 let calls: { path: string; body: any; method: string }[];
@@ -18,10 +19,21 @@ const json = (data: unknown) => Response.json({ data });
 it("首屏按文档主线先理解文件，不暴露检索技术选项", async () => {
   render(<FormalApp />);
   expect(await screen.findByRole("heading", {name:"这份文件，对现在的你意味着什么？"})).toBeInTheDocument();
-  expect(screen.getByText("先理解，再决定下一步")).toBeInTheDocument();
   expect(screen.queryByLabelText("检索方式")).not.toBeInTheDocument();
   expect(screen.queryByLabelText("本次请求")).not.toBeInTheDocument();
   expect(screen.getByText("开始理解")).toBeInTheDocument();
+});
+it("分析入口收起低频操作和流程说明，保留原文与背景入口", async () => {
+  workspace.title = JUDGE_EXAMPLE.title;
+  render(<FormalApp />);
+  await screen.findByLabelText("本次问题");
+  expect(screen.queryByRole("region", { name: "合成示例体验指引" })).not.toBeInTheDocument();
+  expect(screen.getByLabelText("会话选项").closest("details")).not.toHaveAttribute("open");
+  fireEvent.click(screen.getByLabelText("会话选项"));
+  expect(screen.getByRole("button", { name: "结束本次" })).toBeVisible();
+  expect(screen.getByRole("button", { name: "修改标题" })).toBeVisible();
+  expect(screen.getByRole("button", { name: "本次对话沉淀" })).toBeVisible();
+  expect(screen.getByRole("button", { name: "预览外发内容" })).toBeVisible();
 });
 it("未配置模型时不渲染空白服务方，并说明无法开始", async () => {
   const originalFetch = fetch;

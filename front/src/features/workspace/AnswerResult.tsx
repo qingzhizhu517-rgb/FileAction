@@ -56,6 +56,13 @@ export function AnswerResult({
           (f) => f.id === selected.fact_id && f.version === selected.version,
         )
       : undefined;
+  const claims = <div className="answer-details-grid">{answer.claims.map((claim) => (
+    <article className={"answer-claim kind-" + claim.kind} key={claim.id}>
+      <strong>{kinds[claim.kind]}</strong>
+      <p>{claim.text}</p>
+      {evidenceLinks(claim)}
+    </article>
+  ))}</div>;
   return (
     <section className="workspace-answer" aria-label="本次模型解读">
       <div className="result-section-heading"><span className="result-step">01</span><div><p className="eyebrow">YOUR DOCUMENT, YOUR CONTEXT</p><h3>这份文件，与你的关系</h3></div></div>
@@ -67,13 +74,12 @@ export function AnswerResult({
         {answer.coverage === "full_selected_text" ? "所选全文" : "所选片段"}
         ，不代表所有文件或未提供的信息。
       </small>
-      <div className="answer-details-grid">{answer.claims.map((claim) => (
-        <article className={"answer-claim kind-" + claim.kind} key={claim.id}>
-          <strong>{kinds[claim.kind]}</strong>
-          <p>{claim.text}</p>
-          {evidenceLinks(claim)}
-        </article>
-      ))}</div>
+      {answer.claims.length > 3 ? (
+        <details className="answer-claims" key={answer.summary}>
+          <summary>查看详细判断与来源（{answer.claims.length}）</summary>
+          {claims}
+        </details>
+      ) : claims}
       {answer.artifact && (
         <section>
           <h4>{answer.artifact.title} · 模型初稿</h4>

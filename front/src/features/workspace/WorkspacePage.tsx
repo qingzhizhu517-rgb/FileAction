@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useLocation, useNavigate, useParams } from "react-router";
-import { FileText, MessageCircle, ShieldCheck, ArrowLeft } from "lucide-react";
+import { FileText, MessageCircle, ShieldCheck, ArrowLeft, MoreHorizontal } from "lucide-react";
 import { useSession } from "../../app/session";
 import { ApiError, items } from "../../shared/api";
 import {
@@ -213,24 +213,28 @@ function WorkspaceContent({ id }: { id: string }) {
             <ArrowLeft size={14} /> 文件空间
           </Link>
           <h1>{w.title || "未命名工作区"}</h1>
-          <p>一份文件，一次理解，由你决定下一步。</p>
         </div>
         <div className="workspace-heading-actions">
-          <button onClick={() => setShowSession(true)}>本次对话沉淀</button>
-          <button
-            disabled={busy || w.status === "ending"}
-            onClick={() => setTitleDraft(w.title)}
-          >
-            修改标题
-          </button>
-          <span className="workspace-badge">
-            {w.status === "ending"
-              ? "结束处理中 · 请继续结束以重试清理"
-              : "仅本次 · 临时工作区"}
-          </span>
-          <button disabled={busy} onClick={() => setEnding(true)}>
-            结束本次
-          </button>
+          <details className="session-options">
+            <summary aria-label="会话选项" title="会话选项"><MoreHorizontal size={20} aria-hidden="true" /><span className="sr-only">会话选项</span></summary>
+            <div>
+              <button onClick={() => setShowSession(true)}>本次对话沉淀</button>
+              <button
+                disabled={busy || w.status === "ending"}
+                onClick={() => setTitleDraft(w.title)}
+              >
+                修改标题
+              </button>
+              <span className="workspace-badge">
+                {w.status === "ending"
+                  ? "结束处理中 · 请继续结束以重试清理"
+                  : "仅本次 · 临时工作区"}
+              </span>
+              <button disabled={busy} onClick={() => setEnding(true)}>
+                结束本次
+              </button>
+            </div>
+          </details>
         </div>
       </header>
       {error != null &&
@@ -238,11 +242,6 @@ function WorkspaceContent({ id }: { id: string }) {
         !removeFact &&
         !ending &&
         titleDraft === undefined && <ErrorNotice error={error} />}
-      {w.title === JUDGE_EXAMPLE.title && <section className="example-workspace-guide" aria-label="合成示例体验指引">
-        <strong>合成示例 · 真实模型解读</strong>
-        <span>① 开始理解，核对引用　② 修改背景卡片，再追问　③ 选择继续，生成并编辑草稿</span>
-        <small>文件与角色均为虚构；你可以随时回到文件空间，上传自己的资料。</small>
-      </section>}
       <div className="workspace-grid">
         <aside className="workspace-materials">
           <h2>
@@ -282,9 +281,8 @@ function WorkspaceContent({ id }: { id: string }) {
         <section className="workspace-conversation">
           <header>
             <h2>
-              <MessageCircle size={18} /> 事务对话
+              <MessageCircle size={18} /> 文件解读
             </h2>
-            <span>先理解，再决定是否行动</span>
           </header>
           <div className="workspace-thread">
             {(generation.run ||
@@ -406,9 +404,7 @@ function WorkspaceContent({ id }: { id: string }) {
             ) : null}
           </div>
           {!readingComplete && <><div className="conversation-start">
-            <p className="eyebrow">先理解，再决定下一步</p>
             <h3>这份文件，对现在的你意味着什么？</h3>
-            <p>你可以直接告诉文启最想弄清的事，也可以先留空，让它从文件和本次背景开始理解。</p>
           </div>
           <form
             className="workspace-composer"
@@ -433,7 +429,7 @@ function WorkspaceContent({ id }: { id: string }) {
               });
             }}
           >
-            <label htmlFor="workspace-question">告诉文启你的想法</label>
+            <label htmlFor="workspace-question">本次问题</label>
             <textarea
               id="workspace-question"
               aria-label="本次问题"

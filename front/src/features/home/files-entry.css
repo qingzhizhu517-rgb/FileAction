@@ -3,13 +3,13 @@
 }
 .files-entry .files-heading {
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 .files-heading .entry-kicker {
   margin-bottom: 10px;
 }
 .files-heading h1 {
-  font-size: 29px;
+  font-size: 26px;
 }
 .files-heading p:last-child {
   margin-bottom: 0;
@@ -27,82 +27,51 @@
   min-height: 44px;
 }
 .files-upload-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 44px;
-  padding: 35px 40px;
-  margin-bottom: 32px;
-  border: 1px solid #ebdfbe;
-  border-radius: 16px;
-  background:
-    radial-gradient(ellipse at 18% 90%, #fff0bb90, transparent 65%), #fffbef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 23px 28px;
+  margin-bottom: 18px;
+  border: 1px dashed #c9b775;
+  border-radius: 8px;
+  background: #fffdf6;
+  transition: border-color .15s, background-color .15s;
 }
+.files-upload-hero.is-dragging { border-color: #98802c; background: #fff6d7; }
+.files-upload-copy { display: flex; align-items: center; gap: 18px; min-width: 0; }
 .files-upload-symbol {
-  display: inline-flex;
-  padding: 11px;
-  color: #705a24;
-  background: #f6c945;
-  border-radius: 10px;
-  transform: rotate(-7deg);
-  margin-bottom: 20px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: none;
+  color: #755a1a;
+  background: #f7e8ad;
+  border-radius: 6px;
 }
 .files-upload-copy h2 {
-  font-size: clamp(24px, 2.5vw, 32px);
-  line-height: 1.5;
+  font-size: 19px;
+  line-height: 1.3;
   font-weight: 600;
-  letter-spacing: -0.7px;
-  margin-bottom: 12px;
+  margin: 0 0 6px;
 }
 .files-upload-copy p {
-  font-size: 14px;
-  line-height: 1.9;
-  margin-bottom: 15px;
-  color: #71694f;
-}
-.files-upload-note {
   font-size: 12px;
-  color: #736953;
+  line-height: 1.5;
+  margin: 0;
+  color: #716d60;
 }
-.files-upload-target {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  text-align: center;
-  padding: 25px;
-  border: 1px dashed #caba90;
-  border-radius: 10px;
-  background: #fffefaac;
-}
-.files-upload-target > svg {
-  color: #8e7a43;
-}
-.files-upload-target > strong {
-  font-size: 17px;
-  font-weight: 600;
-}
-.files-upload-target > span {
-  font-size: 12px;
-  color: #756b56;
-  line-height: 1.7;
-}
-.files-upload-target .primary {
-  min-width: 190px;
-  min-height: 48px;
-  margin-top: 4px;
-}
-.files-upload-target small {
-  font-size: 12px;
-  color: #746b55;
-  line-height: 1.75;
-  max-width: 285px;
-}
+.files-upload-hero .primary { min-width: 156px; min-height: 44px; flex: none; }
+.recent-workspaces { padding: 7px 0 14px; border-bottom: 1px solid #e9e6dc; }
+.recent-workspaces strong { color: #504a3d; font-size: 13px; margin-right: 6px; }
+.recent-workspaces a { display: inline-flex; align-items: center; gap: 8px; max-width: 260px; min-height: 36px; padding: 4px 10px; border: 1px solid #e7e3d8; border-radius: 5px; color: #514938; background: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.recent-workspaces a:hover { border-color: #c6a64d; }
 .files-library-heading {
   display: flex;
   align-items: baseline;
   gap: 16px;
-  margin: 32px 0 4px;
+  margin: 22px 0 4px;
 }
 .files-library-heading h2 {
   font-size: 20px;
@@ -120,11 +89,19 @@
 }
 .files-entry .list-view .file-card {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: minmax(0, 2fr) minmax(120px, 1fr) minmax(100px, 1fr) auto;
+  gap: 10px 18px;
+  min-height: 0;
+  padding: 14px 18px;
+  border-radius: 6px;
 }
-.files-entry .list-view .file-management {
-  grid-column: 1 / -1;
-}
+.files-entry .list-view .file-title h2 { margin: 0; }
+.files-entry .list-view .file-icon { padding: 7px; }
+.files-entry .list-view .file-icon svg { width: 18px; height: 18px; }
+.files-entry .list-view .file-card .file-status { margin: 0; }
+.files-entry .list-view .file-card footer.file-reading-actions { grid-column: auto; border: 0; padding: 0; }
+.files-entry .list-view .file-management { grid-column: 1 / -1; margin: 0; border: 0; padding: 0; }
+.files-entry .list-view .file-management summary { min-height: 30px; padding: 5px 0; }
 .files-entry .file-card .file-status {
   margin-bottom: 17px;
 }
@@ -179,15 +156,11 @@
 }
 @media (max-width: 768px) {
   .files-upload-hero {
-    gap: 24px;
-    padding: 28px;
+    padding: 20px;
   }
-  .files-upload-target {
-    padding: 20px 14px;
-  }
-  .files-upload-target .primary {
-    min-width: 160px;
-  }
+  .files-entry .list-view .file-card { grid-template-columns: minmax(0, 1fr) auto; }
+  .files-entry .list-view .file-card > small, .files-entry .list-view .file-status { grid-column: 1; }
+  .files-entry .list-view .file-card footer.file-reading-actions { grid-column: 2; grid-row: 1 / span 3; }
   .files-entry .files-heading {
     align-items: flex-start;
   }
@@ -206,28 +179,17 @@
     display: none;
   }
   .files-upload-hero {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 25px 20px 20px;
-    margin-bottom: 25px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px;
+    margin-bottom: 18px;
   }
   .files-upload-symbol {
     display: none;
   }
-  .files-upload-copy h2 {
-    font-size: 25px;
-  }
-  .files-upload-copy p {
-    font-size: 14px;
-  }
-  .files-upload-copy p br {
-    display: none;
-  }
-  .files-upload-target {
-    padding: 24px 15px;
-    gap: 12px;
-  }
-  .files-upload-target .primary {
+  .files-upload-copy h2 { font-size: 18px; }
+  .files-upload-hero .primary {
     width: 100%;
   }
   .files-library-heading {
@@ -257,17 +219,20 @@
   }
 }
 
-.judge-example { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 20px; align-items: center; border: 1px solid #e5ddcd; border-radius: 14px; padding: 25px 28px; margin: 0 0 28px; background: #fffefa; }
+.judge-example { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 16px; align-items: center; border-top: 1px solid #e6e2d6; border-bottom: 1px solid #e6e2d6; padding: 15px 0; margin: 0 0 18px; background: transparent; }
 .judge-example-icon { display: grid; place-items: center; width: 50px; height: 60px; color: #987526; background: #f7efd9; border-radius: 6px 14px 6px 6px; }
-.judge-example h2 { font-size: 19px; margin: 6px 0 9px; font-weight: 600; }
+.judge-example h2 { font-size: 15px; margin: 3px 0 4px; font-weight: 600; }
 .judge-example p { font-size: 13px; line-height: 1.8; margin: 0; color: #736a57; }
 .judge-example-steps { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 11px; color: #857449; margin-top: 12px; }
 .judge-example-actions { display: flex; align-items: center; flex-direction: column; gap: 6px; }
 .judge-example-actions > button { min-height: 44px; white-space: nowrap; }
 .judge-example-actions .judge-own-file { border: 0; background: none; font-size: 12px; color: #766d5c; }
 .judge-example-background { margin: 20px 0; padding: 16px 20px; border-left: 3px solid #d6aa3f; background: #fffbef; font-size: 14px; line-height: 1.9; }
-.example-workspace-guide { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 24px; padding: 16px 22px; margin-bottom: 20px; border: 1px solid #e9ddbd; background: #fffaf0; border-radius: 10px; font-size: 13px; line-height: 1.8; }
-.example-workspace-guide strong { color: #715720; }
-.example-workspace-guide small { width: 100%; color: #857961; }
-@media (max-width: 720px) { .judge-example { grid-template-columns: auto minmax(0,1fr); padding: 22px; gap: 16px; } .judge-example-actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; } }
-@media (max-width: 420px) { .judge-example { display: block; } .judge-example-icon { display: none; } .judge-example-actions { margin-top: 15px; } .example-workspace-guide { padding: 15px; } }
+@media (max-width: 720px) {
+  .judge-example { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 10px 0; }
+  .judge-example-icon, .judge-example p, .judge-example-actions .judge-own-file { display: none; }
+  .judge-example .eyebrow { font-size: 10px; }
+  .judge-example h2 { font-size: 13px; line-height: 1.4; margin: 3px 0 0; }
+  .judge-example-actions { grid-column: 2; grid-row: 1; }
+  .judge-example-actions > button { min-height: 44px; padding: 7px 8px; font-size: 11px; }
+}

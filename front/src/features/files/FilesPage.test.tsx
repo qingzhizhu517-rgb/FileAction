@@ -4,6 +4,7 @@ import {
   render,
   screen,
   waitFor,
+  within,
 } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
 import { FormalApp } from "../../app/FormalApp";
@@ -15,6 +16,41 @@ vi.mock("../workspace/WorkspacePage", () => ({
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
+});
+
+it("最近继续直接打开现有会话，默认以列表浏览保存文件", async () => {
+  window.history.replaceState(null, "", "/files");
+  const writes: string[] = [];
+  vi.stubGlobal("fetch", async (url: string, init?: RequestInit) => {
+    if (init?.method === "POST") writes.push(url);
+    return Response.json({ data: url.endsWith("/auth/me") ? { id: "recent-test", display_name: "合成" } :
+      url.endsWith("/workspaces/temporary") ? [{ id: "existing", title: "合成最近会话", status: "active" }] : [] });
+  });
+  render(<FormalApp />);
+  const recent = await screen.findByRole("region", { name: "最近继续" });
+  expect(screen.getByRole("button", { name: "列表视图" })).toHaveAttribute("aria-pressed", "true");
+  fireEvent.click(within(recent).getByRole("link", { name: /合成最近会话/ }));
+  expect(await screen.findByText("真实工作区页面")).toBeInTheDocument();
+  expect(window.location.pathname).toBe("/workspaces/existing");
+  expect(writes).toEqual([]);
+});
+
+it("拖入文件只打开已选文件的确认层，取消不上传", async () => {
+  window.history.replaceState(null, "", "/files");
+  const writes: string[] = [];
+  vi.stubGlobal("fetch", async (url: string, init?: RequestInit) => {
+    if (init?.method === "POST") writes.push(url);
+    return Response.json({ data: url.endsWith("/auth/me") ? { id: "drop-test", display_name: "合成" } :
+      url.endsWith("/config") ? { storage_notice_version: "1", cos: { configured: true } } : [] });
+  });
+  render(<FormalApp />);
+  const dropzone = await screen.findByRole("region", { name: "上传一份文件" });
+  fireEvent.drop(dropzone, { dataTransfer: { files: [new File(["合成测试"], "合成拖入.txt", { type: "text/plain" })] } });
+  expect(await screen.findByText("已选择：合成拖入.txt")).toBeInTheDocument();
+  expect(writes).toEqual([]);
+  fireEvent.click(screen.getByRole("button", { name: "关闭" }));
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  expect(writes).toEqual([]);
 });
 
 it("选择文件后显示文件名和确认提示，确认前不上传", async () => {

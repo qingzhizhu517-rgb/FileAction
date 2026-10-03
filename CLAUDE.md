@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 仓库性质
 
-这里是西客松 XiHack 2026 参赛项目「文启 / FileAction（可行动事务 Agent）」的代码仓库，产品继续在本仓库开发。根目录 `src/`、`tests/` 预留给 MVP，目前尚未实现，没有可用的根目录 MVP 开发或测试命令。方案和赛前资产移入 `docs/`；当前可运行的交互设计稿与讲解动画均不属于赛中产品。开发与文档维护规则以 `AGENTS.md` 为准。文档地图见 `docs/可行动事务Agent-00-总览.md`。
+这里是西客松 XiHack 2026 参赛项目「文启 / FileAction（可行动事务 Agent）」的代码仓库。根目录 `backend/fileaction/`、`front/src/`、`backend/tests/`、`front/e2e/` 已包含本地个人 MVP 工程；真实模型合成通知的浏览器冒烟已通过，个性化解读质量、真人与公网验收仍未完成，准确结果见 `docs/01-产品方案/可行动事务Agent-个人MVP开发验证.md`。方案和赛前资产位于 `docs/`；旧交互设计稿与讲解动画均不属于新产品实现。开发与文档维护规则以 `AGENTS.md` 为准。文档地图见 `docs/可行动事务Agent-00-总览.md`。
 
 ## 现行产品主线
 
@@ -13,6 +13,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 不要把材料复用、禁重复申报、固定三态、关联图或团队分工重新写成通用主流程；不规定每次先问一个问题，不默认保存每次回答。允许跳过补充、不保留沉淀和只理解后结束。计划口径与实际实现证据分开，旧设计资产不能证明当前 MVP 已可用。
 
 ## 常用命令
+
+目录与运行状态以README为准。正式版采用独立前后端和PostgreSQL/pgvector、Redis、COS；旧MVP只用于显式兼容回归。密钥保持根目录 `.env`，测试禁用真实配置。
+
+```powershell
+Push-Location backend
+../.venv/Scripts/python -m pytest tests -q
+Pop-Location
+Push-Location front
+npm.cmd test -- --run
+npm.cmd run typecheck
+npm.cmd run build
+Pop-Location
+.venv/Scripts/python front/e2e/run.py  # 合成输入与HTTP模型替身
+```
+
+以下是文档检查与赛前设计稿命令：
 
 ```sh
 rg --files -g '*.md'                    # 列出文档
@@ -25,6 +41,13 @@ node --test --test-name-pattern '导出' docs/05-交互Demo/tests/engine.test.mj
 上述交互设计稿无需第三方依赖或构建，需要 Python 3 和 Node.js；这些不是 MVP 命令。讲解动画的渲染另需 Playwright/Chromium、ffmpeg、edge-tts、NumPy 等，具体见对应说明。
 
 ## 代码结构
+
+### `front/` 与 `backend/`：产品工程
+
+- `backend/fileaction/`：FastAPI正式服务与TXT/MD/PDF/DOCX解析；旧MVP的SQLite背景和无鉴权app仅由显式legacy入口提供，正式入口不得挂载。默认仅绑定回环地址；无生产模拟结果。
+- `front/src/`：React/TypeScript，先理解、再由用户选择保留和行动；组件测试与实现同目录。
+- `backend/tests/*.py`：解析、模型 HTTP 边界、会话/授权/导出与取消回归；`front/e2e/`：实际 Chromium + 后端集成，HTTP 模型替身明确隔离。
+- `var/`、`.venv/`、`node_modules/`、`dist/`、`test-results/` 均忽略，不提交运行数据或构建产物。
 
 ### `docs/05-交互Demo/`：9月30日旧方案设计稿（规则模拟，未接模型）
 

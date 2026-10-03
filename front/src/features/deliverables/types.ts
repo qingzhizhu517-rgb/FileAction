@@ -1,0 +1,1 @@
+export type ArtifactItem={id:string;workspace_id:string;title:string;kind:string;body:string;version:number;current_version:number;revision:number;author_kind:'model'|'user';retention:'temporary'|'retained';validity:'current'|'stale'|'source_deleted';historical:boolean;verification_note:string;sources:unknown[];unknowns:string[];generated_at?:string;edited_at?:string};

@@ -1,0 +1,2 @@
+class RunError(ValueError):
+    pass

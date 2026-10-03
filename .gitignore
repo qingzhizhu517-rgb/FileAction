@@ -23,3 +23,13 @@ coverage/
 *.db
 *.db-wal
 *.db-shm
+
+# 本地开发环境与产品构建
+.venv/
+.pytest_cache/
+.env.*
+!.env.example
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo

@@ -89,7 +89,7 @@ def create_app(settings: Settings, services: object | None = None) -> FastAPI:
         try:
             if request.url.path.startswith("/api/v1/") and request.method not in {"GET", "HEAD", "OPTIONS"}:
                 service = app.state.auth
-                if request.url.path in {"/api/v1/auth/register", "/api/v1/auth/login"}:
+                if request.url.path in {"/api/v1/auth/register", "/api/v1/auth/login", "/api/v1/auth/demo-login"}:
                     await service.consume_anonymous_csrf(request.cookies.get("fileaction_prelogin"),
                                                          request.headers.get("X-CSRF-Token"))
                 else:
@@ -144,6 +144,10 @@ def create_app(settings: Settings, services: object | None = None) -> FastAPI:
                           "model": settings.embedding_model, "domain": domain(settings.embedding_base_url)},
             "cos": {"configured": bool(settings.cos_configured), "region": settings.cos_region},
             "storage_notice_version": "1",
+            "judge_example_available": bool(
+                settings.demo_configured
+                and getattr(request.state.user, "username_normalized", None) == settings.demo_username.lower()
+            ),
         })
 
     @app.get("/api/v1/health/live", tags=["health"])

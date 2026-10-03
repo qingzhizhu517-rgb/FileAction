@@ -232,7 +232,7 @@ it("示例入口先展示合成角色和保存说明，取消不上传也不调�
   const writes: string[] = [];
   vi.stubGlobal("fetch", async (url: string, options?: RequestInit) => {
     if (options?.method === "POST") writes.push(url);
-    return Response.json({ data: url.endsWith("/auth/me") ? { id: "synthetic", display_name: "合成" } : [] });
+    return Response.json({ data: url.endsWith("/auth/me") ? { id: "synthetic", display_name: "合成" } : url.endsWith("/config") ? { judge_example_available: true } : [] });
   });
   render(<FormalApp />);
   fireEvent.click(await screen.findByRole("button", { name: "体验预设场景" }));
@@ -242,4 +242,16 @@ it("示例入口先展示合成角色和保存说明，取消不上传也不调�
   fireEvent.click(screen.getByRole("button", { name: "取消" }));
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   expect(writes).toHaveLength(0);
+});
+
+it("普通账号不显示管理员预设入口和对应空状态引导", async () => {
+  window.history.replaceState(null, "", "/files");
+  vi.stubGlobal("fetch", async (url: string) => Response.json({ data:
+    url.endsWith("/auth/me") ? { id: "synthetic-personal", display_name: "合成个人用户" } :
+    url.endsWith("/config") ? { judge_example_available: false } : []
+  }));
+  render(<FormalApp />);
+  await screen.findByText("还没有保存的文件");
+  expect(screen.queryByRole("button", { name: "体验预设场景" })).not.toBeInTheDocument();
+  expect(screen.queryByText(/从上方合成示例开始体验/)).not.toBeInTheDocument();
 });

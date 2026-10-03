@@ -4,7 +4,7 @@ import { ApiClient } from "../../shared/api";
 import { startJudgeExample, JUDGE_EXAMPLE } from "./judgeExample";
 
 afterEach(() => vi.unstubAllGlobals());
-function setup({ exists = false, configured = true, sampleOk = true, different = false, failFact = false, missingSource = false } = {}) {
+function setup({ exists = false, configured = true, sampleOk = true, different = false, failFact = false, missingSource = false, allowed = true } = {}) {
   const writes: { url: string; body: unknown }[] = [];
   vi.stubGlobal("fetch", async (url: string, options?: RequestInit) => {
     if (url === JUDGE_EXAMPLE.url) return new Response("synthetic-pdf-test-bytes", { status: sampleOk ? 200 : 404 });
@@ -16,7 +16,7 @@ function setup({ exists = false, configured = true, sampleOk = true, different =
       return response;
     }
     let data: unknown = {};
-    if (url.endsWith("/config")) data = { storage_notice_version: "1", cos: { configured } };
+    if (url.endsWith("/config")) data = { storage_notice_version: "1", cos: { configured }, judge_example_available: allowed };
     else if (url.endsWith("/auth/csrf")) data = { csrf_token: "synthetic" };
     else if (url.includes("/documents?")) data = { items: exists ? [{ id: "old", name: JUDGE_EXAMPLE.name, parse_status: "ready" }] : [] };
     if (options?.method && options.method !== "GET") {
@@ -70,4 +70,10 @@ it("失效的同名原件不阻止重新准备示例", async () => {
   const writes = setup({ exists: true, missingSource: true });
   await startJudgeExample(new ApiClient());
   expect(writes[0].url).toBe("/api/v1/documents");
+});
+
+it("未获体验配置时不下载或创建预设内容", async () => {
+  const writes = setup({ allowed: false });
+  await expect(startJudgeExample(new ApiClient())).rejects.toThrow("当前账号未开放预设体验");
+  expect(writes).toHaveLength(0);
 });

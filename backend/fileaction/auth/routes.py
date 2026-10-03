@@ -52,6 +52,26 @@ def cookie_options(settings: Settings) -> dict:
     return {"httponly": True, "samesite": "lax", "secure": settings.cookie_secure, "path": "/"}
 
 
+def session_response(request: Request, user: dict, token: str, csrf_token: str) -> Response:
+    response = envelope(request, {"user": user, "csrf_token": csrf_token})
+    response.set_cookie("fileaction_session", token, max_age=7 * 86400,
+                        **cookie_options(request.app.state.settings))
+    response.delete_cookie("fileaction_prelogin", path="/")
+    response.headers["Cache-Control"] = "no-store"
+    return response
+
+
+@router.get("/options")
+async def options(request: Request):
+    settings = request.app.state.settings
+    response = envelope(request, {
+        "registration_enabled": settings.registration_enabled,
+        "demo": {"username": settings.demo_username} if settings.demo_configured else None,
+    })
+    response.headers["Cache-Control"] = "no-store"
+    return response
+
+
 @router.get("/csrf")
 async def csrf(request: Request):
     service = request.app.state.auth
@@ -79,11 +99,19 @@ async def register(request: Request, body: Register):
 async def login(request: Request, body: Login):
     user, token, csrf_token = await request.app.state.auth.login(body.username, body.password,
                                                                  request.client.host if request.client else "unknown")
-    response = envelope(request, {"user": user, "csrf_token": csrf_token})
-    response.set_cookie("fileaction_session", token, max_age=7 * 86400,
-                        **cookie_options(request.app.state.settings))
-    response.delete_cookie("fileaction_prelogin", path="/")
-    return response
+    return session_response(request, user, token, csrf_token)
+
+
+@router.post("/demo-login")
+async def demo_login(request: Request):
+    settings = request.app.state.settings
+    if not settings.demo_configured:
+        raise AuthError("DEMO_DISABLED", "当前未开放管理员体验入口", 403)
+    user, token, csrf_token = await request.app.state.auth.login(
+        settings.demo_username, settings.demo_password,
+        request.client.host if request.client else "unknown",
+    )
+    return session_response(request, user, token, csrf_token)
 
 
 @router.post("/logout", status_code=204)

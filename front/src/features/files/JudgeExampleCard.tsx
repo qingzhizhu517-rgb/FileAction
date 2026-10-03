@@ -29,10 +29,9 @@ export function JudgeExampleCard({ upload }: { upload: () => void }) {
     <section className="judge-example" aria-labelledby="judge-example-title">
       <div className="judge-example-icon" aria-hidden="true"><FileText size={24} /></div>
       <div className="judge-example-copy">
-        <span className="eyebrow">评委体验 · 合成示例</span>
-        <h2 id="judge-example-title">一份通知，走到你的下一步</h2>
-        <p>已备好 PDF 和可修改背景。看一次解读，改一条背景，再带走自己的草稿。</p>
-        <div className="judge-example-steps"><span>01 理解与引用</span><span>02 修改背景再追问</span><span>03 编辑与下载</span></div>
+        <span className="eyebrow">管理员体验 · 合成示例</span>
+        <h2 id="judge-example-title">用一份示例，快速了解文启</h2>
+        <p>已准备文件与可修改背景，仅在管理员体验入口提供。AI 实时解读，实际解析可能需要等待。</p>
       </div>
       <div className="judge-example-actions">
         <button onClick={() => { setError(undefined); setOpen(true); }}>体验预设场景 <ArrowRight size={16} /></button>

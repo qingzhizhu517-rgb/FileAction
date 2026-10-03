@@ -103,3 +103,40 @@ def test_api_probe_still_rejects_a_listening_service(monkeypatch):
         listener.listen()
         with pytest.raises(RuntimeError, match="已被占用"):
             preview.start_api({}, listener.getsockname()[1])
+
+
+def test_demo_credentials_require_explicit_local_enablement(monkeypatch, tmp_path):
+    import json
+    path = tmp_path / "default-account.json"
+    monkeypatch.setattr(preview, "DEFAULT_ACCOUNT", path, raising=False)
+    monkeypatch.setenv("FILEACTION_DEMO_ENABLED", "true")
+    assert preview.demo_environment() == {}
+    path.write_text(json.dumps({"username": "synthetic_demo", "password": "synthetic-private-password"}))
+    assert preview.demo_environment() == {}
+    path.write_text(json.dumps({"demo_enabled": True, "username": "synthetic_demo", "password": "synthetic-private-password"}))
+    path.chmod(0o644)
+    assert preview.demo_environment() == {
+        "FILEACTION_DEMO_ENABLED": "true",
+        "FILEACTION_DEMO_USERNAME": "synthetic_demo",
+        "FILEACTION_DEMO_PASSWORD": "synthetic-private-password",
+    }
+    assert path.stat().st_mode & 0o777 == 0o600
+
+
+def test_demo_configuration_rejects_incomplete_credentials_without_echo(monkeypatch, tmp_path):
+    path = tmp_path / "default-account.json"
+    path.write_text('{"demo_enabled": true, "password": "synthetic-private-password"}')
+    monkeypatch.setattr(preview, "DEFAULT_ACCOUNT", path, raising=False)
+    with pytest.raises(RuntimeError) as error:
+        preview.demo_environment()
+    assert "synthetic-private-password" not in str(error.value)
+
+
+def test_demo_configuration_refuses_symlinks(monkeypatch, tmp_path):
+    target = tmp_path / "account.json"
+    target.write_text('{}')
+    path = tmp_path / "default-account.json"
+    path.symlink_to(target)
+    monkeypatch.setattr(preview, "DEFAULT_ACCOUNT", path, raising=False)
+    with pytest.raises(RuntimeError, match="符号链接"):
+        preview.demo_environment()

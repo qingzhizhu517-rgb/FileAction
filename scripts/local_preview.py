@@ -29,6 +29,7 @@ STATE = ROOT / "var" / "local-preview"
 CONFIG = STATE / "config.json"
 MODEL = STATE / "model.json"
 STORAGE = STATE / "storage.env"
+DEFAULT_ACCOUNT = STATE / "default-account.json"
 PYTHON = ROOT / ".venv" / "bin" / "python"
 LABEL = "com.fileaction.local-preview"
 
@@ -89,6 +90,26 @@ def storage_environment():
     values.setdefault("COS_PREFIX", "fileaction/")
     values.setdefault("COS_SSE_MODE", "AES256")
     return {"FILEACTION_" + name: values[name] for name in names if values.get(name)}
+
+
+def demo_environment():
+    """仅在本地配置显式启用时使用体验账号；不向浏览器返回密码。"""
+    if DEFAULT_ACCOUNT.is_symlink():
+        raise RuntimeError("体验账号配置路径是符号链接，停止处理。")
+    if not DEFAULT_ACCOUNT.exists():
+        return {}
+    DEFAULT_ACCOUNT.chmod(0o600)
+    data = json.loads(DEFAULT_ACCOUNT.read_text(encoding="utf-8"))
+    if data.get("demo_enabled") is not True:
+        return {}
+    username, password = data.get("username"), data.get("password")
+    if not isinstance(username, str) or not username or not isinstance(password, str) or not password:
+        raise RuntimeError("体验账号配置不完整：需要账号和密码。")
+    return {
+        "FILEACTION_DEMO_ENABLED": "true",
+        "FILEACTION_DEMO_USERNAME": username.lower(),
+        "FILEACTION_DEMO_PASSWORD": password,
+    }
 
 
 def run(args, *, environment=None, directory=ROOT, timeout=60, check=True):
@@ -317,6 +338,7 @@ def start_api(config, port):
         except OSError:
             raise RuntimeError(f"端口 {port} 已被占用；请选择 --port，不会停止现有服务。") from None
     environment = {**clean_environment(), **config["environment"], **model_environment(), **storage_environment()}
+    environment.update(demo_environment())
     environment.pop("FILEACTION_DISPATCHER_DATABASE_URL", None)
     process = start_process(config, "api", ["-m", "fileaction", "--no-env-file", "--port", str(port)], environment, "api.log")
     config["api"]["port"] = port

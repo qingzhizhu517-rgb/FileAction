@@ -66,6 +66,8 @@ it("完整宣传页及脚本样式在 /intro/ 同源可用，CTA 连接真实产
   expect(html).toContain('href="/files"');
   expect(html).toContain('href="/intro/" aria-label="文启 FileAction 首页"');
   expect(html).not.toContain("../docs/");
+  expect(html).not.toContain("预设合成解读 · 未接入模型");
+  expect(html).toContain("预设合成示例 · 未上传文件或调用模型");
   const resources = [
     ...html.matchAll(/(?:src|href)="([^"?#]+\.(?:css|js))"/g),
   ].map((match) => match[1]);

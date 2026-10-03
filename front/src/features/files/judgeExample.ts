@@ -12,6 +12,8 @@ export const JUDGE_EXAMPLE = {
 
 export async function startJudgeExample(api: ApiClient): Promise<Workspace> {
   const config = await api.request<Configuration>("/config");
+  if (config.judge_example_available !== true)
+    throw new ApiError(403, "DEMO_DISABLED", "当前账号未开放预设体验");
   if (!config.cos?.configured || !config.storage_notice_version)
     throw new ApiError(503, "STORAGE_UNAVAILABLE", "文件空间暂不可用，请稍后重试。");
   let response: Response;

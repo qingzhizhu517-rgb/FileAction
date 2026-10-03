@@ -85,6 +85,11 @@ export function FilesPage() {
       ),
   });
   const visible = files.data?.pages.flatMap((page) => page.items) ?? [];
+  const configuration = useQuery({
+    queryKey: [user.id, "config"],
+    queryFn: ({ signal }) => api.request<Configuration>("/config", { signal }),
+  });
+  const showExample = configuration.data?.judge_example_available === true;
   async function openWorkspace(doc: DocumentItem) {
     setOpening(true);
     setError(undefined);
@@ -139,7 +144,7 @@ export function FilesPage() {
           上传并理解 <ArrowRight size={17} />
         </button>
       </section>
-      <JudgeExampleCard upload={() => setUpload(true)} />
+      {showExample && <JudgeExampleCard upload={() => setUpload(true)} />}
       {uploaded && (
         <section
           className="temporary-bar upload-success"
@@ -235,7 +240,7 @@ export function FilesPage() {
         <Empty
           title={search || category ? "没有符合条件的文件" : "还没有保存的文件"}
         >
-          上传一份文件，或从上方合成示例开始体验。文件会保存在这里。
+          上传一份文件，保存后会出现在这里。
         </Empty>
       ) : (
         <div className={list ? "file-grid list-view" : "file-grid"}>

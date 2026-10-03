@@ -55,7 +55,7 @@ export class ApiClient {
     if (options.idempotencyKey)
       headers.set("Idempotency-Key", options.idempotencyKey);
     // Anonymous nonce is consumed by an attempted login/register, even on failure.
-    if (method === "POST" && ["/auth/login", "/auth/register"].includes(path))
+    if (method === "POST" && ["/auth/login", "/auth/register", "/auth/demo-login"].includes(path))
       this.reset();
     let response: Response;
     try {

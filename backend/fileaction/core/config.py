@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -19,6 +19,7 @@ ENV_KEYS = (
     "FILEACTION_MODEL_API_KEY", "FILEACTION_MODEL_NAME", "FILEACTION_ALLOWED_ORIGINS",
     "FILEACTION_TRUSTED_HOSTS", "FILEACTION_REGISTRATION_ENABLED", "FILEACTION_COOKIE_SECURE",
     "FILEACTION_TEST_MODEL_MODE",
+    "FILEACTION_DEMO_ENABLED", "FILEACTION_DEMO_USERNAME", "FILEACTION_DEMO_PASSWORD",
 )
 
 
@@ -98,6 +99,9 @@ class Settings:
     registration_enabled: bool = False
     cookie_secure: bool = False
     test_model_mode: bool = False
+    demo_enabled: bool = False
+    demo_username: str | None = None
+    demo_password: str | None = field(default=None, repr=False)
 
     def __post_init__(self):
         if self.cos_object_mode not in {"versioned", "immutable_key"}:
@@ -141,6 +145,9 @@ class Settings:
             registration_enabled=_bool("FILEACTION_REGISTRATION_ENABLED", values),
             cookie_secure=_bool("FILEACTION_COOKIE_SECURE", values),
             test_model_mode=_bool("FILEACTION_TEST_MODEL_MODE", values),
+            demo_enabled=_bool("FILEACTION_DEMO_ENABLED", values),
+            demo_username=values.get("FILEACTION_DEMO_USERNAME"),
+            demo_password=values.get("FILEACTION_DEMO_PASSWORD"),
         )
 
     def require_core(self) -> None:
@@ -163,6 +170,10 @@ class Settings:
             raise ConfigurationError("FILEACTION_TEST_MODEL_MODE 只允许 test 环境")
         if self.embedding_dimensions is not None and not 1 <= self.embedding_dimensions <= 16000:
             raise ConfigurationError("FILEACTION_EMBEDDING_DIMENSIONS 超出范围")
+
+    @property
+    def demo_configured(self) -> bool:
+        return bool(self.demo_enabled and self.demo_username and self.demo_password)
 
     @property
     def cos_configured(self) -> bool:

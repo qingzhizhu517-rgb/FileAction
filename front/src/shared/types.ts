@@ -20,6 +20,7 @@ export type DocumentItem = {
   mime_type?: string;
 };
 export type Configuration = {
+  judge_example_available?: boolean;
   storage_notice_version?: string;
   cos?: { region?: string; configured?: boolean };
   generation?: { configured?: boolean; model?: string; domain?: string };

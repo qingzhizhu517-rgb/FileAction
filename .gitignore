@@ -16,10 +16,11 @@ node_modules/
 .venv/
 .pytest_cache/
 
-# 成片只保留本地，不纳入 Git
+# 概念动画成片默认仅本地保留；指定宣传页视频例外入库
 docs/06-讲解视频/output/*.mp4
 docs/06-讲解视频/宣传片/output/*.mp4
 frontend/*.mp4
+!frontend/project-video.mp4
 
 # 产品运行数据与测试产物
 var/

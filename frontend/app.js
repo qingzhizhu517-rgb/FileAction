@@ -323,30 +323,6 @@ document.querySelector('#export-checklist').addEventListener('click', () => {
 selectScenario(activeScenario);
 }
 
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileNav = document.querySelector('#mobile-nav');
-function closeMenu() {
-  mobileNav.hidden = true;
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-label', '打开导航');
-}
-menuToggle.addEventListener('click', () => {
-  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-  mobileNav.hidden = expanded;
-  menuToggle.setAttribute('aria-expanded', String(!expanded));
-  menuToggle.setAttribute('aria-label', expanded ? '打开导航' : '关闭导航');
-});
-mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && !mobileNav.hidden) {
-    closeMenu();
-    menuToggle.focus();
-  }
-});
-window.matchMedia('(min-width: 801px)').addEventListener('change', event => {
-  if (event.matches) closeMenu();
-});
-
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {

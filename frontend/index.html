@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#FFFDF8">
   <meta name="description" content="收到文件，先交给文启。结合已确认背景，讲清楚哪些内容与你有关、为什么值得关注，再由你选择是否准备可编辑的具体产物。">
   <title>文启 FileAction — 收到文件，先交给文启</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23F6C945'/%3E%3Cpath d='M17 16h23v9H26v23h-9zm17 15h13v17H34z' fill='%232B2B2B'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="wenqi-icon.svg">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="motion.css">
   <link rel="stylesheet" href="file-scroll.css">
@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="pitch-flow.css">
   <script src="pitch-examples.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="project-video.js" defer></script>
   <script src="motion.js" defer></script>
   <script src="file-scroll.js" defer></script>
   <script src="interactions.js" defer></script>
@@ -42,16 +43,12 @@
   <a class="skip-link" href="#main">跳到主要内容</a>
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="#" aria-label="文启 FileAction 首页">
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 5h17v7H12v15H5zM17 17h10v10H17z" fill="currentColor"/></svg></span>
+      <a class="brand" href="/intro/" aria-label="文启 FileAction 首页">
+        <img class="brand-mark" src="wenqi-icon.svg" alt="" width="40" height="40">
         <span>文启<span class="brand-en">FileAction</span></span>
       </a>
-      <nav class="desktop-nav" aria-label="主导航">
-        <a href="#file-order">阅读重点</a><a href="#opportunity-radar">与你有关</a><a href="#trusted-reuse">继续行动</a><a href="#closing">预设体验</a>
-      </nav>
-      <div class="nav-actions"><a class="button button-small" href="#closing">探索 Demo <svg class="icon"><use href="#i-up"/></svg></a><button class="menu-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="mobile-nav"><svg class="icon"><use href="#i-menu"/></svg></button></div>
+      <div class="nav-actions"><a class="button button-small" href="/files">上传文件 <svg class="icon"><use href="#i-up"/></svg></a></div>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden><a href="#file-order">阅读重点</a><a href="#opportunity-radar">与你有关</a><a href="#trusted-reuse">继续行动</a><a href="#closing">预设体验</a></nav>
   </header>
 
   <main id="main">
@@ -62,11 +59,10 @@
       <canvas class="hero-particles" aria-hidden="true"></canvas>
       <div class="hero-aurora" aria-hidden="true"></div>
       <div class="hero-copy">
-        <a class="announcement" href="#opportunity-radar"><span class="status-dot"></span>从文件，开启新的可能<span class="announcement-divider"></span><span>探索文启</span><svg class="icon"><use href="#i-arrow"/></svg></a>
         <p class="eyebrow hero-eyebrow">ONE FILE. WHAT IT MEANS TO YOU.</p>
         <h1 id="hero-title">收到文件，<br>先交给<span class="marked">文启<svg viewBox="0 0 380 22" preserveAspectRatio="none" aria-hidden="true"><path d="M5 15Q174-1 372 11M25 21Q198 8 349 17"/></svg></span>。</h1>
         <p class="hero-description">先看看，这份文件对当下的你意味着什么。<br>少一点通读、筛选和反复解释，多一点与你有关的理解。</p>
-        <div class="hero-actions"><a class="button" href="#opportunity-radar">试读一份示例<svg class="icon"><use href="#i-arrow"/></svg></a><a class="button button-outline" href="#file-order"><svg class="icon play-icon"><use href="#i-play"/></svg>看看如何理解</a></div>
+        <div class="hero-actions"><a class="button" href="/files">上传一份文件<svg class="icon"><use href="#i-arrow"/></svg></a><a class="button button-outline" href="project-video.mp4" id="open-project-video" aria-haspopup="dialog" aria-controls="project-video-dialog"><svg class="icon play-icon"><use href="#i-play"/></svg>看看如何理解</a></div>
         <p class="hero-note">以文件为入口的个人行动助手 · 不必先填完整资料表</p>
       </div>
 
@@ -178,10 +174,22 @@
       </div>
     </section>
 
-    <section class="closing-section" id="closing" aria-labelledby="closing-title" tabindex="-1"><div class="closing-orbit" aria-hidden="true"></div><div class="closing-content reveal"><span class="closing-star" aria-hidden="true">✳</span><p class="eyebrow">YOUR FILE. YOUR MEANING. YOUR NEXT MOVE.</p><h2 id="closing-title">收到文件，<br>先交给文启。</h2><p>不必每次从头阅读、筛选，<br>也不必每次从头介绍自己。</p><div class="pitch-roadmap"><span>当前路径 · 个人端 MVP 验证</span><span>未来探索 · 团队协作与企业级应用</span></div><a class="button button-dark" href="../docs/05-交互Demo/可行动事务Agent-文启高保真Demo.html">打开预设交互体验<svg class="icon"><use href="#i-up"/></svg></a><span class="closing-note" id="demo-disclosure">本宣传页为合成交互示意 · 无真实上传或模型调用 · 示例不限定产品身份与文件类型</span></div></section>
+    <section class="closing-section" id="closing" aria-labelledby="closing-title" tabindex="-1"><div class="closing-orbit" aria-hidden="true"></div><div class="closing-content reveal"><span class="closing-star" aria-hidden="true">✳</span><p class="eyebrow">YOUR FILE. YOUR MEANING. YOUR NEXT MOVE.</p><h2 id="closing-title">收到文件，<br>先交给文启。</h2><p>不必每次从头阅读、筛选，<br>也不必每次从头介绍自己。</p><div class="pitch-roadmap"><span>当前路径 · 个人端 MVP 验证</span><span>未来探索 · 团队协作与企业级应用</span></div><a class="button button-dark" href="/files">进入文启，上传文件<svg class="icon"><use href="#i-up"/></svg></a><span class="closing-note" id="demo-disclosure">本页为合成交互示意，未上传文件或调用模型 · 点击“上传文件”进入正式产品</span></div></section>
     </div>
   </main>
 
-  <footer class="site-footer"><div class="footer-top"><a class="brand" href="#"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 5h17v7H12v15H5zM17 17h10v10H17z" fill="currentColor"/></svg></span><span>文启<span class="brand-en">FileAction</span></span></a><span>理解文件对你的意义，再由你选择行动。</span><a href="#main">回到顶部 ↑</a></div><div class="footer-bottom"><span>© 2026 文启 FileAction · 项目概念宣传页</span><span>文件 → 与我有关 → 选择行动</span><a href="#demo-disclosure">演示说明</a></div></footer>
+  <footer class="site-footer"><div class="footer-top"><a class="brand" href="/intro/"><img class="brand-mark" src="wenqi-icon.svg" alt="" width="40" height="40"><span>文启<span class="brand-en">FileAction</span></span></a><span>理解文件对你的意义，再由你选择行动。</span><a href="#main">回到顶部 ↑</a></div><div class="footer-bottom"><span>© 2026 文启 FileAction · 项目概念宣传页</span><span>文件 → 与我有关 → 选择行动</span><a href="#demo-disclosure">演示说明</a></div></footer>
+  <dialog id="project-video-dialog" class="project-video-dialog" aria-labelledby="project-video-title" aria-describedby="project-video-description">
+    <div class="project-video-heading">
+      <div><p class="eyebrow">MEET FILEACTION</p><h2 id="project-video-title">看看文启如何理解</h2></div>
+      <button type="button" class="icon-button project-video-close" id="close-project-video" aria-label="关闭项目视频" autofocus>×</button>
+    </div>
+    <video id="project-video" controls playsinline preload="none" aria-label="文启项目介绍视频">浏览器暂不支持视频播放，请使用下方新窗口入口。</video>
+    <p id="project-video-status" class="project-video-status" role="status" hidden></p>
+    <div class="project-video-footer">
+      <p id="project-video-description">项目介绍 · 1 分 40 秒<br><span>概念演示，非当前产品实录。</span></p>
+      <div><button type="button" class="project-video-retry" id="retry-project-video" hidden>重新加载</button><a href="project-video.mp4" target="_blank" rel="noopener">新窗口播放 ↗</a></div>
+    </div>
+  </dialog>
 </body>
 </html>

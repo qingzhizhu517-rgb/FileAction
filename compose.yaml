@@ -1,0 +1,122 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_DB: fileaction
+      POSTGRES_PASSWORD: ${FILEACTION_POSTGRES_SUPERUSER_PASSWORD:?Set a local PostgreSQL password}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:${FILEACTION_POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d fileaction"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7.4-alpine
+    environment:
+      FILEACTION_REDIS_PASSWORD: ${FILEACTION_REDIS_PASSWORD:?Set a local Redis password}
+    command: ["sh", "-c", "exec redis-server --save '' --appendonly no --maxmemory 128mb --maxmemory-policy noeviction --requirepass \"$$FILEACTION_REDIS_PASSWORD\""]
+    ports:
+      - "127.0.0.1:${FILEACTION_REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=\"$$FILEACTION_REDIS_PASSWORD\" redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: ./backend
+    environment: &application_environment
+      FILEACTION_ENV: ${FILEACTION_ENV:-development}
+      FILEACTION_DATABASE_URL: ${FILEACTION_DATABASE_URL:?Set a restricted runtime DSN}
+      FILEACTION_AUTH_DATABASE_URL: ${FILEACTION_AUTH_DATABASE_URL:?Set a restricted auth DSN}
+      FILEACTION_REDIS_URL: ${FILEACTION_REDIS_URL:?Set an authenticated Redis DSN}
+      FILEACTION_APP_SECRET: ${FILEACTION_APP_SECRET:?Set an application secret}
+      FILEACTION_COOKIE_SECURE: ${FILEACTION_COOKIE_SECURE:-false}
+      FILEACTION_REGISTRATION_ENABLED: ${FILEACTION_REGISTRATION_ENABLED:-false}
+      FILEACTION_ALLOWED_ORIGINS: ${FILEACTION_ALLOWED_ORIGINS:-http://127.0.0.1:8785}
+      FILEACTION_TRUSTED_HOSTS: ${FILEACTION_TRUSTED_HOSTS:-127.0.0.1,localhost}
+      FILEACTION_COS_REGION: ${FILEACTION_COS_REGION:-}
+      FILEACTION_COS_BUCKET: ${FILEACTION_COS_BUCKET:-}
+      FILEACTION_COS_PREFIX: ${FILEACTION_COS_PREFIX:-fileaction/}
+      FILEACTION_COS_SECRET_ID: ${FILEACTION_COS_SECRET_ID:-}
+      FILEACTION_COS_SECRET_KEY: ${FILEACTION_COS_SECRET_KEY:-}
+      FILEACTION_COS_SESSION_TOKEN: ${FILEACTION_COS_SESSION_TOKEN:-}
+      FILEACTION_COS_SSE_MODE: ${FILEACTION_COS_SSE_MODE:-}
+      FILEACTION_COS_OBJECT_MODE: ${FILEACTION_COS_OBJECT_MODE:-versioned}
+      FILEACTION_MODEL_BASE_URL: ${FILEACTION_MODEL_BASE_URL:-}
+      FILEACTION_MODEL_API_KEY: ${FILEACTION_MODEL_API_KEY:-}
+      FILEACTION_MODEL_NAME: ${FILEACTION_MODEL_NAME:-}
+      FILEACTION_EMBEDDING_BASE_URL: ${FILEACTION_EMBEDDING_BASE_URL:-}
+      FILEACTION_EMBEDDING_API_KEY: ${FILEACTION_EMBEDDING_API_KEY:-}
+      FILEACTION_EMBEDDING_MODEL: ${FILEACTION_EMBEDDING_MODEL:-}
+      FILEACTION_EMBEDDING_DIMENSIONS: ${FILEACTION_EMBEDDING_DIMENSIONS:-}
+      FILEACTION_EMBEDDING_PROFILE_VERSION: ${FILEACTION_EMBEDDING_PROFILE_VERSION:-}
+      FILEACTION_EMBEDDING_MAX_BATCH_ITEMS: ${FILEACTION_EMBEDDING_MAX_BATCH_ITEMS:-10}
+      FILEACTION_EMBEDDING_MAX_BATCH_TOKENS: ${FILEACTION_EMBEDDING_MAX_BATCH_TOKENS:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${FILEACTION_API_PORT:-8000}:8000"
+
+  worker:
+    build: ./backend
+    profiles: ["worker"]
+    environment:
+      <<: *application_environment
+      FILEACTION_DISPATCHER_DATABASE_URL: ${FILEACTION_DISPATCHER_DATABASE_URL:?Set a restricted dispatcher DSN}
+    command: ["python", "-m", "fileaction.workers"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  indexing:
+    build: ./backend
+    profiles: ["indexing"]
+    environment:
+      <<: *application_environment
+      FILEACTION_DISPATCHER_DATABASE_URL: ${FILEACTION_DISPATCHER_DATABASE_URL:?Set a restricted dispatcher DSN}
+    command: ["python", "-m", "fileaction.workers.indexing_main"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  front:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./front:/app
+      - front_node_modules:/app/node_modules
+    environment:
+      FILEACTION_DEV_API_TARGET: http://api:8000
+    command: ["sh", "-c", "npm ci && npm run dev -- --host 0.0.0.0 --port 5173"]
+    ports:
+      - "127.0.0.1:${FILEACTION_FRONT_PORT:-8785}:5173"
+
+  migrate:
+    build: ./backend
+    profiles: ["setup"]
+    environment:
+      FILEACTION_MIGRATION_DATABASE_URL: ${FILEACTION_MIGRATION_DATABASE_URL:?Set a separate migration DSN}
+      FILEACTION_EMBEDDING_DIMENSIONS: ${FILEACTION_EMBEDDING_DIMENSIONS:-}
+      FILEACTION_RUNTIME_PASSWORD: ${FILEACTION_RUNTIME_PASSWORD:?Set a runtime role password}
+      FILEACTION_AUTH_PASSWORD: ${FILEACTION_AUTH_PASSWORD:?Set an auth role password}
+      FILEACTION_DISPATCHER_PASSWORD: ${FILEACTION_DISPATCHER_PASSWORD:?Set a dispatcher role password}
+    command: ["sh", "-c", "python -m alembic -c /app/alembic.ini -x embedding_dimensions=$$FILEACTION_EMBEDDING_DIMENSIONS upgrade head && python -m fileaction.db.bootstrap"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  front_node_modules:

@@ -15,6 +15,7 @@ node_modules/
 # 成片只保留本地，不纳入 Git
 docs/06-讲解视频/output/*.mp4
 docs/06-讲解视频/宣传片/output/*.mp4
+frontend/*.mp4
 
 # 产品运行数据与测试产物
 var/
@@ -23,3 +24,13 @@ coverage/
 *.db
 *.db-wal
 *.db-shm
+
+# 产品运行环境与构建产物
+.venv/
+.pytest_cache/
+.env.*
+!.env.example
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo

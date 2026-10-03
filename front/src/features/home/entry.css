@@ -1,0 +1,104 @@
+/* 正式产品共用品牌与导航样式；完整首页仅由 frontend/ 维护。 */
+.entry-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 25px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.entry-brand-mark {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.entry-brand-en {
+  margin-left: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+.entry-kicker {
+  font-size: 10px;
+  font-weight: 550;
+  letter-spacing: 2.5px;
+  color: #736b58;
+  margin-bottom: 16px;
+}
+.entry-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 14px;
+}
+.entry-auth-back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.entry-more-nav {
+  position: relative;
+}
+.entry-more-nav summary {
+  min-height: 44px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #726a58;
+  list-style: none;
+}
+.entry-more-nav summary::-webkit-details-marker {
+  display: none;
+}
+.entry-more-nav > div {
+  position: absolute;
+  z-index: 20;
+  right: 0;
+  top: 48px;
+  min-width: 180px;
+  background: #fffefa;
+  border: 1px solid #e8dfcb;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px #4e3a1412;
+  padding: 8px;
+}
+.app-header .entry-more-nav a {
+  display: flex;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+.entry-more-nav summary:focus-visible,
+.entry-back:focus-visible {
+  outline: 2px solid #8c6510;
+  outline-offset: 5px;
+}
+@media (max-width: 768px) {
+  .entry-brand {
+    font-size: 22px;
+  }
+  .entry-brand-en {
+    font-size: 11px;
+  }
+}
+@media (max-width: 540px) {
+  .entry-brand-en {
+    display: none;
+  }
+  .entry-kicker {
+    font-size: 9px;
+    letter-spacing: 1.6px;
+  }
+  .app-header .entry-brand {
+    font-size: 20px;
+  }
+  .app-header .entry-brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+}

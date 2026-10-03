@@ -6,13 +6,36 @@
 
 这是西客松 XiHack 2026「文启 / FileAction（可行动事务 Agent）」的代码仓库。方案、研究与交互设计稿放在 `docs/`，静态宣传页及配套说明单独放在 `frontend/`。当前主线是**个人端 MVP 的验证**：结合已确认背景、分清原文与推断、按需询问、文件沉淀自动加入用户档案，并让用户查看来源、修改或删除。团队协作与企业级应用是未来探索。Document → 可行动事务 → Workflow 只在用户选择行动时继续展开。
 
+> **参赛交付物（仓库根目录）**：[项目说明文档（Word）](文启FileAction-项目说明文档.docx) · [产品使用及介绍.mp4](产品使用及介绍.mp4)
+
+## 技术栈
+
+| 层 | 技术 |
+|---|---|
+| 正式前端 `front/` | React 19 + TypeScript + Vite；react-router；@tanstack/react-query；lucide-react |
+| 正式后端 `backend/` | Python + FastAPI + uvicorn；SQLAlchemy(async) + Alembic + PostgreSQL（pgvector）；Redis；LangGraph（Agent 编排） |
+| 本机 MVP `src/` | Python 标准库 HTTP 服务，仅依赖 pypdf 与 cos-python-sdk-v5 |
+| 文件解析 | pypdf（带文字层 PDF）、python-docx（DOCX）、标准库处理 TXT / MD |
+| 存储 | 腾讯云 COS（cos-python-sdk-v5）；本机数据落在 Git 忽略的 `var/` |
+| 部署 | Docker Compose：postgres / redis / api / worker / indexing / front / migrate |
+| 测试 | pytest 与 unittest（后端）、Vitest + Testing Library（前端）、Playwright（浏览器验收） |
+
+## 大模型与赞助商 API
+
+| 用途 | 服务方 / 模型 | 调用方式 | 配置位置 |
+|---|---|---|---|
+| 文件解读与产物生成 | OpenAI 兼容大模型，默认 `gpt-5.6-sol` | OpenAI 兼容接口，支持 JSON 输出模式与流式返回 | 环境变量 `FILEACTION_BASE_URL` / `FILEACTION_MODEL` / `FILEACTION_API_KEY`（可选 `FILEACTION_JSON_MODE=1`），或 Git 忽略的 `var/model-config.json`（0600），页面「模型设置」可临时覆盖 |
+| 原文件与工作区快照持久化 | 腾讯云 COS | cos-python-sdk-v5 官方 SDK | 环境变量或页面「COS 设置」：`COS_REGION` / `COS_BUCKET` / `COS_SECRET_ID` / `COS_SECRET_KEY` / `COS_PREFIX`，可选 `COS_OBJECT_MODE` |
+
+每次模型调用前均需在界面确认发送范围；密钥只从环境变量或 Git 忽略的受控配置读取，浏览器不接收密钥。未配置或调用失败时明确报错，不生成假结果。
+
 ## 当前状态与开发入口
 
 **2026年10月3日：当前 main 工作区已引入开发分支的个人端代码，并完成个人理解主线和评委体验改造。** 正式前端位于 `front/`，API 与生成处理进程位于 `backend/`。`frontend/` 宣传页保留合成示例标识，并实际接入产品首页、`/intro/` 路由和生产构建。使用合成材料走通了真实模型解读、引用核对、背景保留与主动复用、产物起草、版本编辑及导出内容核对（此次下载落盘限制见下文）；这不代表所有场景或上线能力已完成验收。当前没有真人访谈或付费证据。
 
 **2026年10月3日已实现本机单用户 MVP 流程。** 新产品代码在 `src/`，测试在 `tests/`，没有复制赛前规则 Demo。依据本次提供的《路演(3).md》和《路演_品牌黄版(1).pptx》实现：拖入新文件、历史文件工作区、多会话对话、全局用户档案与可编辑文件沉淀、档案来源白盒展示、真实流式文字、分块日期和链接摘要、原文引用、可跳过的问题、用户选择行动、编辑与 Markdown 导出。文件持久化使用腾讯云 COS，记忆参考 Hermes 的精选条目与会话快照机制。
 
-界面与合成替身流程已经测试；**后台已配置 `gpt-5.6-sol`，真实模型已通过合成通知的解读、引用、初稿与编辑导出验收；真实 COS 云端读写仍待配置验收**。没有配置或调用失败时明确报错，不生成假结果。当前没有真人访谈或付费证据。详细范围与记录见 [MVP 运行与验收](docs/01-产品方案/可行动事务Agent-MVP运行与验收.md)。
+界面与合成替身流程已经测试；**后台已配置 `gpt-5.6-sol`，真实模型已通过合成通知的解读、引用、初稿与编辑导出验收；真实 COS 云端读写仍待配置验收**。没有配置或调用失败时明确报错，不生成假结果。详细范围与记录见 [MVP 运行与验收](docs/01-产品方案/可行动事务Agent-MVP运行与验收.md)。
 
 ### 启动个人端 MVP
 
@@ -56,11 +79,11 @@ python3 -m venv .venv
 - 开发规则见 [AGENTS.md](AGENTS.md)，仓库导航与常用命令见 [CLAUDE.md](CLAUDE.md)。
 - 本届成果须在官方 67 小时开发窗口内完成；赛期依据及团队冻结约定见开发规则，正式通知优先。10月2日转来的赛事方案仅为方向参考，不是确定规则。
 - 9月30日规则 Demo 和10月1日文启高保真 Demo 都是既有设计资产：后者是静态流程可视化、非定稿 UI，未接模型或真实长期记忆，不能当作赛中产品成果；制作时间与申报按事实记录。
-- 讲解视频是合成概念动画，不是产品实录；旧片仍使用“旁批”。概念动画成片默认本地保留；用户指定的宣传页视频 `frontend/project-video.mp4` 例外纳入 Git，新克隆可直接获取该视频。其他成片及本机中间资料不保证包含。
+- 讲解视频是合成概念动画，不是产品实录；旧片仍使用“旁批”。概念动画成片默认本地保留；用户指定的宣传页视频 `frontend/project-video.mp4` 与参赛演示视频 `产品使用及介绍.mp4` 例外纳入 Git，新克隆可直接获取。其他成片及本机中间资料不保证包含。
 
 ## main 首页与本机文件 Agent 的账号入口
 
-2026年10月3日已将 `main` 更新到 `bd1d478`。新入口复用 `frontend/` 完整首页和 `front/` 的登录注册组件，登录后进入本次 `src/` 文件 Agent，保留三栏、多会话、流式输出、自动个人沉淀、原文核对和导出。
+2026年10月3日已在 `main` 接入账号入口。新入口复用 `frontend/` 完整首页和 `front/` 的登录注册组件，登录后进入本次 `src/` 文件 Agent，保留三栏、多会话、流式输出、自动个人沉淀、原文核对和导出。
 
 ```sh
 npm --prefix front ci
@@ -127,6 +150,8 @@ git diff --check
 
 | 想了解 | 文档 |
 |---|---|
+| 完整项目说明（参赛必交） | [项目说明文档（Word）](文启FileAction-项目说明文档.docx)（系统架构、模块、数据、接口、测试与部署） |
+| 产品演示视频（参赛必交） | [产品使用及介绍.mp4](产品使用及介绍.mp4) |
 | 产品宣传页 | [打开文启宣传页](frontend/index.html) · [使用说明](frontend/可行动事务Agent-宣传页说明.md)（保留静态合成示例；产品内 `/intro/` 入口真实接通上传） |
 | 品牌与界面设计 | [Logo 设计说明](docs/01-产品方案/可行动事务Agent-Logo设计说明.md) · [UI 界面设计稿](docs/05-交互Demo/可行动事务Agent-文启UI界面.html) |
 | 文档地图 | [文档总览](docs/可行动事务Agent-00-总览.md) |
@@ -155,28 +180,32 @@ node --test docs/05-交互Demo/tests/engine.test.mjs   # 赛前规则测试，�
 
 ```text
 FileAction/
-├── README.md                    仓库首页与开发入口
-├── AGENTS.md                    代码优先开发规则与文档规范
-├── CLAUDE.md                    仓库导航与协作提示
-├── front/                       正式 React 前端与交互测试
-├── backend/                     API、生成处理进程、数据库迁移及测试
-├── scripts/                     隔离的本地预览启动器
+├── README.md                          仓库首页与开发入口
+├── AGENTS.md                          代码优先开发规则与文档规范
+├── CLAUDE.md                          仓库导航与协作提示
+├── 文启FileAction-项目说明文档.docx     项目说明文档（参赛必交）
+├── 产品使用及介绍.mp4                   产品演示视频（参赛必交）
+├── compose.yaml                       正式全栈编排：数据库 / 缓存 / API / 前端
+├── .env.example                       环境变量样例
 
-├── src/                         本机 MVP：文件解析、模型、COS、记忆与网页
-├── tests/                       产品逻辑、HTTP、COS 与浏览器验收
-├── run.sh                       个人端启动入口
-├── requirements.txt             PDF 解析与 COS 官方 SDK
-├── frontend/                    静态概念宣传页、样式、脚本与配套说明
+├── front/                             正式 React 前端与交互测试
+├── backend/                           FastAPI：API、生成处理进程、迁移及测试
+├── scripts/                           隔离的本地预览启动器
+├── src/                               本机 MVP：文件解析、模型、COS、记忆与网页
+├── tests/                             产品逻辑、HTTP、COS 与浏览器验收
+├── run.sh                             个人端启动入口
+├── requirements.txt                   本机 MVP 依赖（pypdf、COS SDK）
+├── frontend/                          静态概念宣传页、样式、脚本与配套说明
 ├── docs/
-│   ├── 可行动事务Agent-00-总览.md
+│   ├── 可行动事务Agent-00-总览.md       文档入口
 │   ├── 01-产品方案/
 │   ├── 02-调研与可行性/
 │   ├── 03-参赛与路演/
-│   ├── 05-交互Demo/             赛前设计稿，不复制到 src/
-│   ├── 06-讲解视频/              概念动画源码，MP4 仅本地保留
-│   └── 90-历史归档/              原始草稿与旧方案，正文不改写
-├── .planning/                   来源、核查记录与整理前副本
-└── .obsidian/                   编辑器配置
+│   ├── 05-交互Demo/                    赛前设计稿，不复制到 src/
+│   ├── 06-讲解视频/                     概念动画源码，MP4 仅本地保留
+│   └── 90-历史归档/                     原始草稿与旧方案，正文不改写
+├── .planning/                         来源、核查记录与整理前副本
+└── .obsidian/                         编辑器配置
 ```
 
 ## 说明

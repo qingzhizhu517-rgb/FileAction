@@ -74,7 +74,12 @@ it('下载后保留服务端所选版本的保存入口，切换版本时撤回�
   const artifact={id:'a',workspace_id:'ws',title:'合成成果',body:'用户第二版',version:2,current_version:2,revision:2,author_kind:'user',historical:false,retention:'temporary',validity:'current',sources:[],unknowns:[],verification_note:'合成提示'};
   const old={...artifact,version:1,body:'模型第一版',historical:true};
   vi.stubGlobal('fetch',async(path:string)=>{
-    if(path.endsWith('/export'))return new Response('服务端导出的第二版与来源说明',{headers:{'Content-Type':'text/markdown'}});
+    if(path.endsWith('/export')){
+      const response=new Response('服务端导出的第二版与来源说明',{headers:{'Content-Type':'text/markdown'}});
+      // Node Response 与 jsdom FileReader 分属不同环境，模拟浏览器同环境 Blob。
+      response.blob=async()=>new Blob([await response.text()],{type:'text/markdown'});
+      return response;
+    }
     let data:unknown={items:[]};
     if(path.endsWith('/auth/csrf'))data={csrf_token:'synthetic'};
     else if(path.endsWith('/artifacts'))data={items:[artifact]};

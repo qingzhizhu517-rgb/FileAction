@@ -185,6 +185,7 @@ FileAction/
 ├── CLAUDE.md                          仓库导航与协作提示
 ├── 文启FileAction-项目说明文档.docx     项目说明文档（参赛必交）
 ├── 产品使用及介绍.mp4                   产品演示视频（参赛必交）
+├── 路演 PPT.pptx                       路演 PPT
 ├── compose.yaml                       正式全栈编排：数据库 / 缓存 / API / 前端
 ├── .env.example                       环境变量样例
 
